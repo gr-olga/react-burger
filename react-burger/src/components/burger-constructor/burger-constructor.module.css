@@ -1,0 +1,49 @@
+.coneiner{
+    max-width: 600px;
+    margin-top: 100px;
+}
+.list{
+    font-family: 'Jet Brains Mono', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.sum{
+
+    font-family: Iceland,sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #F2F2F3;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 9px 0px 8px;
+}
+.btn{
+    background: linear-gradient(63.18deg, #801AB3 0%, #4C4CFF 100%);
+    border-radius: 64px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px 0px 41px;
+    height: 64px;
+    width: 215px;
+
+}
+.total{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    justify-content: end;
+    align-items: center;
+}
+.cunt{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
