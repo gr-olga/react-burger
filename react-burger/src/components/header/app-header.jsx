@@ -14,7 +14,7 @@ function AppHeader() {
                 </div>
                 <div className={styles.btn}>
                     <MenuIcon type="primary"/>
-                    <p className="text text_type_main-default">
+                    <p className="text text_type_main-default text_color_inactive">
                         лента заказов</p>
                 </div>
             </div>
@@ -23,7 +23,7 @@ function AppHeader() {
             </div>
             <div className={styles.navBox}>
                 <ProfileIcon type="primary"/>
-                <p className="text text_type_main-default">
+                <p className="text text_type_main-default text_color_inactive">
                     личный кабинет
                 </p>
             </div>
