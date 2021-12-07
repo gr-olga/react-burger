@@ -9,13 +9,13 @@ function AppHeader() {
             <div className={styles.navBox}>
                 <div className={styles.btn}>
                     <BurgerIcon type="primary"/>
-                    <p className="text text_type_main-default">
+                    <p className={`text text_type_main-default ${styles.py}`} >
                         Конструктор</p>
                 </div>
                 <div className={styles.btn}>
                     <MenuIcon type="primary"/>
                     <p className="text text_type_main-default text_color_inactive">
-                        лента заказов</p>
+                        Лента заказов</p>
                 </div>
             </div>
             <div>

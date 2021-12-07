@@ -7,15 +7,15 @@ import BurgerConstructor from "./components/burger-constructor/burger-constructo
 
 
 function App() {
-  return (
-    <div className="App">
-      <AppHeader className="App-header"/>
-        <div className='bar'>
-     <BurgerIngredients/>
-        <BurgerConstructor/>
-    </div>
-    </div>
-  );
+    return (
+        <div className="App">
+            <AppHeader className="App-header"/>
+            <div className='bar'>
+                <BurgerIngredients data={data}/>
+                <BurgerConstructor data={data}/>
+            </div>
+        </div>
+    );
 }
 
 export default App;

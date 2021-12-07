@@ -1,6 +1,8 @@
 .coneiner{
     max-width: 600px;
     margin-top: 100px;
+    display: grid;
+    gap: 16px;
 }
 .list{
     font-family: 'Jet Brains Mono', sans-serif;

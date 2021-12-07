@@ -5,8 +5,10 @@ import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-com
 function Ingredient(props){
 return(
     <div className={styles.box}>
-        <Counter count={1} size="default" />
+        <div className={styles.wraper}>
         <img className={styles.image} src={props.img}/>
+            <Counter count={1} size="default" />
+        </div>
         <h3 className={styles.price}>
             <p className={styles.number}>{props.price}</p>
             <CurrencyIcon type="primary" />

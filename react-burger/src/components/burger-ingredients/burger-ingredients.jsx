@@ -1,48 +1,71 @@
-import React,{useEffect, useState, useRef}  from 'react';
-
-import styles from './burger-ingredients.module.css'
-import Bun from'../../images/bun02.png'
-import Bun1 from'../../images/bun01.png'
+import React, {useEffect} from 'react';
+import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 
-function BurgerIngredients(props){
+function BurgerIngredients(props) {
     const [current, setCurrent] = React.useState('one')
+    const [bunList, setBunList] = React.useState([])
+    const [sauceList, setSauceList] = React.useState([])
+    const [mainList, setMainList] = React.useState([])
 
-    return(
+    useEffect(() => {
+        setBunList(props.data.filter((item) => item.type === 'bun'))
+        setSauceList(props.data.filter((item) => item.type === 'sauce'))
+        setMainList(props.data.filter((item) => item.type === 'main'))
+    }, [props.data])
 
-    <div className={styles.body}>
-        <div className={styles.header}>
-            <h1 className="text text_type_main-large">Соберите бургер</h1>
-        </div>
-        <div className={styles.nav}>
-            <button className={styles.btn} value="one" active={current === 'one'} onClick={setCurrent}>
-                Булки
-            </button>
-            <button className={styles.btn} value="two" active={current === 'two'} onClick={setCurrent}>
-                Соусы
-            </button>
-            <button className={styles.btn} value="three" active={current === 'three'} onClick={setCurrent}>
-                Начинка
-            </button>
-        </div>
-        <div className={styles.ingredients}>
-            <h2 className={styles.tag}>Булки</h2>
-            <div className={styles.container}>
-                <Ingredient img={Bun} price={20} name={'Краторная булка N-200i'}/>
-                <Ingredient img={Bun1} price={20} name={'Флюоресцентная булка R2-D3'}/>
+    return (
+        <div className={styles.body}>
+            <div className={styles.header}>
+                <h1 className="text text_type_main-large">Соберите бургер</h1>
             </div>
-            <h2 className={styles.tag}>Соусы</h2>
-            <div className={styles.container}>
-                <Ingredient/>
-                <Ingredient/>
+            <div className={styles.nav}>
+                <button className={styles.btn} value="one" active={current === 'one'} onClick={setCurrent}>
+                    Булки
+                </button>
+                <button className={styles.btn} value="two" active={current === 'two'} onClick={setCurrent}>
+                    Соусы
+                </button>
+                <button className={styles.btn} value="three" active={current === 'three'} onClick={setCurrent}>
+                    Начинка
+                </button>
             </div>
-            <h2 className={styles.tag}>Соусы</h2>
-            <div className={styles.container}>
-                <Ingredient/>
-                <Ingredient/>
+            <div className={styles.ingredients}>
+                <h2 className={styles.tag}>Булки</h2>
+                <div className={styles.container}>
+                    {bunList.map((item) => {
+                        return <Ingredient
+                            img={item.image}
+                            price={item.price}
+                            name={item.name}
+                        />
+                    })}
+                </div>
+                <h2 className={styles.tag}>Соусы</h2>
+                <div className={styles.container}>
+                    {mainList.map((item) => {
+                        return <Ingredient
+                            img={item.image}
+                            price={item.price}
+                            name={item.name}
+                        />
+                    })}
+                </div>
+                <h2 className={styles.tag}>Начинка</h2>
+                <div className={styles.container}>
+                    {sauceList.map((item) => {
+                        return <Ingredient
+                            img={item.image}
+                            price={item.price}
+                            name={item.name}
+                        />
+                    })}
+                </div>
             </div>
         </div>
-    </div>
 
-    )}
-export default  BurgerIngredients
+
+    )
+}
+
+export default BurgerIngredients

@@ -11,7 +11,7 @@
     text-align: center;
     display: flex;
     flex-direction: row;
-    margin-left: 28px;
+    margin-right: 28px;
 }
 .navBox{
     display: flex;
@@ -19,4 +19,7 @@
     justify-content: space-between;
     margin: 0;
     align-items: flex-end;
+}
+.py{
+    margin-left: 8px;
 }
