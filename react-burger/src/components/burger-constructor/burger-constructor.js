@@ -9,6 +9,7 @@ function BurgerConstructor(props) {
         <div className={styles.coneiner}>
             {props.data.map((item) => {
                 return <ConstructorElement
+                    key={item.id}
                     type={item.type}
                     isLocked={true}
                     text={item.name}
@@ -16,62 +17,6 @@ function BurgerConstructor(props) {
                     thumbnail={item.image}
                 />
             })}
-            {/*<div className={styles.list}>*/}
-            {/*    <ConstructorElement*/}
-            {/*        type="top"*/}
-            {/*        isLocked={true}*/}
-            {/*        text="Краторная булка N-200i (верх)"*/}
-            {/*        price={200}*/}
-            {/*        thumbnail={Bun}*/}
-            {/*    />*/}
-            {/*    <div className={styles.cunt}>*/}
-            {/*    <DragIcon type="primary" />*/}
-            {/*    <ConstructorElement*/}
-            {/*        text="Краторная булка N-200i (верх)"*/}
-            {/*        price={50}*/}
-            {/*        thumbnail={Bun1}*/}
-            {/*    />*/}
-            {/*    </div>*/}
-            {/*    <div className={styles.cunt}>*/}
-            {/*        <DragIcon type="primary" />*/}
-            {/*        <ConstructorElement*/}
-            {/*            text="Краторная булка N-200i (верх)"*/}
-            {/*            price={50}*/}
-            {/*            thumbnail={Bun1}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <div className={styles.cunt}>*/}
-            {/*        <DragIcon type="primary" />*/}
-            {/*        <ConstructorElement*/}
-            {/*            text="Краторная булка N-200i (верх)"*/}
-            {/*            price={50}*/}
-            {/*            thumbnail={Bun1}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <div className={styles.cunt}>*/}
-            {/*        <DragIcon type="primary" />*/}
-            {/*        <ConstructorElement*/}
-            {/*            text="Краторная булка N-200i (верх)"*/}
-            {/*            price={50}*/}
-            {/*            thumbnail={Bun1}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <div className={styles.cunt}>*/}
-            {/*        <DragIcon type="primary" />*/}
-            {/*        <ConstructorElement*/}
-            {/*            text="Краторная булка N-200i (верх)"*/}
-            {/*            price={50}*/}
-            {/*            thumbnail={Bun1}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <div>*/}
-            {/*    <ConstructorElement*/}
-            {/*        type="bottom"*/}
-            {/*        isLocked={true}*/}
-            {/*        text="Краторная булка N-200i (низ)"*/}
-            {/*        price={200}*/}
-            {/*        thumbnail={Bun1}*/}
-            {/*    />*/}
         </div>
     <div className={styles.total}>
         <h2 className={styles.sum}>200</h2>
@@ -81,5 +26,17 @@ function BurgerConstructor(props) {
         </div>
 )
 }
+
+// BurgerConstructor.propTypes = {
+//     name: PropTypes.string,
+//     _id: PropTypes.number,
+//     type:PropTypes.string,
+//     proteins:PropTypes.number,
+//     fat:PropTypes.number,
+//     carbohydrates:PropTypes.number,
+//     calories:PropTypes.number,
+//     price:PropTypes.number,
+//     image: PropTypes.string,
+// }
 
 export default BurgerConstructor

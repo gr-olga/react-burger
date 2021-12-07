@@ -3,6 +3,10 @@
     margin-top: 100px;
     display: grid;
     gap: 16px;
+    height: 500px;
+    scroll-behavior: revert;
+    position: sticky;
+    overflow-y: scroll;
 }
 .list{
     font-family: 'Jet Brains Mono', sans-serif;
