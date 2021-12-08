@@ -15,6 +15,10 @@ function BurgerIngredients(props) {
         setMainList(props.data.filter((item) => item.type === 'main'))
     }, [props.data])
 
+    function onItemClick(){
+        console.log("hhhh");
+    }
+
     return (
         <div className={styles.body}>
             <div className={styles.header}>
@@ -42,9 +46,11 @@ function BurgerIngredients(props) {
                 <div className={styles.container}>
                     {bunList.map((item) => {
                         return <Ingredient
+                            key={item._id}
                             img={item.image}
                             price={item.price}
                             name={item.name}
+                            onItemClick={onItemClick}
                         />
                     })}
                 </div>

@@ -9,7 +9,7 @@ function BurgerConstructor(props) {
         <div className={styles.coneiner}>
             {props.data.map((item) => {
                 return <ConstructorElement
-                    key={item.id}
+                    key={item._id}
                     type={item.type}
                     isLocked={true}
                     text={item.name}
