@@ -5,7 +5,7 @@ import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-bu
 function BurgerConstructor(props) {
 
     return (
-        <div>
+        <div className={styles.box}>
         <div className={styles.container}>
             {props.data.map((item) => {
                 return <ConstructorElement
