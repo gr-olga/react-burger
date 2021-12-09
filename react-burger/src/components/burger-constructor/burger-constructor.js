@@ -6,7 +6,7 @@ function BurgerConstructor(props) {
 
     return (
         <div>
-        <div className={styles.coneiner}>
+        <div className={styles.container}>
             {props.data.map((item) => {
                 return <ConstructorElement
                     key={item._id}

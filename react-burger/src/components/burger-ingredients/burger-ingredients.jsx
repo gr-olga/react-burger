@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
+import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 
 
 function BurgerIngredients(props) {
@@ -25,21 +26,21 @@ function BurgerIngredients(props) {
                 <h1 className="text text_type_main-large">Соберите бургер</h1>
             </div>
             <div className={styles.nav}>
-                <button className={styles.btn} value="one" active={current === 'one'} onClick={setCurrent}>
+                <Tab className={styles.btn} value="one" active={current === 'one'} onClick={setCurrent}>
                     <a className={styles.link} href="html#adress1">
                     Булки
                     </a>
-                </button>
-                <button className={styles.btn} value="two" active={current === 'two'} onClick={setCurrent}>
+                </Tab>
+                <Tab className={styles.btn} value="two" active={current === 'two'} onClick={setCurrent}>
                     <a className={styles.link} href="html#adress2">
                     Соусы
                     </a>
-                </button>
-                <button className={styles.btn} value="three" active={current === 'three'} onClick={setCurrent}>
+                </Tab>
+                <Tab className={styles.btn} value="three" active={current === 'three'} onClick={setCurrent}>
                     <a className={styles.link} href="html#adress3">
                     Начинка
                     </a>
-                </button>
+                </Tab>
             </div>
             <div className={styles.ingredients}>
                 <h2 className={styles.tag} id={'adress1'}> Булки </h2>
@@ -58,6 +59,7 @@ function BurgerIngredients(props) {
                 <div className={styles.container}>
                     {mainList.map((item) => {
                         return <Ingredient
+                            key={item._id}
                             img={item.image}
                             price={item.price}
                             name={item.name}
@@ -68,6 +70,7 @@ function BurgerIngredients(props) {
                 <div className={styles.container}>
                     {sauceList.map((item) => {
                         return <Ingredient
+                            key={item._id}
                             img={item.image}
                             price={item.price}
                             name={item.name}

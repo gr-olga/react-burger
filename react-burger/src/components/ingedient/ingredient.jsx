@@ -1,5 +1,5 @@
 import styles from "./ingredient.module.css";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 
 function Ingredient(props) {
@@ -18,7 +18,7 @@ function Ingredient(props) {
     return (
         <div className={styles.box} onClick={ handleCountChange}>
             <div className={styles.wrapper}  >
-                <img className={styles.image} src={props.img}/>
+                <img className={styles.image} src={props.img} alt={props.name}/>
                 { count > 0 &&
                     <Counter count={count} size="default"/>
                 }
