@@ -5,6 +5,6 @@ display: flex;
 .bar{
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  justify-items: center;
+  max-width: 1400px;
+  justify-items: flex-end;
 }
-

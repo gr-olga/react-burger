@@ -4,11 +4,11 @@ import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-com
 
 function Ingredient(props) {
 
-  const  [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  function handleCountChange(){
-      setCount(count + 1)
-      // props.onItemClick(props)
+    function handleCountChange() {
+        setCount(count + 1)
+        // props.onItemClick(props)
     }
 
 // useEffect(()=>{
@@ -16,19 +16,21 @@ function Ingredient(props) {
 // },)
 
     return (
-        <div className={styles.box} onClick={ handleCountChange}>
-            <div className={styles.wrapper}  >
-                <img className={styles.image} src={props.img} alt={props.name}/>
-                { count > 0 &&
-                    <Counter count={count} size="default"/>
-                }
-            </div>
-            <h3 className={styles.price}>
-                <p className={styles.number}>{props.price}</p>
-                <CurrencyIcon type="primary"/>
-            </h3>
-            <h4 className={styles.name}>{props.name}</h4>
-        </div>
+        <section onClick={handleCountChange}>
+                <div className={styles.box}>
+                    <div className={styles.wrapper}>
+                        <img className={styles.image} src={props.img} alt={props.name}/>
+                        {count > 0 &&
+                        <Counter count={count} size="default"/>
+                        }
+                    </div>
+                    <h3 className={styles.price}>
+                        <p className={styles.number}>{props.price}</p>
+                        <CurrencyIcon type="primary"/>
+                    </h3>
+                    <h4 className={styles.name}>{props.name}</h4>
+                </div>
+        </section>
     )
 }
 

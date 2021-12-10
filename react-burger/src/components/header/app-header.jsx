@@ -5,7 +5,8 @@ import styles from './app-header.module.css';
 function AppHeader() {
 
     return (
-        <nav className={styles.header}>
+        <nav >
+            <div className={styles.header}>
             <div className={styles.navBox}>
                 <div className={styles.btn}>
                     <BurgerIcon type="primary"/>
@@ -26,6 +27,7 @@ function AppHeader() {
                 <p className="text text_type_main-default text_color_inactive">
                     личный кабинет
                 </p>
+            </div>
             </div>
         </nav>
     )

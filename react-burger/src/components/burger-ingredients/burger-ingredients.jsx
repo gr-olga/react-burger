@@ -1,15 +1,23 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
+import PropTypes from "prop-types"
 
 
 function BurgerIngredients(props) {
+    const bunSection =useRef(null)
+    const sauceSection =useRef(null)
+    const mainSection =useRef(null)
+
     const [current, setCurrent] = React.useState('one')
     const [bunList, setBunList] = React.useState([])
     const [sauceList, setSauceList] = React.useState([])
     const [mainList, setMainList] = React.useState([])
 
+ // const onTabClick=()=>{
+ //        setCurrent(value)
+ // }
     useEffect(() => {
         setBunList(props.data.filter((item) => item.type === 'bun'))
         setSauceList(props.data.filter((item) => item.type === 'sauce'))
@@ -46,35 +54,35 @@ function BurgerIngredients(props) {
                 <h2 className={styles.tag} id={'adress1'}> Булки </h2>
                 <div className={styles.container}>
                     {bunList.map((item) => {
-                        return <Ingredient
+                        return (<Ingredient
                             key={item._id}
                             img={item.image}
                             price={item.price}
                             name={item.name}
                             onItemClick={onItemClick}
-                        />
+                        />)
                     })}
                 </div>
                 <h2 className={styles.tag} id={'adress2'}>Соусы</h2>
                 <div className={styles.container}>
                     {mainList.map((item) => {
-                        return <Ingredient
+                        return( <Ingredient
                             key={item._id}
                             img={item.image}
                             price={item.price}
                             name={item.name}
-                        />
+                        />)
                     })}
                 </div>
                 <h2 className={styles.tag} id={'adress3'}>Начинка</h2>
                 <div className={styles.container}>
                     {sauceList.map((item) => {
-                        return <Ingredient
+                        return (<Ingredient
                             key={item._id}
                             img={item.image}
                             price={item.price}
                             name={item.name}
-                        />
+                        />)
                     })}
                 </div>
             </div>
@@ -84,16 +92,16 @@ function BurgerIngredients(props) {
     )
 }
 
-// BurgerIngredients.propTypes = {
-//     name: PropTypes.string,
-//     _id: PropTypes.number,
-//     type:PropTypes.string,
-//     proteins:PropTypes.number,
-//     fat:PropTypes.number,
-//     carbohydrates:PropTypes.number,
-//     calories:PropTypes.number,
-//     price:PropTypes.number,
-//     image: PropTypes.string,
-// }
+BurgerIngredients.propTypes = {
+    name: PropTypes.string,
+    _id: PropTypes.number,
+    type:PropTypes.string,
+    proteins:PropTypes.number,
+    fat:PropTypes.number,
+    carbohydrates:PropTypes.number,
+    calories:PropTypes.number,
+    price:PropTypes.number,
+    image: PropTypes.string,
+}
 
 export default BurgerIngredients

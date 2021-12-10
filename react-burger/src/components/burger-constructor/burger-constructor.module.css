@@ -1,9 +1,8 @@
 .container{
     max-width: 600px;
-    margin-top: 100px;
     display: grid;
     gap: 16px;
-    height: 500px;
+   max-height: 290px;
     scroll-behavior: revert;
     position: sticky;
     overflow-y: scroll;
@@ -54,6 +53,12 @@
     align-items: center;
 }
 .box{
-    max-height: fit-content;
     margin-bottom: 40px;
+    margin-right: 45px;
+    margin-top: 100px;
+    max-height: 100vh;
+}
+.bunSection{
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
