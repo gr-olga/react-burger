@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 function BurgerConstructor(props) {
 
     const firstItem = props.data[0] ?? {};
-    const lastItem = props.data[props.data.length - 1] ?? {};
+    // const lastItem = props.data[props.data.length - 1] ?? {};
     const middleItemsList = props.data.slice(1, props.data.length - 1)
     return (
         <div className={styles.box}>
@@ -38,9 +38,9 @@ function BurgerConstructor(props) {
                 <ConstructorElement
                     type="bottom"
                     isLocked={true}
-                    text={lastItem.name + "(низ)"}
-                    price={lastItem.price}
-                    thumbnail={lastItem.image}
+                    text={firstItem.name + "(низ)"}
+                    price={firstItem.price}
+                    thumbnail={firstItem.image}
                 />
             </section>
             <div className={styles.total}>

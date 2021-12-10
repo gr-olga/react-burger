@@ -60,7 +60,6 @@ function BurgerIngredients(props) {
                     >
                     Соусы
                     </Tab>
-                }
                 <Tab className={styles.btn} value="three" active={current === 'three'} onClick={value=> {
                     setCurrent(value)
                     mainSection.current.scrollIntoView({behavior: "smooth"})
