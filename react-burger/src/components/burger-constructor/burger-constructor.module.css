@@ -38,6 +38,7 @@
     margin: 0px 0px 0px 41px;
     height: 64px;
     width: 215px;
+    color: #F2F2F3;
 
 }
 .total{
@@ -61,4 +62,11 @@
 .bunSection{
     margin-bottom: 15px;
     margin-top: 15px;
+    margin-left: 30px;
+    max-width: 525px;
+}
+.middleItemsList{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

@@ -23,7 +23,8 @@ function BurgerConstructor(props) {
             <div className={styles.container}>
                 {middleItemsList.map((item) => {
                     return (
-                        <>
+                        <div className={styles.middleItemsList}>
+                            <DragIcon type="primary" />
                             <ConstructorElement
                                 key={item._id}
                                 isLocked={false}
@@ -31,11 +32,11 @@ function BurgerConstructor(props) {
                                 price={item.price}
                                 thumbnail={item.image}
                             />
-                        </>
+                        </div>
                     )
                 })}
             </div>
-            <section>
+            <section className={styles.bunSection}>
                 <ConstructorElement
                     key={lastItem._id}
                     type="bottom"
