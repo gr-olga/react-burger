@@ -7,6 +7,18 @@
     position: sticky;
     overflow-y: scroll;
 }
+.container::-webkit-scrollbar {
+    box-sizing: border-box;
+    width: 3px;
+}
+.container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
 .list{
     font-family: 'Jet Brains Mono', sans-serif;
     display: flex;

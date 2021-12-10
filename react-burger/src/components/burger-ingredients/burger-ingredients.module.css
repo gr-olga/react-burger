@@ -18,6 +18,18 @@
     position: sticky;
     overflow-y: scroll;
 }
+.ingredients::-webkit-scrollbar {
+    box-sizing: border-box;
+    width: 3px;
+}
+.ingredients::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.ingredients::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
 .container{
     display: grid;
     grid-template-columns:repeat(2, 240px);
