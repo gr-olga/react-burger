@@ -38,3 +38,6 @@
     width: 240px;
     height: 120px;
 }
+.wrapper{
+    position: relative;
+}
