@@ -12,20 +12,14 @@ function App() {
 
     function getIngredientsData(baseUrl) {
         return fetch(baseUrl)
-            .then((res) => {
-                return (res.json());
-            })
-            .then(({data}) => {
-                setIngredients(data);
-            })
-            .catch((err)=>{
-                console.log("failed",err);
-            })
+            .then((res) => (res.json()))
+            .then(({data}) => data)
+            .catch((err) => console.log("failed", err))
     }
 
     useEffect(() => {
-        getIngredientsData(baseUrl)
-    },[])
+        getIngredientsData(baseUrl).then(data => setIngredients(data))
+    }, [])
 
     return (
         <div className={styles.app}>
