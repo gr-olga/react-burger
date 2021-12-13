@@ -1,26 +1,33 @@
 import React from "react";
 import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from './ingredient-details.module.css'
+import bun from  '../../images/bun02.png'
 
 function IngredientDetails(props) {
 
     return (
-        <ModalOverlay>
-            <h1 className={styles.title}>Детали ингредиента</h1>
-            <div>
-                <img  className={styles.image} src={props.image} alt={props.name}/>
-                <h2 className={styles.descriptor}>{props.name}</h2>
+        <ModalOverlay  title={'Детали ингредиента'}>
+            <div className={styles.box}>
+            {/*<h1 className={styles.title}>Детали ингредиента</h1>*/}
+            <div className={styles.container}>
+                <img  className={styles.image} src={bun} alt={props.name}/>
+                <h2 className={styles.descriptor}>Биокотлета из марсианской Магнолии</h2>
                 <div className={styles.list}>
-                    <h4>Калории,ккал</h4>
-                    <h4>Белки, г</h4>
-                    <h4>Жиры, г</h4>
-                    <h4>Углеводы, г</h4>
-                    <p>{props.calories}</p>
-                    <p>{props.proteins}</p>
-                    <p>{props.fat}</p>
-                    <p>{props.carbohydrates}</p>
+                    <h4 className={styles.heading}>Калории,ккал</h4>
+                    <h4 className={styles.heading}>Белки, г</h4>
+                    <h4 className={styles.heading}>Жиры, г</h4>
+                    <h4 className={styles.heading}>Углеводы, г</h4>
+                    {/*<p>{props.calories}</p>*/}
+                    {/*<p>{props.proteins}</p>*/}
+                    {/*<p>{props.fat}</p>*/}
+                    {/*<p>{props.carbohydrates}</p>*/}
+                    <p className={styles.numbers}>444.4</p>
+                    <p className={styles.numbers}>55.5</p>
+                    <p className={styles.numbers}>22</p>
+                    <p className={styles.numbers}>11</p>
                 </div>
             </div>
+        </div>
         </ModalOverlay>
     )
 }

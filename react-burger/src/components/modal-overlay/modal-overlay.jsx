@@ -7,6 +7,7 @@ function ModalOverlay(props) {
         <div className={styles.overlay}>
             <div className={styles.box}>
                 <div  className={styles.btn}>
+                    <h1 className={styles.title}>{props.title}</h1>
                 <CloseIcon type="primary" />
                 </div>
                 {props.children}
