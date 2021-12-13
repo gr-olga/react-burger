@@ -4,6 +4,7 @@ import AppHeader from "../header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import ModalOverlay from "../modal-overlay/modal-overlay";
+import OrderDetails from "../order-details/order-details";
 
 
 
@@ -29,7 +30,7 @@ function App() {
             {/*    <BurgerIngredients data={ingredients}/>*/}
             {/*    <BurgerConstructor data={ingredients}/>*/}
             {/*</div>*/}
-            <ModalOverlay/>
+             <OrderDetails/>
         </div>
     );
 }
