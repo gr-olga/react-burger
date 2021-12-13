@@ -10,13 +10,16 @@ function Ingredient(props) {
         setCount(count + 1)
         // props.onItemClick(props)
     }
+function handleClick(){
+        props.onItemClick(props)
+}
 
 // useEffect(()=>{
 //
 // },)
 
     return (
-        <section onClick={handleCountChange}>
+        <section onClick={handleClick}>
                 <div className={styles.box}>
                     <div className={styles.wrapper}>
                         <img className={styles.image} src={props.img} alt={props.name}/>

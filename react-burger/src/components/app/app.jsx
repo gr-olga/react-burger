@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import styles from './app.module.css';
-import AppHeader from "../header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import ModalOverlay from "../modal-overlay/modal-overlay";
-import OrderDetails from "../order-details/order-details";
-
+import IngredientDetails from "../ingredient-details/ingredient-details";
 
 
 function App() {
     const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
     const [ingredients, setIngredients] = useState([])
+    const [detail, setDetail] = useState(undefined)
+
+    const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false)
+    const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
 
     function getIngredientsData(baseUrl) {
         return fetch(baseUrl)
@@ -23,14 +23,23 @@ function App() {
         getIngredientsData(baseUrl).then(data => setIngredients(data))
     }, [])
 
+    function handleClick(item) {
+        setDetail(item)
+    }
+
+    function modalClose(){
+        setOrderDetailsOpen(false)
+        setIngredientDetailsOpen(false)
+    }
+
     return (
         <div className={styles.app}>
             {/*<AppHeader/>*/}
             {/*<div className={styles.bar}>*/}
-            {/*    <BurgerIngredients data={ingredients}/>*/}
+            <BurgerIngredients data={ingredients} onIngredientClick={handleClick}/>
             {/*    <BurgerConstructor data={ingredients}/>*/}
             {/*</div>*/}
-             <OrderDetails/>
+            <IngredientDetails item={detail}/>
         </div>
     );
 }

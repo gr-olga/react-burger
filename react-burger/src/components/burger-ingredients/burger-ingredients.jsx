@@ -22,9 +22,6 @@ function BurgerIngredients(props) {
         setMainList(props.data.filter((item) => item.type === 'main'))
     }, [props.data])
 
-    function onItemClick() {
-        console.log(bunSection);
-    }
 
     function onScroll(evt) {
         const container = evt.target
@@ -38,6 +35,9 @@ function BurgerIngredients(props) {
         }else {
             setCurrent('three')
         }
+    }
+    function onItemClick (item){
+        props.onIngredientClick(item)
     }
 
 
@@ -81,6 +81,7 @@ function BurgerIngredients(props) {
                                 price={item.price}
                                 name={item.name}
                                 onItemClick={onItemClick}
+                                hadleClick={onItemClick}
                             />)
                         })}
                     </div>
@@ -96,6 +97,7 @@ function BurgerIngredients(props) {
                                 img={item.image}
                                 price={item.price}
                                 name={item.name}
+                                hadleClick={onItemClick}
                             />)
                         })}
                     </div>
@@ -111,6 +113,7 @@ function BurgerIngredients(props) {
                                 img={item.image}
                                 price={item.price}
                                 name={item.name}
+                                hadleClick={onItemClick}
                             />)
                         })}
                     </div>
