@@ -24,11 +24,11 @@ function App() {
 
     return (
         <div className={styles.app}>
-            <AppHeader/>
-            <div className={styles.bar}>
-                <BurgerIngredients data={ingredients}/>
-                <BurgerConstructor data={ingredients}/>
-            </div>
+            {/*<AppHeader/>*/}
+            {/*<div className={styles.bar}>*/}
+            {/*    <BurgerIngredients data={ingredients}/>*/}
+            {/*    <BurgerConstructor data={ingredients}/>*/}
+            {/*</div>*/}
             <ModalOverlay/>
         </div>
     );

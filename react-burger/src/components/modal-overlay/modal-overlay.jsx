@@ -4,9 +4,11 @@ import styles from './modal-overlay.module.css'
 
 function ModalOverlay() {
     return (
-        <div>
+        <div className={styles.overlay}>
             <div className={styles.box}>
+                <div  className={styles.btn}>
                 <CloseIcon type="primary" />
+                </div>
             </div>
         </div>
     )
