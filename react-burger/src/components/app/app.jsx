@@ -29,7 +29,6 @@ function App() {
     function handleIngredientClick(item) {
         setIngredientDetailsOpen(true)
         setDetail(item)
-        console.log(detail)
     }
 
     function handleOrderDetailClick() {
@@ -40,7 +39,6 @@ function App() {
         setOrderDetailsOpen(false)
         setIngredientDetailsOpen(false)
     }
-
 
     return (
         <div className={styles.app}>

@@ -39,7 +39,6 @@ function BurgerIngredients(props) {
 
     function onItemClick(item) {
         props.onIngredientClick(item)
-        console.log("6548")
     }
 
 
@@ -83,7 +82,6 @@ function BurgerIngredients(props) {
                                 price={item.price}
                                 name={item.name}
                                 onItemClick={onItemClick}
-                                // hadleClick={onItemClick}
                             />)
                         })}
                     </div>
@@ -100,7 +98,6 @@ function BurgerIngredients(props) {
                                 img={item.image}
                                 price={item.price}
                                 name={item.name}
-                                // hadleClick={onItemClick}
                             />)
                         })}
                     </div>
@@ -117,7 +114,6 @@ function BurgerIngredients(props) {
                                 price={item.price}
                                 name={item.name}
                                 onItemClick={onItemClick}
-                                // hadleClick={onItemClick}
                             />)
                         })}
                     </div>
