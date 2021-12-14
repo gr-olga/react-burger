@@ -6,17 +6,14 @@ function Ingredient(props) {
 
     const [count, setCount] = useState(0);
 
-    function handleCountChange() {
-        setCount(count + 1)
-        // props.onItemClick(props)
-    }
-function handleClick(){
-        props.onItemClick(props)
+    // function handleCountChange() {
+    //     setCount(count + 1)
+    //     // props.onItemClick(props)
+    // }
+function handleClick() {
+    props.onItemClick(props)
 }
 
-// useEffect(()=>{
-//
-// },)
 
     return (
         <section onClick={handleClick}>

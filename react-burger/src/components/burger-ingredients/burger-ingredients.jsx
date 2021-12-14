@@ -28,18 +28,19 @@ function BurgerIngredients(props) {
         const scrollPosition = container.scrollTop
         const positionSauce = sauceSection.current.offsetTop
         const positionMain = mainSection.current.offsetTop
-        if (scrollPosition + 100 <= positionSauce){
+        if (scrollPosition + 100 <= positionSauce) {
             setCurrent('one')
-        }else if (scrollPosition +100 <= positionMain){
+        } else if (scrollPosition + 100 <= positionMain) {
             setCurrent('two')
-        }else {
+        } else {
             setCurrent('three')
         }
     }
-    function onItemClick (item){
-        props.onIngredientClick(item)
-    }
 
+    function onItemClick(item) {
+        props.onIngredientClick(item)
+        console.log("6548")
+    }
 
 
     return (
@@ -48,24 +49,24 @@ function BurgerIngredients(props) {
                 <h1 className="text text_type_main-large">Соберите бургер</h1>
             </div>
             <div className={styles.nav}>
-                <Tab className={styles.btn} value="one" active={current === 'one'} onClick={value=> {
+                <Tab className={styles.btn} value="one" active={current === 'one'} onClick={value => {
                     setCurrent(value)
                     bunSection.current.scrollIntoView({behavior: "smooth"})
                 }}>
                     Булки
                 </Tab>
-                <Tab className={styles.btn} value="two" active={current === 'two'} onClick={value=>{
+                <Tab className={styles.btn} value="two" active={current === 'two'} onClick={value => {
                     setCurrent(value)
-                    sauceSection.current.scrollIntoView({behavior:"smooth"})
+                    sauceSection.current.scrollIntoView({behavior: "smooth"})
                 }}
-                    >
+                >
                     Соусы
-                    </Tab>
-                <Tab className={styles.btn} value="three" active={current === 'three'} onClick={value=> {
+                </Tab>
+                <Tab className={styles.btn} value="three" active={current === 'three'} onClick={value => {
                     setCurrent(value)
                     mainSection.current.scrollIntoView({behavior: "smooth"})
                 }}
-                    >
+                >
                     Начинка
                 </Tab>
             </div>
@@ -76,7 +77,7 @@ function BurgerIngredients(props) {
                     <h2 className={styles.tag}> Булки </h2>
                     <div className={styles.container}>
                         {bunList.map((item) => {
-                            return (<Ingredient
+                            return (<Ingredient {...item}
                                 key={item._id}
                                 img={item.image}
                                 price={item.price}
@@ -92,13 +93,13 @@ function BurgerIngredients(props) {
                 >
                     <h2 className={styles.tag}>Соусы</h2>
                     <div className={styles.container}>
-                        {mainList.map((item) => {
-                            return (<Ingredient
+                        {sauceList.map((item) => {
+                            return (<Ingredient {...item}
+                                onItemClick={onItemClick}
                                 key={item._id}
                                 img={item.image}
                                 price={item.price}
                                 name={item.name}
-                                onItemClick={onItemClick}
                                 // hadleClick={onItemClick}
                             />)
                         })}
@@ -109,8 +110,8 @@ function BurgerIngredients(props) {
                 >
                     <h2 className={styles.tag}>Начинка</h2>
                     <div className={styles.container}>
-                        {sauceList.map((item) => {
-                            return (<Ingredient
+                        {mainList.map((item) => {
+                            return (<Ingredient {...item}
                                 key={item._id}
                                 img={item.image}
                                 price={item.price}

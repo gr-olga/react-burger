@@ -27,14 +27,14 @@ function App() {
     }, [])
 
     function handleIngredientClick(item) {
-        setDetail(item)
         setIngredientDetailsOpen(true)
+        setDetail(item)
+        console.log(detail)
     }
 
     function handleOrderDetailClick() {
         setOrderDetailsOpen(true)
     }
-
 
     function modalClose() {
         setOrderDetailsOpen(false)
