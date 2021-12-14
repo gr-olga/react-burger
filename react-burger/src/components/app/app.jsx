@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import styles from './app.module.css';
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import IngredientDetails from "../ingredient-details/ingredient-details";
+import OrderDetails from "../order-details/order-details";
+import AppHeader from "../header/app-header";
+import BurgerConstructor from "../burger-constructor/burger-constructor";
 
 
 function App() {
@@ -23,23 +26,44 @@ function App() {
         getIngredientsData(baseUrl).then(data => setIngredients(data))
     }, [])
 
-    function handleClick(item) {
+    function handleIngredientClick(item) {
         setDetail(item)
+        setIngredientDetailsOpen(true)
     }
 
-    function modalClose(){
+    function handleOrderDetailClick() {
+        setOrderDetailsOpen(true)
+    }
+
+
+    function modalClose() {
         setOrderDetailsOpen(false)
         setIngredientDetailsOpen(false)
     }
 
+
     return (
         <div className={styles.app}>
-            {/*<AppHeader/>*/}
-            {/*<div className={styles.bar}>*/}
-            <BurgerIngredients data={ingredients} onIngredientClick={handleClick}/>
-            {/*    <BurgerConstructor data={ingredients}/>*/}
-            {/*</div>*/}
-            <IngredientDetails item={detail}/>
+            <AppHeader/>
+            <div className={styles.bar}>
+                <BurgerIngredients
+                    data={ingredients}
+                    onIngredientClick={handleIngredientClick}
+                />
+                <BurgerConstructor
+                    data={ingredients}
+                    onOrderClick={handleOrderDetailClick}
+                />
+            </div>
+            <IngredientDetails
+                item={detail}
+                isOpen={isIngredientDetailsOpen}
+                onClose={modalClose}
+            />
+            <OrderDetails
+                isOpen={isOrderDetailsOpen}
+                onClose={modalClose}
+            />
         </div>
     );
 }

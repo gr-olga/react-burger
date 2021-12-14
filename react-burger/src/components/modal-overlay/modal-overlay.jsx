@@ -4,11 +4,14 @@ import styles from './modal-overlay.module.css'
 
 function ModalOverlay(props) {
     return (
-        <div className={styles.overlay}>
+        <div className={styles.overlay}
+             style={props.isOpen ? {visibility: "visible" ,  transition: "visibility .35s, opacity 0.35s ease-in-out",
+                 opacity: "1"} : {visibility: "hidden"}
+             }>
             <div className={styles.box}>
                 <div  className={styles.btn}>
                     <h1 className={styles.title}>{props.title}</h1>
-                <CloseIcon type="primary" />
+                <CloseIcon type="primary"  onClick={props.onClose}/>
                 </div>
                 {props.children}
             </div>
