@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './modal-overlay.module.css'
 
@@ -7,6 +7,7 @@ function ModalOverlay(props) {
     const ESCAPE_BTN = 27;
 
     function closeModalKey(evt) {
+        console.log(12323);
         if (evt.keyCode === ESCAPE_BTN) props.onClose();
     }
 
@@ -14,17 +15,18 @@ function ModalOverlay(props) {
         if (evt.target.classList.contains(styles.overlay)) props.onClose()
     }
 
+    const overlayRef = useRef(null);
+
+    useEffect(() => {
+        overlayRef.current.focus();
+    })
+
     return (
-        <div className={styles.overlay}
-             style={props.isOpen ? {
-                 visibility: "visible", transition: "visibility .35s, opacity 0.35s ease-in-out",
-                 opacity: "1"
-             } : {visibility: "hidden"}
-             }
+        <div className={props.isOpen ? `${styles.modal_open} ${styles.overlay}` : styles.overlay }
              tabIndex="0"
-             onKeyUp={closeModalKey}
+             onKeyDown={closeModalKey}
              onClick={closeModalClick}>
-            <div className={styles.box}>
+            <div className={styles.box} ref={overlayRef}>
                 <div className={styles.btn}>
                     <h1 className={styles.title}>{props.title}</h1>
                     <CloseIcon type="primary" onClick={props.onClose}/>

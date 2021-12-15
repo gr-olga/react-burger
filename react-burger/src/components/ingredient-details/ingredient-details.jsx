@@ -1,10 +1,7 @@
 import React from "react";
-import ModalOverlay from "../modal-overlay/modal-overlay";
 import Modal from "../modal/modal";
 import styles from './ingredient-details.module.css'
-import bun from '../../images/bun02.png'
-import PropTypes from "prop-types";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
+
 
 function IngredientDetails(props) {
     return (
@@ -33,16 +30,6 @@ function IngredientDetails(props) {
     )
 }
 
-IngredientDetails.propTypes = {
-    name: PropTypes.string,
-    _id: PropTypes.number,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-}
+
 
 export default IngredientDetails;

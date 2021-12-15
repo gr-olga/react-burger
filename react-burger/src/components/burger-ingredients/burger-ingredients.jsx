@@ -125,16 +125,5 @@ function BurgerIngredients(props) {
     )
 }
 
-BurgerIngredients.propTypes = {
-    name: PropTypes.string,
-    _id: PropTypes.number,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-}
 
 export default BurgerIngredients
