@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "../modal/modal";
 import styles from './ingredient-details.module.css'
+import {BurgerIngredientsTypes} from "../../utils/types";
 
 
 function IngredientDetails(props) {
@@ -30,6 +31,6 @@ function IngredientDetails(props) {
     )
 }
 
-
+IngredientDetails.propTypes = BurgerIngredientsTypes
 
 export default IngredientDetails;

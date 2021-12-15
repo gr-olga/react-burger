@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from "prop-types"
+import {BurgerIngredientsTypes} from "../../utils/types";
 
 function BurgerConstructor(props) {
 
@@ -60,16 +60,6 @@ function BurgerConstructor(props) {
     )
 }
 
-BurgerConstructor.propTypes = {
-    name: PropTypes.string,
-    _id: PropTypes.number,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-}
+BurgerConstructor.propTypes = BurgerIngredientsTypes
 
 export default BurgerConstructor

@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from "prop-types"
+import {BurgerIngredientsTypes} from "../../utils/types";
 
 
 function BurgerIngredients(props) {
@@ -125,5 +125,6 @@ function BurgerIngredients(props) {
     )
 }
 
+BurgerIngredients.propTypes = BurgerIngredientsTypes;
 
 export default BurgerIngredients

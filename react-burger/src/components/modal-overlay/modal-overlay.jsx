@@ -7,7 +7,6 @@ function ModalOverlay(props) {
     const ESCAPE_BTN = 27;
 
     function closeModalKey(evt) {
-        console.log(12323);
         if (evt.keyCode === ESCAPE_BTN) props.onClose();
     }
 
