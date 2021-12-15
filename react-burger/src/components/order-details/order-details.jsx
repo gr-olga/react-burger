@@ -4,10 +4,11 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from './order-ditails.module.css'
 import PropTypes from "prop-types";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
+import Modal from "../modal/modal";
 
 function OrderDetails(props) {
     return (
-        <ModalOverlay
+        <Modal
             onClose={props.onClose}
             isOpen={props.isOpen}
         >
@@ -16,7 +17,7 @@ function OrderDetails(props) {
             <img src={CekMark} className={styles.image} alt={"name"}/>
             <h3 className={styles.orderStatus}>Ваш заказ начали готовить</h3>
             <h3 className={styles.addInfo}>Дождитесь готовности на орбитальной станции</h3>
-        </ModalOverlay>
+        </Modal>
     )
 }
 OrderDetails.propTypes = {

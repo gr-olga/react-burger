@@ -1,5 +1,6 @@
 import React from "react";
 import ModalOverlay from "../modal-overlay/modal-overlay";
+import Modal from "../modal/modal";
 import styles from './ingredient-details.module.css'
 import bun from '../../images/bun02.png'
 import PropTypes from "prop-types";
@@ -7,7 +8,7 @@ import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 
 function IngredientDetails(props) {
     return (
-        <ModalOverlay
+        <Modal
             title={'Детали ингредиента'}
             onClose={props.onClose}
             isOpen={props.isOpen}
@@ -25,14 +26,10 @@ function IngredientDetails(props) {
                         <p className={styles.numbers}>{props.item?.proteins}</p>
                         <p className={styles.numbers}>{props.item?.fat}</p>
                         <p className={styles.numbers}>{props.item?.carbohydrates}</p>
-                        {/*<p className={styles.numbers}>444.4</p>*/}
-                        {/*<p className={styles.numbers}>55.5</p>*/}
-                        {/*<p className={styles.numbers}>22</p>*/}
-                        {/*<p className={styles.numbers}>11</p>*/}
                     </div>
                 </div>
             </div>
-        </ModalOverlay>
+        </Modal>
     )
 }
 

@@ -7,4 +7,5 @@ display: flex;
   grid-template-columns: repeat(2,1fr);
   max-width: 1400px;
   justify-items: flex-end;
+  align-self: center;
 }
