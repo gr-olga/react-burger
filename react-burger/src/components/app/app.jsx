@@ -18,12 +18,12 @@ function App() {
     function getIngredientsData(baseUrl) {
         return fetch(baseUrl)
             .then((res) => (res.json()))
-            .then(({data}) => data)
+            .then(({data}) => setIngredients(data))
             .catch((err) => console.log("failed", err))
     }
 
     useEffect(() => {
-        getIngredientsData(baseUrl).then(data => setIngredients(data))
+        getIngredientsData(baseUrl)
     }, [])
 
     function handleIngredientClick(item) {
