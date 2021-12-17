@@ -1,17 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
 
 function BurgerConstructor(props) {
 
-    // function orderClick(){
-    //     props.onOrderClick()
-    // }
+    const [list, setList] = React.useState([])
+
+    useEffect(() => {
+        setList(props.data.filter((item) => item.type === 'sauce' || item.type === 'main'))
+    }, [props.data])
 
     const firstItem = props.data[0] ?? {};
-    // const lastItem = props.data[props.data.length - 1] ?? {};
-    const middleItemsList = props.data.slice(1, props.data.length - 1)
     return (
         <div className={styles.box}>
             <section className={styles.bunSection}>
@@ -24,7 +24,7 @@ function BurgerConstructor(props) {
                 />
             </section>
             <div className={styles.container}>
-                {middleItemsList.map((item) => {
+                {list.map((item) => {
                     return (
                         <div className={styles.middleItemsList} key={item._id}>
                             <DragIcon type="primary" />
