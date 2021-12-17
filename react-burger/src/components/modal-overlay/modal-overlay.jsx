@@ -1,5 +1,4 @@
 import React, {useEffect, useRef} from "react";
-import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './modal-overlay.module.css'
 
 
