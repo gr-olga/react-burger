@@ -24,14 +24,10 @@ function ModalOverlay(props) {
         <div className={props.isOpen ? `${styles.modal_open} ${styles.overlay}` : styles.overlay }
              tabIndex="0"
              onKeyDown={closeModalKey}
-             onClick={closeModalClick}>
-            <div className={styles.box} ref={overlayRef}>
-                <div className={styles.btn}>
-                    <h1 className={styles.title}>{props.title}</h1>
-                    <CloseIcon type="primary" onClick={props.onClose}/>
-                </div>
-                {props.children}
-            </div>
+             onClick={closeModalClick}
+             ref={overlayRef}
+        >
+            {props.children}
         </div>
     )
 }
