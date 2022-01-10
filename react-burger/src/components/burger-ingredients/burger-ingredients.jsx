@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from "prop-types"
+import {BurgerIngredientsTypes} from "../../utils/types";
 
 
 function BurgerIngredients(props) {
@@ -22,22 +22,23 @@ function BurgerIngredients(props) {
         setMainList(props.data.filter((item) => item.type === 'main'))
     }, [props.data])
 
-    function onItemClick() {
-        console.log(bunSection);
-    }
 
     function onScroll(evt) {
         const container = evt.target
         const scrollPosition = container.scrollTop
         const positionSauce = sauceSection.current.offsetTop
         const positionMain = mainSection.current.offsetTop
-        if (scrollPosition + 100 <= positionSauce){
+        if (scrollPosition + 100 <= positionSauce) {
             setCurrent('one')
-        }else if (scrollPosition +100 <= positionMain){
+        } else if (scrollPosition + 100 <= positionMain) {
             setCurrent('two')
-        }else {
+        } else {
             setCurrent('three')
         }
+    }
+
+    function onItemClick(item) {
+        props.onIngredientClick(item)
     }
 
 
@@ -47,24 +48,24 @@ function BurgerIngredients(props) {
                 <h1 className="text text_type_main-large">Соберите бургер</h1>
             </div>
             <div className={styles.nav}>
-                <Tab className={styles.btn} value="one" active={current === 'one'} onClick={value=> {
+                <Tab className={styles.btn} value="one" active={current === 'one'} onClick={value => {
                     setCurrent(value)
                     bunSection.current.scrollIntoView({behavior: "smooth"})
                 }}>
                     Булки
                 </Tab>
-                <Tab className={styles.btn} value="two" active={current === 'two'} onClick={value=>{
+                <Tab className={styles.btn} value="two" active={current === 'two'} onClick={value => {
                     setCurrent(value)
-                    sauceSection.current.scrollIntoView({behavior:"smooth"})
+                    sauceSection.current.scrollIntoView({behavior: "smooth"})
                 }}
-                    >
+                >
                     Соусы
-                    </Tab>
-                <Tab className={styles.btn} value="three" active={current === 'three'} onClick={value=> {
+                </Tab>
+                <Tab className={styles.btn} value="three" active={current === 'three'} onClick={value => {
                     setCurrent(value)
                     mainSection.current.scrollIntoView({behavior: "smooth"})
                 }}
-                    >
+                >
                     Начинка
                 </Tab>
             </div>
@@ -75,7 +76,7 @@ function BurgerIngredients(props) {
                     <h2 className={styles.tag}> Булки </h2>
                     <div className={styles.container}>
                         {bunList.map((item) => {
-                            return (<Ingredient
+                            return (<Ingredient {...item}
                                 key={item._id}
                                 img={item.image}
                                 price={item.price}
@@ -90,8 +91,9 @@ function BurgerIngredients(props) {
                 >
                     <h2 className={styles.tag}>Соусы</h2>
                     <div className={styles.container}>
-                        {mainList.map((item) => {
-                            return (<Ingredient
+                        {sauceList.map((item) => {
+                            return (<Ingredient {...item}
+                                onItemClick={onItemClick}
                                 key={item._id}
                                 img={item.image}
                                 price={item.price}
@@ -105,12 +107,13 @@ function BurgerIngredients(props) {
                 >
                     <h2 className={styles.tag}>Начинка</h2>
                     <div className={styles.container}>
-                        {sauceList.map((item) => {
-                            return (<Ingredient
+                        {mainList.map((item) => {
+                            return (<Ingredient {...item}
                                 key={item._id}
                                 img={item.image}
                                 price={item.price}
                                 name={item.name}
+                                onItemClick={onItemClick}
                             />)
                         })}
                     </div>
@@ -122,16 +125,6 @@ function BurgerIngredients(props) {
     )
 }
 
-BurgerIngredients.propTypes = {
-    name: PropTypes.string,
-    _id: PropTypes.number,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-}
+BurgerIngredients.propTypes = BurgerIngredientsTypes;
 
 export default BurgerIngredients

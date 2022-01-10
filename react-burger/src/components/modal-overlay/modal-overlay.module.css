@@ -1,0 +1,50 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    position: relative;
+    align-items: center;
+    background: #1C1C21;
+    border: 1px solid rgba(76, 76, 255, 0.2);
+    box-sizing: border-box;
+    box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+    max-height: 720px;
+    max-width: 718px;
+    top: 5%;
+}
+
+.btn {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overlay {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+}
+
+.title {
+    margin: 0;
+    width: 580px;
+    max-height: 64px;
+}
+
+.modal_open{
+    z-index: 9;
+    visibility: visible;
+    transition: visibility .35s, opacity 0.35s ease-in-out;
+    opacity: 1;
+}
