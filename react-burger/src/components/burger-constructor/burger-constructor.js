@@ -1,12 +1,13 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
 import {BurgerContext} from "../../context/BurgerContext";
+import {number} from "prop-types";
 
 function BurgerConstructor(props) {
     const data = useContext(BurgerContext)
-
+    const [sum, setSum] = useState();
     const [list, setList] = React.useState([])
 
     useEffect(() => {
@@ -14,6 +15,14 @@ function BurgerConstructor(props) {
     }, [data])
 
     const firstItem = data[0] ?? {};
+
+    useEffect(() => {
+           const pricesList =  data.map((item) => Number(item.price))
+        let sum = 0
+        setSum(pricesList.reduce(function(a, b) {
+            return a + b;}, sum))
+    }, [data])
+
     return (
         <div className={styles.box}>
             <section className={styles.bunSection}>
@@ -50,7 +59,7 @@ function BurgerConstructor(props) {
                 />
             </section>
             <div className={styles.total}>
-                <h2 className={styles.sum}>200</h2>
+                <h2 className={styles.sum}>{sum}</h2>
                 <CurrencyIcon type="primary"/>
                 <button
                     className={styles.btn}
