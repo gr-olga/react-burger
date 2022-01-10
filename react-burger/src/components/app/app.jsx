@@ -7,24 +7,26 @@ import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import {BurgerContext} from "../../context/BurgerContext"
 
+import {baseUrl, getIngredientsData} from "../../api/api";
 
 function App() {
-    const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
+    // const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
     const [ingredients, setIngredients] = useState([])
     const [detail, setDetail] = useState(undefined)
 
     const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false)
     const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
 
-    function getIngredientsData(baseUrl) {
-        return fetch(baseUrl)
-            .then((res) => (res.json()))
-            .then(({data}) => setIngredients(data))
-            .catch((err) => console.log("failed", err))
-    }
+    // function getIngredientsData(baseUrl) {
+    //     return fetch(baseUrl)
+    //         .then((res) => (res.json()))
+    //         .then(({data}) => setIngredients(data))
+    //         .catch((err) => console.log("failed", err))
+    // }
 
     useEffect(() => {
         getIngredientsData(baseUrl)
+            .then(({data}) => setIngredients(data))
     }, [])
 
     function handleIngredientClick(item) {
