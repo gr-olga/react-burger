@@ -12,14 +12,13 @@ export function getIngredientsData(baseUrl) {
         .catch((err) => console.log("failed", err))
 }
 
-export function getInitialOrder() {
-    return fetch('https://norma.nomoreparties.space/api/orders'), {
+export function getInitialOrder(ingredients) {
+    return fetch('https://norma.nomoreparties.space/api/orders', {
         method: "POST",
         body: JSON.stringify({ingredients})
-    }
+    })
         .then(handleResponse)
 }
-
 
 // Тело запроса
 //     {

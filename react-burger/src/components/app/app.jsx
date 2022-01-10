@@ -7,12 +7,14 @@ import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import {BurgerContext} from "../../context/BurgerContext"
 
-import {baseUrl, getIngredientsData} from "../../api/api";
+import {baseUrl, getIngredientsData, getInitialOrder} from "../../api/api";
+import {data} from "../utils/data";
 
 function App() {
     // const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
     const [ingredients, setIngredients] = useState([])
     const [detail, setDetail] = useState(undefined)
+    const [order, setOrder] = useState(undefined)
 
     const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false)
     const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
@@ -36,7 +38,11 @@ function App() {
 
     function handleOrderDetailClick() {
         setOrderDetailsOpen(true)
+        console.log(ingredients)
+        getInitialOrder(ingredients.map(item => item._id))
     }
+
+
 
     function modalClose() {
         setOrderDetailsOpen(false)
@@ -55,16 +61,17 @@ function App() {
                     onOrderClick={handleOrderDetailClick}
                 />
             </div>
-            </BurgerContext.Provider>
             <IngredientDetails
                 item={detail}
                 isOpen={isIngredientDetailsOpen}
                 onClose={modalClose}
             />
             <OrderDetails
+                order={order}
                 isOpen={isOrderDetailsOpen}
                 onClose={modalClose}
             />
+            </BurgerContext.Provider>
         </div>
     );
 }

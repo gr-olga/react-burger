@@ -3,11 +3,10 @@ import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
 import {BurgerContext} from "../../context/BurgerContext";
-import {number} from "prop-types";
 
 function BurgerConstructor(props) {
     const data = useContext(BurgerContext)
-    const [sum, setSum] = useState();
+    const [sum, setSum] = useState(0);
     const [list, setList] = React.useState([])
 
     useEffect(() => {
@@ -17,11 +16,10 @@ function BurgerConstructor(props) {
     const firstItem = data[0] ?? {};
 
     useEffect(() => {
-           const pricesList =  list.map((item) => Number(item.price))
-        let sum = firstItem.price * 2
-        setSum(pricesList.reduce(function(a, b) {
-            return a + b;}, sum))
-    }, [data])
+        const pricesList = list.map((item) => Number(item.price))
+        let num = firstItem.price ? firstItem.price * 2 : 0
+        setSum(pricesList.reduce((a, b) => a + b, num))
+    }, [data, list])
 
     return (
         <div className={styles.box}>
@@ -38,7 +36,7 @@ function BurgerConstructor(props) {
                 {list.map((item) => {
                     return (
                         <div className={styles.middleItemsList} key={item._id}>
-                            <DragIcon type="primary" />
+                            <DragIcon type="primary"/>
                             <ConstructorElement
                                 isLocked={false}
                                 text={item.name}
@@ -65,7 +63,8 @@ function BurgerConstructor(props) {
                     className={styles.btn}
                     onClick={props.onOrderClick}
                 >
-                    Оформить заказ</button>
+                    Оформить заказ
+                </button>
             </div>
         </div>
     )
