@@ -17,8 +17,8 @@ function BurgerConstructor(props) {
     const firstItem = data[0] ?? {};
 
     useEffect(() => {
-           const pricesList =  data.map((item) => Number(item.price))
-        let sum = 0
+           const pricesList =  list.map((item) => Number(item.price))
+        let sum = firstItem.price * 2
         setSum(pricesList.reduce(function(a, b) {
             return a + b;}, sum))
     }, [data])
