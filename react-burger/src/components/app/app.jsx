@@ -5,6 +5,7 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import OrderDetails from "../order-details/order-details";
 import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
+import {BurgerContext} from "../../context/BurgerContext"
 
 
 function App() {
@@ -43,16 +44,16 @@ function App() {
     return (
         <div className={styles.app}>
             <AppHeader/>
+            <BurgerContext.Provider value={ingredients}>
             <div className={styles.bar}>
                 <BurgerIngredients
-                    data={ingredients}
                     onIngredientClick={handleIngredientClick}
                 />
                 <BurgerConstructor
-                    data={ingredients}
                     onOrderClick={handleOrderDetailClick}
                 />
             </div>
+            </BurgerContext.Provider>
             <IngredientDetails
                 item={detail}
                 isOpen={isIngredientDetailsOpen}

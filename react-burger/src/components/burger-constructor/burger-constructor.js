@@ -1,17 +1,19 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
+import {BurgerContext} from "../../context/BurgerContext";
 
 function BurgerConstructor(props) {
+    const data = useContext(BurgerContext)
 
     const [list, setList] = React.useState([])
 
     useEffect(() => {
-        setList(props.data.filter((item) => item.type === 'sauce' || item.type === 'main'))
-    }, [props.data])
+        setList(data.filter((item) => item.type === 'sauce' || item.type === 'main'))
+    }, [data])
 
-    const firstItem = props.data[0] ?? {};
+    const firstItem = data[0] ?? {};
     return (
         <div className={styles.box}>
             <section className={styles.bunSection}>
