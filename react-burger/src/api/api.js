@@ -15,21 +15,11 @@ export function getIngredientsData(baseUrl) {
 export function getInitialOrder(ingredients) {
     return fetch('https://norma.nomoreparties.space/api/orders', {
         method: "POST",
-        body: JSON.stringify({ingredients})
+        body: JSON.stringify({ingredients}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
         .then(handleResponse)
+        .catch((err) => console.log("failed", err))
 }
-
-// Тело запроса
-//     {
-//         "ingredients": ["609646e4dc916e00276b286e","609646e4dc916e00276b2870"]
-//     }
-//В теле запроса нужно передать _id всех ингредиентов, которые находятся в компоненте BurgerConstructor. Пример ответа:
-// {
-//   "name": "Краторный метеоритный бургер",
-//   "order": {
-//       "number": 6257
-//   },
-//   "success": true
-// }
-// }

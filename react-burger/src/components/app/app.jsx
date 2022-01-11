@@ -38,8 +38,8 @@ function App() {
 
     function handleOrderDetailClick() {
         setOrderDetailsOpen(true)
-        console.log(ingredients)
         getInitialOrder(ingredients.map(item => item._id))
+            .then(({order}) => setOrder(order.number))
     }
 
 
@@ -61,6 +61,7 @@ function App() {
                     onOrderClick={handleOrderDetailClick}
                 />
             </div>
+            </BurgerContext.Provider>
             <IngredientDetails
                 item={detail}
                 isOpen={isIngredientDetailsOpen}
@@ -71,7 +72,7 @@ function App() {
                 isOpen={isOrderDetailsOpen}
                 onClose={modalClose}
             />
-            </BurgerContext.Provider>
+
         </div>
     );
 }
