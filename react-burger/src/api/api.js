@@ -1,4 +1,5 @@
-export const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
+//export const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
+export const BASE_URL = "https://norma.nomoreparties.space/api/"
 const handleResponse = (res) => {
     if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
@@ -6,14 +7,15 @@ const handleResponse = (res) => {
     return res.json();
 }
 
-export function getIngredientsData(baseUrl) {
-    return fetch(baseUrl)
-        .then((res) => (res.json()))
+export function getIngredientsData() {
+    return fetch(`${BASE_URL}ingredients`)
+        .then(handleResponse)
+       // .then((res) => (res.json()))
         .catch((err) => console.log("failed", err))
 }
 
 export function getInitialOrder(ingredients) {
-    return fetch('https://norma.nomoreparties.space/api/orders', {
+    return fetch(`${BASE_URL}orders`, {
         method: "POST",
         body: JSON.stringify({ingredients}),
         headers: {
