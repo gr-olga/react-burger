@@ -22,7 +22,6 @@ function App() {
     useEffect(() => {
         getIngredientsData()
             .then(({data}) => {
-                console.log(data)
                 setIngredients(data);
             })
     }, [])

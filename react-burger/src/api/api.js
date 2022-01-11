@@ -1,4 +1,4 @@
-//export const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
+
 export const BASE_URL = "https://norma.nomoreparties.space/api/"
 const handleResponse = (res) => {
     if (!res.ok) {

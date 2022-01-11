@@ -7,19 +7,23 @@ import {BurgerContext} from "../../context/BurgerContext";
 function BurgerConstructor(props) {
     const data = useContext(BurgerContext)
     const [sum, setSum] = useState(0);
-    const [list, setList] = React.useState([])
+    const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
+    const [bunItem, setBunItem] = React.useState({})
 
     useEffect(() => {
-        setList(data.filter((item) => item.type === 'sauce' || item.type === 'main'))
+        setNonBunIngredientsList(data.filter((item) => item.type === 'sauce' || item.type === 'main'))
+        const bun = data.find((item) => item.type === 'bun')
+        if (bun) setBunItem(bun)
     }, [data])
 
-    const firstItem = data[0] ?? {};
+    // const firstItem = data[0] ?? {};
+
 
     useEffect(() => {
-        const pricesList = list.map((item) => Number(item.price))
-        let num = firstItem.price ? firstItem.price * 2 : 0
+        const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
+        let num = bunItem.price ? bunItem.price * 2 : 0
         setSum(pricesList.reduce((a, b) => a + b, num))
-    }, [data, list])
+    }, [data, nonBunIngredientsList])
 
     return (
         <div className={styles.box}>
@@ -27,13 +31,13 @@ function BurgerConstructor(props) {
                 <ConstructorElement
                     type="top"
                     isLocked={true}
-                    text={firstItem.name + "(верх)"}
-                    price={firstItem.price}
-                    thumbnail={firstItem.image}
+                    text={bunItem.name + "(верх)"}
+                    price={bunItem.price}
+                    thumbnail={bunItem.image}
                 />
             </section>
             <div className={styles.container}>
-                {list.map((item) => {
+                {nonBunIngredientsList.map((item) => {
                     return (
                         <div className={styles.middleItemsList} key={item._id}>
                             <DragIcon type="primary"/>
@@ -51,9 +55,9 @@ function BurgerConstructor(props) {
                 <ConstructorElement
                     type="bottom"
                     isLocked={true}
-                    text={firstItem.name + "(низ)"}
-                    price={firstItem.price}
-                    thumbnail={firstItem.image}
+                    text={bunItem.name + "(низ)"}
+                    price={bunItem.price}
+                    thumbnail={bunItem.image}
                 />
             </section>
             <div className={styles.total}>
