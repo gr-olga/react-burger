@@ -5,7 +5,7 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import OrderDetails from "../order-details/order-details";
 import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
-import {BurgerContext} from "../../context/BurgerContext"
+import {BurgerContext} from "../../services/BurgerContext"
 
 import {getIngredientsData, getInitialOrder} from "../../api/api";
 

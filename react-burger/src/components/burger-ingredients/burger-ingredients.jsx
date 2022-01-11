@@ -3,7 +3,7 @@ import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
-import {BurgerContext} from "../../context/BurgerContext";
+import {BurgerContext} from "../../services/BurgerContext";
 
 
 function BurgerIngredients(props) {
