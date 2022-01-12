@@ -16,10 +16,12 @@ export const IngredientDetailsTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    price: PropTypes.number,
 }
 
 export const OrderDetailsTypes = {
     name: PropTypes.string,
     _id: PropTypes.number,
     type: PropTypes.string,
+    price: PropTypes.number,
 }

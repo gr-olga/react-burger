@@ -1,11 +1,14 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
+import {BurgerContext} from "../../services/BurgerContext";
 
 
 function BurgerIngredients(props) {
+   const data = useContext(BurgerContext)
+
     const bunSection = useRef(null)
     const sauceSection = useRef(null)
     const mainSection = useRef(null)
@@ -17,10 +20,10 @@ function BurgerIngredients(props) {
 
 
     useEffect(() => {
-        setBunList(props.data.filter((item) => item.type === 'bun'))
-        setSauceList(props.data.filter((item) => item.type === 'sauce'))
-        setMainList(props.data.filter((item) => item.type === 'main'))
-    }, [props.data])
+        setBunList(data.filter((item) => item.type === 'bun'))
+        setSauceList(data.filter((item) => item.type === 'sauce'))
+        setMainList(data.filter((item) => item.type === 'main'))
+    }, [data])
 
 
     function onScroll(evt) {

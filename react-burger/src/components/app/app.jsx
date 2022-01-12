@@ -5,25 +5,25 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import OrderDetails from "../order-details/order-details";
 import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
+import {BurgerContext} from "../../services/BurgerContext"
+
+import {getIngredientsData, getInitialOrder} from "../../api/api";
 
 
 function App() {
-    const baseUrl = "https://norma.nomoreparties.space/api/ingredients"
     const [ingredients, setIngredients] = useState([])
     const [detail, setDetail] = useState(undefined)
+    const [order, setOrder] = useState(undefined)
 
     const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false)
     const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
 
-    function getIngredientsData(baseUrl) {
-        return fetch(baseUrl)
-            .then((res) => (res.json()))
-            .then(({data}) => setIngredients(data))
-            .catch((err) => console.log("failed", err))
-    }
 
     useEffect(() => {
-        getIngredientsData(baseUrl)
+        getIngredientsData()
+            .then(({data}) => {
+                setIngredients(data);
+            })
     }, [])
 
     function handleIngredientClick(item) {
@@ -33,7 +33,10 @@ function App() {
 
     function handleOrderDetailClick() {
         setOrderDetailsOpen(true)
+        getInitialOrder(ingredients.map(item => item._id))
+            .then(({order}) => setOrder(order.number))
     }
+
 
     function modalClose() {
         setOrderDetailsOpen(false)
@@ -43,25 +46,27 @@ function App() {
     return (
         <div className={styles.app}>
             <AppHeader/>
-            <div className={styles.bar}>
-                <BurgerIngredients
-                    data={ingredients}
-                    onIngredientClick={handleIngredientClick}
-                />
-                <BurgerConstructor
-                    data={ingredients}
-                    onOrderClick={handleOrderDetailClick}
-                />
-            </div>
+            <BurgerContext.Provider value={ingredients}>
+                <div className={styles.bar}>
+                    <BurgerIngredients
+                        onIngredientClick={handleIngredientClick}
+                    />
+                    <BurgerConstructor
+                        onOrderClick={handleOrderDetailClick}
+                    />
+                </div>
+            </BurgerContext.Provider>
             <IngredientDetails
                 item={detail}
                 isOpen={isIngredientDetailsOpen}
                 onClose={modalClose}
             />
             <OrderDetails
+                order={order}
                 isOpen={isOrderDetailsOpen}
                 onClose={modalClose}
             />
+
         </div>
     );
 }
