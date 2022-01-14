@@ -3,18 +3,20 @@ import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
 import {BurgerContext} from "../../services/BurgerContext";
+import {useSelector} from "react-redux";
 
 function BurgerConstructor(props) {
-    const ingredientsData = useContext(BurgerContext)
+    // const {ingredients} = useSelector(state => state)
+    const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const [sum, setSum] = useState(0);
     const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
     const [bunItem, setBunItem] = React.useState({})
 
     useEffect(() => {
-        setNonBunIngredientsList(ingredientsData.filter((item) => item.type === 'sauce' || item.type === 'main'))
-        const bun = ingredientsData.find((item) => item.type === 'bun')
+        setNonBunIngredientsList(ingredients.filter((item) => item.type === 'sauce' || item.type === 'main'))
+        const bun = ingredients.find((item) => item.type === 'bun')
         if (bun) setBunItem(bun)
-    }, [ingredientsData])
+    }, [ingredients])
 
     // const firstItem = data[0] ?? {};
 
@@ -23,7 +25,7 @@ function BurgerConstructor(props) {
         const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
         let num = bunItem.price ? bunItem.price * 2 : 0
         setSum(pricesList.reduce((a, b) => a + b, num))
-    }, [ingredientsData, nonBunIngredientsList])
+    }, [ingredients, nonBunIngredientsList])
 
     return (
         <div className={styles.box}>
