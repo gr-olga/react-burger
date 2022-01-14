@@ -7,16 +7,17 @@ import {useSelector} from "react-redux";
 
 function BurgerConstructor(props) {
     // const {ingredients} = useSelector(state => state)
-    const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+   // const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const [sum, setSum] = useState(0);
     const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
     const [bunItem, setBunItem] = React.useState({})
 
     useEffect(() => {
-        setNonBunIngredientsList(ingredients.filter((item) => item.type === 'sauce' || item.type === 'main'))
-        const bun = ingredients.find((item) => item.type === 'bun')
+        setNonBunIngredientsList(constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main'))
+        const bun = constructorIngredients.find((item) => item.type === 'bun')
         if (bun) setBunItem(bun)
-    }, [ingredients])
+    }, [constructorIngredients])
 
     // const firstItem = data[0] ?? {};
 
@@ -25,7 +26,7 @@ function BurgerConstructor(props) {
         const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
         let num = bunItem.price ? bunItem.price * 2 : 0
         setSum(pricesList.reduce((a, b) => a + b, num))
-    }, [ingredients, nonBunIngredientsList])
+    }, [constructorIngredients, nonBunIngredientsList])
 
     return (
         <div className={styles.box}>

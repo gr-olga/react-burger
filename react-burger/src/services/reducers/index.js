@@ -1,8 +1,19 @@
 import {combineReducers} from 'redux';
-import {GET_INGREDIENTS_FAILED, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS} from '../actions'
+import {
+    ADD_INGREDIENT_TO_CONSTRUCTOR,
+    GET_INGREDIENTS_FAILED,
+    GET_INGREDIENTS_REQUEST,
+    GET_INGREDIENTS_SUCCESS,
+    GET_ORDER_INGREDIENTS_FAILED,
+    GET_ORDER_INGREDIENTS_REQUEST,
+    GET_ORDER_INGREDIENTS_SUCCESS,
+    SHOW_INGREDIENT
+} from '../actions'
 
 const initialState = {
     ingredients: [],
+    constructorIngredients: [],
+    ingredientDetail: {},
     order: [],
     isOrderDetailsOpen: false,
     isIngredientDetailsOpen: false,
@@ -19,7 +30,7 @@ export const ingredientsReducer = (state = initialState, action) => {
             };
         }
         case GET_INGREDIENTS_SUCCESS: {
-            return {...state, loader: false, ingredients: action.ingredients };
+            return {...state, loader: false, ingredients: action.ingredients};
         }
         case GET_INGREDIENTS_FAILED: {
             return {...state, loader: true};
@@ -27,19 +38,38 @@ export const ingredientsReducer = (state = initialState, action) => {
         default: {
             return state
         }
-        //
-        // case GET_ORDER_INGREDIENTS_REQUEST: {
-        //     return {
-        //         ...state,
-        //         isOrderDetailsOpen: true
-        //     }
-        // }
-        // case GET_ORDER_INGREDIENTS_SUCCESS: {
-        //     return {...state, order: action.items};
-        // }
-        // case GET_ORDER_INGREDIENTS_FAILED: {
-        //     return {...state, loader: true};
-        // }
+
+        case GET_ORDER_INGREDIENTS_REQUEST: {
+            return {
+                ...state,
+                isOrderDetailsOpen: true
+            }
+        }
+        case GET_ORDER_INGREDIENTS_SUCCESS: {
+            return {...state, order: action.order};
+        }
+        case GET_ORDER_INGREDIENTS_FAILED: {
+            return {...state, loader: true};
+        }
+        case ADD_INGREDIENT_TO_CONSTRUCTOR: {
+            console.log('ADD_INGREDIENT_TO_CONSTRUCTOR works!!!', action)
+            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
+        }
+    }
+}
+
+export const ingredientItemReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SHOW_INGREDIENT: {
+            return {
+                ...state,
+                ingredientDetail: action.ingredientDetail,
+                isIngredientDetailsOpen: true
+            };
+        }
+        default: {
+            return state;
+        }
     }
 }
 

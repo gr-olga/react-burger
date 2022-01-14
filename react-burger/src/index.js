@@ -8,20 +8,22 @@ import {Provider} from 'react-redux';
 import {rootReducer} from './services/reducers';
 import {applyMiddleware, compose, createStore} from 'redux';
 
-// const enhancer = composeEnhancers(applyMiddleware(thunk));
 const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
         ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
         : compose;
-const state = createStore(rootReducer,
-    composeEnhancers(applyMiddleware(thunk))
-);
+
+const enhancer = composeEnhancers(applyMiddleware(thunk));
+
+const state = createStore(rootReducer, enhancer);
 
 
 ReactDOM.render(
+    <React.StrictMode>
     <Provider store={state}>
         <App/>
-    </Provider>,
+    </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 );
 
