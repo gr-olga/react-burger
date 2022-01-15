@@ -52,7 +52,6 @@ export const ingredientsReducer = (state = initialState, action) => {
             return {...state, loader: true};
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
-            console.log('ADD_INGREDIENT_TO_CONSTRUCTOR works!!!', action)
             return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
         }
     }

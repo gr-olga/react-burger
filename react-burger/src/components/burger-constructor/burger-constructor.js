@@ -2,11 +2,11 @@ import React, {useContext, useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
-import {BurgerContext} from "../../services/BurgerContext";
 import {useSelector} from "react-redux";
+import { useDrop } from "react-dnd";
 
 function BurgerConstructor(props) {
-    // const {ingredients} = useSelector(state => state)
+   //  const {ingredients} = useSelector(state => state)
    // const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const [sum, setSum] = useState(0);
@@ -19,7 +19,17 @@ function BurgerConstructor(props) {
         if (bun) setBunItem(bun)
     }, [constructorIngredients])
 
-    // const firstItem = data[0] ?? {};
+
+
+    const [, dropTarget] = useDrop({
+        accept: "item",
+        drop(dropTarget) {
+            console.log(222, dropTarget);
+           // const id = constructorIngredients.filter(element => element.id === itemId.id)
+            props.onDropHandler(dropTarget);
+        },
+    });
+
 
 
     useEffect(() => {
@@ -39,10 +49,15 @@ function BurgerConstructor(props) {
                     thumbnail={bunItem.image}
                 />
             </section>
-            <div className={styles.container}>
+
+            <div className={styles.container}
+            >
                 {nonBunIngredientsList.map((item) => {
                     return (
-                        <div className={styles.middleItemsList} key={item._id}>
+                        <div className={styles.middleItemsList} key={item._id}
+                             ref={dropTarget}
+
+                        >
                             <DragIcon type="primary"/>
                             <ConstructorElement
                                 isLocked={false}

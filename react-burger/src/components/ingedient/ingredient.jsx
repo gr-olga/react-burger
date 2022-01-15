@@ -2,6 +2,7 @@ import styles from "./ingredient.module.css";
 import React, {useState} from "react";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {IngredientDetailsTypes} from "../../utils/types";
+import {useDrag} from "react-dnd";
 
 function Ingredient(props) {
 
@@ -14,10 +15,21 @@ function Ingredient(props) {
     function handleClick() {
         props.onItemClick(props)
     }
+    const [{isDrag}, dragRef] = useDrag({
+        type: "item",
+        item: props,
+        collect: monitor => ({
+            isDrag: monitor.isDragging()
+        })
+    });
 
 
     return (
-        <section onClick={handleClick}>
+        !isDrag &&
+        <section
+            onClick={handleClick}
+            ref={dragRef}
+        >
             <div className={styles.box}>
                 <div className={styles.wrapper}>
                     <img className={styles.image} src={props.img} alt={props.name}/>

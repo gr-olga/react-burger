@@ -7,6 +7,8 @@ import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import {useDispatch, useSelector} from 'react-redux';
 import {ADD_INGREDIENT_TO_CONSTRUCTOR, getIngredients, getOrderIngredients} from "../../services/actions";
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 
 function App() {
@@ -45,17 +47,37 @@ function App() {
         setIngredientDetailsOpen(false)
     }
 
+    // const [elements, setElements] = React.useState(ingredients);
+    // const [draggedElements, setDraggedElements] = React.useState([]);
+    const handleDrop = (itemId) => {
+        console.log(111, itemId)
+       // const item = ingredients.filter(ingredient => ingredient._id === itemId)
+        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: itemId})
+
+        // setElements([
+        //     ...elements.filter(element => element.id !== itemId.id)
+        // ]);
+        //
+        // setDraggedElements([
+        //     ...draggedElements,
+        //     ...elements.filter(element => element.id === itemId.id)
+        // ]);
+    };
+
     return (
         <div className={styles.app}>
             <AppHeader/>
+            <DndProvider backend={HTML5Backend}>
             <div className={styles.bar}>
                 <BurgerIngredients
                     onIngredientClick={handleIngredientClick}
                 />
                 <BurgerConstructor
+                    onDropHandler={handleDrop}
                     onOrderClick={handleOrderDetailClick}
                 />
             </div>
+            </DndProvider>
             <IngredientDetails
                 item={ingredientDetail}
                 isOpen={isIngredientDetailsOpen}

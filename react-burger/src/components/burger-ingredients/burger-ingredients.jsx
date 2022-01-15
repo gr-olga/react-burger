@@ -71,7 +71,9 @@ function BurgerIngredients(props) {
                     Начинка
                 </Tab>
             </div>
-            <div className={styles.ingredients} onScroll={onScroll}>
+            <div className={styles.ingredients}
+                 onScroll={onScroll}
+            >
                 <section
                     ref={bunSection}
                 >
