@@ -4,6 +4,7 @@ import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-de
 import {BurgerIngredientsTypes} from "../../utils/types";
 import {useSelector} from "react-redux";
 import { useDrop } from "react-dnd";
+import { v4 as uuidv4 } from 'uuid';
 
 function BurgerConstructor(props) {
    //  const {ingredients} = useSelector(state => state)
@@ -39,7 +40,9 @@ function BurgerConstructor(props) {
     }, [constructorIngredients, nonBunIngredientsList])
 
     return (
-        <div className={styles.box}>
+        <div className={styles.box}
+             ref={dropTarget}
+        >
             <section className={styles.bunSection}>
                 <ConstructorElement
                     type="top"
@@ -54,9 +57,7 @@ function BurgerConstructor(props) {
             >
                 {nonBunIngredientsList.map((item) => {
                     return (
-                        <div className={styles.middleItemsList} key={item._id}
-                             ref={dropTarget}
-
+                        <div className={styles.middleItemsList} key={uuidv4()}
                         >
                             <DragIcon type="primary"/>
                             <ConstructorElement
