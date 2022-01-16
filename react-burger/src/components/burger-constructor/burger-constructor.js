@@ -1,15 +1,17 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
-import {useSelector} from "react-redux";
-import { useDrop } from "react-dnd";
-import { v4 as uuidv4 } from 'uuid';
+import {useDispatch, useSelector} from "react-redux";
+import {useDrag, useDrop} from "react-dnd";
+import {v4 as uuidv4} from 'uuid';
+import {MOVE_INSIDE_CONSTRUCTOR, REMOVE_INGREDIENT_TO_CONSTRUCTOR} from "../../services/actions";
 
 function BurgerConstructor(props) {
-   //  const {ingredients} = useSelector(state => state)
-   // const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+
     const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const dispatch = useDispatch();
+
     const [sum, setSum] = useState(0);
     const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
     const [bunItem, setBunItem] = React.useState([])
@@ -24,11 +26,35 @@ function BurgerConstructor(props) {
     const [, dropTarget] = useDrop({
         accept: "item",
         drop(dropTarget) {
-            console.log(222, dropTarget);
             props.onDropHandler(dropTarget);
+            if (dropTarget.type === 'bun') {
+                setBunItem(dropTarget)
+            }
         },
     });
 
+    // const [{isDrag}, dragItemRef] = useDrag({
+    //     type: "item",
+    //     // item: props,
+    //     collect: monitor => ({
+    //         isDrag: monitor.isDragging()
+    //     })
+    // });
+    // const [, dropItemTarget] = useDrop({
+    //     accept: "item",
+    //     drop(dropItemTarget) {
+    //         dispatch({
+    //             type: MOVE_INSIDE_CONSTRUCTOR
+    //         })
+    //     }
+    // });
+    function removeIngredient(ingredient){
+        console.log(4444);
+        dispatch({
+            type: REMOVE_INGREDIENT_TO_CONSTRUCTOR,
+            ingredient
+        })
+    }
 
 
     useEffect(() => {
@@ -50,12 +76,14 @@ function BurgerConstructor(props) {
                     thumbnail={bunItem.image}
                 />
             </section>
-
             <div className={styles.container}
+                // ref={dragItemRef}
             >
                 {nonBunIngredientsList.map((item) => {
                     return (
+                      //  !isDrag &&
                         <div className={styles.middleItemsList} key={uuidv4()}
+                           //  ref={dropItemTarget}
                         >
                             <DragIcon type="primary"/>
                             <ConstructorElement
@@ -63,7 +91,8 @@ function BurgerConstructor(props) {
                                 text={item.name}
                                 price={item.price}
                                 thumbnail={item.image}
-                            />
+                                handleClose={()=> removeIngredient(item)}
+/>
                         </div>
                     )
                 })}

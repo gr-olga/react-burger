@@ -50,8 +50,6 @@ function App() {
         setIngredientDetailsOpen(false)
     }
     const handleDrop = (item) => {
-        console.log(111, item)
-
         dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
         dispatch({type: INCREASE_COUNTER, itemId: item._id})
     };
