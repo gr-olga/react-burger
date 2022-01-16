@@ -10,7 +10,10 @@ export const GET_ORDER_INGREDIENTS_FAILED = 'GET_ORDER_INGREDIENTS_FAILED';
 
 export const ADD_INGREDIENT_TO_CONSTRUCTOR = 'ADD_INGREDIENT_TO_CONSTRUCTOR';
 
-export const SHOW_INGREDIENT = 'SHOW_INGREDIENT'
+export const SHOW_INGREDIENT = 'SHOW_INGREDIENT';
+
+export const INCREASE_COUNTER = 'INCREASE_COUNTER';
+export const DECREASE_COUNTER = 'DECREASE_COUNTER'
 
 export function getIngredients() {
     return function (dispatch) {

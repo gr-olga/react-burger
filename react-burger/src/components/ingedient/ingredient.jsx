@@ -3,18 +3,13 @@ import React, {useState} from "react";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {IngredientDetailsTypes} from "../../utils/types";
 import {useDrag} from "react-dnd";
+import {useSelector} from "react-redux";
+
 
 function Ingredient(props) {
 
-    const [count, setCount] = useState(0);
+    const {counter} = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
-    function handleCountChange() {
-        setCount(count + 1)
-    }
-
-    function handleClick() {
-        props.onItemClick(props)
-    }
     const [{isDrag}, dragRef] = useDrag({
         type: "item",
         item: props,
@@ -27,14 +22,13 @@ function Ingredient(props) {
     return (
         !isDrag &&
         <section
-            onClick={handleClick}
             ref={dragRef}
         >
             <div className={styles.box}>
                 <div className={styles.wrapper}>
                     <img className={styles.image} src={props.img} alt={props.name}/>
-                    {count > 0 &&
-                    <Counter count={count} size="default" onClick={handleCountChange}/>
+                    {counter[props._id] > 0 &&
+                    <Counter count={counter[props._id]} size="default"/>
                     }
                 </div>
                 <h3 className={styles.price}>

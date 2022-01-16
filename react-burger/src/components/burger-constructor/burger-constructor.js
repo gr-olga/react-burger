@@ -12,7 +12,7 @@ function BurgerConstructor(props) {
     const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const [sum, setSum] = useState(0);
     const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
-    const [bunItem, setBunItem] = React.useState({})
+    const [bunItem, setBunItem] = React.useState([])
 
     useEffect(() => {
         setNonBunIngredientsList(constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main'))
@@ -21,12 +21,10 @@ function BurgerConstructor(props) {
     }, [constructorIngredients])
 
 
-
     const [, dropTarget] = useDrop({
         accept: "item",
         drop(dropTarget) {
             console.log(222, dropTarget);
-           // const id = constructorIngredients.filter(element => element.id === itemId.id)
             props.onDropHandler(dropTarget);
         },
     });
@@ -35,7 +33,7 @@ function BurgerConstructor(props) {
 
     useEffect(() => {
         const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
-        let num = bunItem.price ? bunItem.price * 2 : 0
+        let num = bunItem.price
         setSum(pricesList.reduce((a, b) => a + b, num))
     }, [constructorIngredients, nonBunIngredientsList])
 

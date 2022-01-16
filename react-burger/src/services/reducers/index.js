@@ -1,12 +1,14 @@
 import {combineReducers} from 'redux';
 import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
+    DECREASE_COUNTER,
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_SUCCESS,
     GET_ORDER_INGREDIENTS_FAILED,
     GET_ORDER_INGREDIENTS_REQUEST,
     GET_ORDER_INGREDIENTS_SUCCESS,
+    INCREASE_COUNTER,
     SHOW_INGREDIENT
 } from '../actions'
 
@@ -17,7 +19,8 @@ const initialState = {
     order: [],
     isOrderDetailsOpen: false,
     isIngredientDetailsOpen: false,
-    loader: true
+    loader: true,
+    counter: {}
 };
 
 
@@ -53,6 +56,14 @@ export const ingredientsReducer = (state = initialState, action) => {
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
             return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
+        }
+        case INCREASE_COUNTER: {
+            const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
+            return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
+        }
+        case DECREASE_COUNTER: {
+            //TODO fix
+            // return {...state, counter: state.counter -1};
         }
     }
 }

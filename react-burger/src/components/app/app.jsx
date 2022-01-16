@@ -6,7 +6,12 @@ import OrderDetails from "../order-details/order-details";
 import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import {useDispatch, useSelector} from 'react-redux';
-import {ADD_INGREDIENT_TO_CONSTRUCTOR, getIngredients, getOrderIngredients} from "../../services/actions";
+import {
+    ADD_INGREDIENT_TO_CONSTRUCTOR,
+    getIngredients,
+    getOrderIngredients,
+    INCREASE_COUNTER
+} from "../../services/actions";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -28,7 +33,7 @@ function App() {
 
     function handleIngredientClick(item) {
         // setIngredientDetailsOpen(true)
-        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
+      //  dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
         //  ingredientItemReducer()
         // setDetail(item)
     }
@@ -37,8 +42,6 @@ function App() {
         setOrderDetailsOpen(true)
         dispatch(getOrderIngredients())
 
-        // getInitialOrder(ingredients.map(item => item._id))
-        //     .then(({order}) => setOrder(order.number))
     }
 
 
@@ -46,22 +49,11 @@ function App() {
         setOrderDetailsOpen(false)
         setIngredientDetailsOpen(false)
     }
+    const handleDrop = (item) => {
+        console.log(111, item)
 
-    // const [elements, setElements] = React.useState(ingredients);
-    // const [draggedElements, setDraggedElements] = React.useState([]);
-    const handleDrop = (itemId) => {
-        console.log(111, itemId)
-       // const item = ingredients.filter(ingredient => ingredient._id === itemId)
-        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: itemId})
-
-        // setElements([
-        //     ...elements.filter(element => element.id !== itemId.id)
-        // ]);
-        //
-        // setDraggedElements([
-        //     ...draggedElements,
-        //     ...elements.filter(element => element.id === itemId.id)
-        // ]);
+        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
+        dispatch({type: INCREASE_COUNTER, itemId: item._id})
     };
 
     return (
@@ -74,7 +66,7 @@ function App() {
                 />
                 <BurgerConstructor
                     onDropHandler={handleDrop}
-                    onOrderClick={handleOrderDetailClick}
+                 //   onOrderClick={handleOrderDetailClick}
                 />
             </div>
             </DndProvider>
