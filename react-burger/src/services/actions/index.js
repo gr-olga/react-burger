@@ -21,6 +21,9 @@ export const MOVE_INSIDE_CONSTRUCTOR = 'MOVE_INSIDE_CONSTRUCTOR';
 
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
+
+
+
 export function getIngredients() {
     return function (dispatch) {
         dispatch({
@@ -42,16 +45,16 @@ export function getIngredients() {
 }
 
 
-export function getOrderIngredients() {
+export function getOrderIngredients(ingredientIds) {
     return function (dispatch) {
         dispatch({
             type: GET_ORDER_INGREDIENTS_REQUEST
         });
-        getInitialOrder().then(res => {
+        getInitialOrder(ingredientIds).then(res => {
             if (res && res.success) {
                 dispatch({
                     type: GET_ORDER_INGREDIENTS_SUCCESS,
-                    order: res.data
+                    order: res.order.number
                 });
             } else {
                 dispatch({

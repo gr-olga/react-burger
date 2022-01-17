@@ -36,10 +36,10 @@ function App() {
         dispatch({type: SHOW_INGREDIENT, ingredient: item})
     }
 
-    function handleOrderDetailClick() {
-      //  setOrderDetailsOpen(true)
-        dispatch(getOrderIngredients())
-    }
+    // function handleOrderDetailClick() {
+    //   //  setOrderDetailsOpen(true)
+    //     dispatch(getOrderIngredients())
+    // }
 
     const handleDrop = (item) => {
         dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})

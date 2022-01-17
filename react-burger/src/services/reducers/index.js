@@ -17,7 +17,7 @@ const initialState = {
     ingredients: [],
     constructorIngredients: [],
     ingredientDetail: {},
-    order: [],
+    order: null,
     isOrderDetailsOpen: false,
     isIngredientDetailsOpen: false,
     loader: true,
@@ -46,11 +46,14 @@ export const ingredientsReducer = (state = initialState, action) => {
         case GET_ORDER_INGREDIENTS_REQUEST: {
             return {
                 ...state,
-                isOrderDetailsOpen: true
+                order: action.order,
             }
         }
         case GET_ORDER_INGREDIENTS_SUCCESS: {
-            return {...state, order: action.order};
+            console.log(action.order);
+            return {...state,
+                order: action.order,
+                isOrderDetailsOpen: true};
         }
         case GET_ORDER_INGREDIENTS_FAILED: {
             return {...state, loader: true};

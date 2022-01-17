@@ -5,11 +5,11 @@ import {BurgerIngredientsTypes} from "../../utils/types";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrag, useDrop} from "react-dnd";
 import {v4 as uuidv4} from 'uuid';
-import {MOVE_INSIDE_CONSTRUCTOR, REMOVE_INGREDIENT_TO_CONSTRUCTOR} from "../../services/actions";
+import {getOrderIngredients, MOVE_INSIDE_CONSTRUCTOR, REMOVE_INGREDIENT_TO_CONSTRUCTOR} from "../../services/actions";
 
 function BurgerConstructor(props) {
 
-    const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {constructorIngredients, order} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);
@@ -53,6 +53,10 @@ function BurgerConstructor(props) {
             type: REMOVE_INGREDIENT_TO_CONSTRUCTOR,
             ingredient
         })
+    }
+
+    function handleOrderDetailClick() {
+        dispatch(getOrderIngredients(constructorIngredients.map(item => item._id)))
     }
 
 
@@ -110,7 +114,7 @@ function BurgerConstructor(props) {
                 <CurrencyIcon type="primary"/>
                 <button
                     className={styles.btn}
-                    onClick={props.onOrderClick}
+                    onClick={handleOrderDetailClick}
                 >
                     Оформить заказ
                 </button>

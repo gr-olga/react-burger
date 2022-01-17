@@ -14,10 +14,10 @@ export function getIngredientsData() {
         .catch((err) => console.log("failed", err))
 }
 
-export function getInitialOrder(ingredients) {
+export function getInitialOrder(ingredientIds) {
     return fetch(`${BASE_URL}orders`, {
         method: "POST",
-        body: JSON.stringify({ingredients}),
+        body: JSON.stringify({ingredients: ingredientIds}),
         headers: {
             'Content-Type': 'application/json'
         }
