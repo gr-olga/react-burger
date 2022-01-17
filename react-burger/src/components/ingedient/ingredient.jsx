@@ -18,10 +18,15 @@ function Ingredient(props) {
         })
     });
 
+    function handleClick() {
+        props.onItemClick(props)
+    }
+
 
     return (
         !isDrag &&
         <section
+            onClick={handleClick}
             ref={dragRef}
         >
             <div className={styles.box}>

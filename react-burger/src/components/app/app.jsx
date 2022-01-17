@@ -10,7 +10,7 @@ import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     getIngredients,
     getOrderIngredients,
-    INCREASE_COUNTER
+    INCREASE_COUNTER, SHOW_INGREDIENT
 } from "../../services/actions";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
@@ -21,10 +21,11 @@ function App() {
     //  const [detail, setDetail] = useState(undefined)
     // const [order, setOrder] = useState(undefined)
 
-    const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false)
-    const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
+   // const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false)
+    //const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
 
-    const {ingredients, order, ingredientDetail} = useSelector(state => state)
+   const {ingredients, order, ingredientDetail, isIngredientDetailsOpen, isOrderDetailsOpen} = useSelector(state => state)
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -32,23 +33,14 @@ function App() {
     }, [dispatch])
 
     function handleIngredientClick(item) {
-        // setIngredientDetailsOpen(true)
-      //  dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
-        //  ingredientItemReducer()
-        // setDetail(item)
+        dispatch({type: SHOW_INGREDIENT, ingredient: item})
     }
 
     function handleOrderDetailClick() {
-        setOrderDetailsOpen(true)
+      //  setOrderDetailsOpen(true)
         dispatch(getOrderIngredients())
-
     }
 
-
-    function modalClose() {
-        setOrderDetailsOpen(false)
-        setIngredientDetailsOpen(false)
-    }
     const handleDrop = (item) => {
         dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
         dispatch({type: INCREASE_COUNTER, itemId: item._id})
@@ -64,19 +56,15 @@ function App() {
                 />
                 <BurgerConstructor
                     onDropHandler={handleDrop}
-                 //   onOrderClick={handleOrderDetailClick}
+                 //  onOrderClick={handleOrderDetailClick}
                 />
             </div>
             </DndProvider>
             <IngredientDetails
-                item={ingredientDetail}
-                isOpen={isIngredientDetailsOpen}
-                onClose={modalClose}
             />
             <OrderDetails
                 order={order}
                 isOpen={isOrderDetailsOpen}
-                onClose={modalClose}
             />
 
         </div>

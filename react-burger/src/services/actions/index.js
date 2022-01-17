@@ -19,7 +19,7 @@ export const DECREASE_COUNTER = 'DECREASE_COUNTER';
 
 export const MOVE_INSIDE_CONSTRUCTOR = 'MOVE_INSIDE_CONSTRUCTOR';
 
-
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 export function getIngredients() {
     return function (dispatch) {
@@ -62,8 +62,3 @@ export function getOrderIngredients() {
     };
 }
 
-
-export const setIngredient = (ingredientDetail)=>({
-    type: SHOW_INGREDIENT,
-    ingredientDetail
-})

@@ -49,7 +49,6 @@ function BurgerConstructor(props) {
     //     }
     // });
     function removeIngredient(ingredient){
-        console.log(4444);
         dispatch({
             type: REMOVE_INGREDIENT_TO_CONSTRUCTOR,
             ingredient
