@@ -17,12 +17,6 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 
 
 function App() {
-    // const [ingredients, setIngredients] = useState([])
-    //  const [detail, setDetail] = useState(undefined)
-    // const [order, setOrder] = useState(undefined)
-
-   // const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false)
-    //const [isIngredientDetailsOpen, setIngredientDetailsOpen] = useState(false)
 
    const {ingredients, order, ingredientDetail, isIngredientDetailsOpen, isOrderDetailsOpen} = useSelector(state => state)
 
@@ -35,11 +29,6 @@ function App() {
     function handleIngredientClick(item) {
         dispatch({type: SHOW_INGREDIENT, ingredient: item})
     }
-
-    // function handleOrderDetailClick() {
-    //   //  setOrderDetailsOpen(true)
-    //     dispatch(getOrderIngredients())
-    // }
 
     const handleDrop = (item) => {
         dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
@@ -63,8 +52,6 @@ function App() {
             <IngredientDetails
             />
             <OrderDetails
-                order={order}
-                isOpen={isOrderDetailsOpen}
             />
 
         </div>

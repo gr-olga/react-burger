@@ -9,7 +9,7 @@ import {getOrderIngredients, MOVE_INSIDE_CONSTRUCTOR, REMOVE_INGREDIENT_TO_CONST
 
 function BurgerConstructor(props) {
 
-    const {constructorIngredients, order} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);

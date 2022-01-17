@@ -78,6 +78,7 @@ export const ingredientsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isIngredientDetailsOpen: false,
+                isOrderDetailsOpen: false,
                 ingredientDetail: {}
             };
         }
