@@ -9,7 +9,7 @@ import {
     GET_ORDER_INGREDIENTS_REQUEST,
     GET_ORDER_INGREDIENTS_SUCCESS,
     INCREASE_COUNTER,
-    REMOVE_INGREDIENT_TO_CONSTRUCTOR,
+    REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     SHOW_INGREDIENT
 } from '../actions'
 
@@ -61,7 +61,7 @@ export const ingredientsReducer = (state = initialState, action) => {
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
             return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
         }
-        case REMOVE_INGREDIENT_TO_CONSTRUCTOR: {
+        case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
                 constructorIngredients: state.constructorIngredients.filter((item) => item._id !== action.ingredient._id)
@@ -92,8 +92,8 @@ export const ingredientsReducer = (state = initialState, action) => {
             return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
         }
         case DECREASE_COUNTER: {
-            //TODO fix
-            // return {...state, counter: state.counter -1};
+            const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 1;
+            return {...state, counter: {...state.counter, [action.itemId]: prevValue - 1}};
         }
     }
 

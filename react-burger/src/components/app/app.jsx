@@ -45,7 +45,6 @@ function App() {
                 />
                 <BurgerConstructor
                     onDropHandler={handleDrop}
-                 //  onOrderClick={handleOrderDetailClick}
                 />
             </div>
             </DndProvider>
