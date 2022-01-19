@@ -1,6 +1,8 @@
-import {useRef} from 'react';
+import {useCallback, useRef, useState} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
 import {ItemTypes} from './ItemTypes';
+import {Card} from './Card';
+import update from 'immutability-helper';
 
 const style = {
     border: '1px dashed gray',
@@ -73,12 +75,6 @@ export const Card = ({id, text, index, moveCard}) => {
 };
 
 
-
-
-
-import { useState, useCallback } from 'react';
-import { Card } from './Card';
-import update from 'immutability-helper';
 const style = {
     width: 400,
 };

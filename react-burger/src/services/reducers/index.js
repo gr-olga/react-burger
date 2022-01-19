@@ -12,6 +12,7 @@ import {
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     SHOW_INGREDIENT
 } from '../actions'
+import {changeOrder} from "../../utils/array-helper";
 
 const initialState = {
     ingredients: [],
@@ -83,7 +84,8 @@ export const ingredientsReducer = (state = initialState, action) => {
             };
         }
         case MOVE_INSIDE_CONSTRUCTOR: {
-            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
+            return state;
+            // return {...state, constructorIngredients: changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex)};
         }
 
         case INCREASE_COUNTER: {

@@ -24,6 +24,7 @@ function BurgerConstructor(props) {
     const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun})
 
     useEffect(() => {
+        console.log(constructorIngredients);
         setNonBunIngredientsList(constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main'))
         const bun = constructorIngredients.find((item) => item.type === 'bun')
         if (bun) setBunItem(bun)
@@ -107,6 +108,7 @@ function BurgerConstructor(props) {
                 {nonBunIngredientsList.map((item, index) => {
                     return (
                         <div key={uuidv4()}>
+                            <div>{item._id}</div>
                             <ConstructorItem {...item}
                                              isLocked={false}
                                              index={index}
@@ -114,7 +116,7 @@ function BurgerConstructor(props) {
                                              price={item.price}
                                              thumbnail={item.image}
                                 // removeIngredient={removeIngredient}
-                                             id={0}
+                                             // id={0}
                                              moveCard={moveCard}
                             />
                         </div>
