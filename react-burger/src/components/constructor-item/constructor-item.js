@@ -3,7 +3,7 @@ import React, {useRef} from "react";
 import {useDispatch} from "react-redux";
 import {useDrag, useDrop} from "react-dnd";
 import styles from "../burger-constructor/burger-constructor.module.css";
-import {MOVE_INSIDE_CONSTRUCTOR} from "../../services/actions";
+import {DECREASE_COUNTER, REMOVE_INGREDIENT_FROM_CONSTRUCTOR} from "../../services/actions";
 
 
 export default function ConstructorItem(props) {
@@ -62,6 +62,17 @@ export default function ConstructorItem(props) {
         },
     });
 
+    function removeIngredient(id, index) {
+        dispatch({
+            type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
+            value: {id, index}
+        })
+        dispatch({
+            type: DECREASE_COUNTER,
+            itemId: id
+        })
+    }
+
 
     return (
         !isDrag &&
@@ -74,13 +85,14 @@ export default function ConstructorItem(props) {
                 ref={dragRef}
             >
                 <DragIcon type="primary"/>
+                <div>{props.index}</div>
                 <ConstructorElement
                     isLocked={false}
                     index={props.index}
                     text={props.name}
                     price={props.price}
                     thumbnail={props.image}
-                    handleClose={()=>props.removeIngredient(props)}
+                    handleClose={() => removeIngredient(props._id, props.index)}
                 />
             </div>
         </div>

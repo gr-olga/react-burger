@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
@@ -60,23 +60,23 @@ function BurgerConstructor(props) {
         accept: "primary",
         item: {},
         drop(dropItemTarget) {
-            console.log('drop 111', dropItemTarget);
             dispatch({
                 type: MOVE_INSIDE_CONSTRUCTOR
             })
         }
     });
 
-    function removeIngredient(ingredient) {
-        dispatch({
-            type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
-            ingredient
-        })
-        dispatch({
-            type: DECREASE_COUNTER,
-            itemId: ingredient._id
-        })
-    }
+    // function removeIngredient(ingredient) {
+    //     console.log(222, ingredient);
+    //     dispatch({
+    //         type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
+    //         ingredient
+    //     })
+    //     dispatch({
+    //         type: DECREASE_COUNTER,
+    //         itemId: ingredient._id
+    //     })
+    // }
 
     const [items, setItem] = []
     const moveCard = (dragIndex, hoverIndex) => {
@@ -113,7 +113,7 @@ function BurgerConstructor(props) {
                                              text={item.name}
                                              price={item.price}
                                              thumbnail={item.image}
-                                             removeIngredient={removeIngredient}
+                                // removeIngredient={removeIngredient}
                                              id={0}
                                              moveCard={moveCard}
                             />

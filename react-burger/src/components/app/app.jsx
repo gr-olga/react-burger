@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from './app.module.css';
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import IngredientDetails from "../ingredient-details/ingredient-details";
@@ -6,19 +6,20 @@ import OrderDetails from "../order-details/order-details";
 import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import {useDispatch, useSelector} from 'react-redux';
-import {
-    ADD_INGREDIENT_TO_CONSTRUCTOR,
-    getIngredients,
-    getOrderIngredients,
-    INCREASE_COUNTER, SHOW_INGREDIENT
-} from "../../services/actions";
+import {ADD_INGREDIENT_TO_CONSTRUCTOR, getIngredients, INCREASE_COUNTER, SHOW_INGREDIENT} from "../../services/actions";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-
+import {v4 as uuidv4} from "uuid";
 
 function App() {
 
-   const {ingredients, order, ingredientDetail, isIngredientDetailsOpen, isOrderDetailsOpen} = useSelector(state => state)
+    const {
+        ingredients,
+        order,
+        ingredientDetail,
+        isIngredientDetailsOpen,
+        isOrderDetailsOpen
+    } = useSelector(state => state)
 
     const dispatch = useDispatch();
 
@@ -39,14 +40,14 @@ function App() {
         <div className={styles.app}>
             <AppHeader/>
             <DndProvider backend={HTML5Backend}>
-            <div className={styles.bar}>
-                <BurgerIngredients
-                    onIngredientClick={handleIngredientClick}
-                />
-                <BurgerConstructor
-                    onDropHandler={handleDrop}
-                />
-            </div>
+                <div className={styles.bar}>
+                    <BurgerIngredients
+                        onIngredientClick={handleIngredientClick}
+                    />
+                    <BurgerConstructor
+                        onDropHandler={handleDrop}
+                    />
+                </div>
             </DndProvider>
             <IngredientDetails
             />

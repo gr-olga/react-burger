@@ -59,12 +59,12 @@ export const ingredientsReducer = (state = initialState, action) => {
             return {...state, loader: true};
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
-            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient, {key:action+1}]};
+            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient ]};
         }
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                constructorIngredients: state.constructorIngredients.filter((item) => item._id !== action.ingredient._id)
+                constructorIngredients: state.constructorIngredients.filter((item, index) => index !== action.value.index)
             };
         }
         case SHOW_INGREDIENT: {
