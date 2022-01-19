@@ -8,7 +8,7 @@ import {
     GET_ORDER_INGREDIENTS_FAILED,
     GET_ORDER_INGREDIENTS_REQUEST,
     GET_ORDER_INGREDIENTS_SUCCESS,
-    INCREASE_COUNTER,
+    INCREASE_COUNTER, MOVE_INSIDE_CONSTRUCTOR,
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     SHOW_INGREDIENT
 } from '../actions'
@@ -59,7 +59,7 @@ export const ingredientsReducer = (state = initialState, action) => {
             return {...state, loader: true};
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
-            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
+            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient, {key:action+1}]};
         }
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
@@ -82,10 +82,9 @@ export const ingredientsReducer = (state = initialState, action) => {
                 ingredientDetail: {}
             };
         }
-
-        // case MOVE_INSIDE_CONSTRUCTOR: {
-        //     return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
-        // }
+        case MOVE_INSIDE_CONSTRUCTOR: {
+            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
+        }
 
         case INCREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
@@ -96,21 +95,6 @@ export const ingredientsReducer = (state = initialState, action) => {
             return {...state, counter: {...state.counter, [action.itemId]: prevValue - 1}};
         }
     }
-
-
-// export const ingredientItemReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case SHOW_INGREDIENT: {
-//             return {
-//                 ...state,
-//                 ingredientDetail: action.ingredientDetail,
-//                 isIngredientDetailsOpen: true
-//             };
-//         }
-//         default: {
-//             return state;
-//         }
-//     }
 }
 
 
