@@ -9,7 +9,7 @@ import {
     GET_ORDER_INGREDIENTS_REQUEST,
     GET_ORDER_INGREDIENTS_SUCCESS,
     INCREASE_COUNTER, MOVE_INSIDE_CONSTRUCTOR,
-    REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
+    REMOVE_INGREDIENT_FROM_CONSTRUCTOR, REORDER_CONSTRUCTOR,
     SHOW_INGREDIENT
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
@@ -17,6 +17,7 @@ import {changeOrder} from "../../utils/array-helper";
 const initialState = {
     ingredients: [],
     constructorIngredients: [],
+    dragContainer: [],
     ingredientDetail: {},
     order: null,
     isOrderDetailsOpen: false,
@@ -83,10 +84,16 @@ export const ingredientsReducer = (state = initialState, action) => {
                 ingredientDetail: {}
             };
         }
-        case MOVE_INSIDE_CONSTRUCTOR: {
-            return state;
-            // return {...state, constructorIngredients: changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex)};
+        case REORDER_CONSTRUCTOR: {
+            console.log('hoverIndex:', action.hoverIndex, 'dragIndex',action.dragIndex)
+             return {...state, dragContainer: changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex)};
         }
+
+        case MOVE_INSIDE_CONSTRUCTOR: {
+            console.log('444', state.dragContainer)
+            return {...state, constructorIngredients: state.dragContainer};
+        }
+
 
         case INCREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;

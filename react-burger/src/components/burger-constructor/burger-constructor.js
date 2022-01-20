@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
@@ -15,6 +15,8 @@ import ConstructorItem from "../constructor-item/constructor-item";
 import {v4 as uuidv4} from "uuid";
 
 function BurgerConstructor(props) {
+
+    const  ref=useRef()
 
     const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
@@ -57,35 +59,43 @@ function BurgerConstructor(props) {
         setSum(pricesList.reduce((a, b) => a + b, num))
     }, [constructorIngredients, nonBunIngredientsList])
 
-    const [{handlerId}, dropItemTarget] = useDrop({
-        accept: "primary",
-        item: {},
-        drop(dropItemTarget) {
-            dispatch({
-                type: MOVE_INSIDE_CONSTRUCTOR
-            })
-        }
-    });
 
-    // function removeIngredient(ingredient) {
-    //     console.log(222, ingredient);
-    //     dispatch({
-    //         type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
-    //         ingredient
-    //     })
-    //     dispatch({
-    //         type: DECREASE_COUNTER,
-    //         itemId: ingredient._id
-    //     })
-    // }
+    // const [{handlerId}, dropItemTarget] = useDrop({
+    //     accept: "primary",
+    //     collect(monitor) {
+    //         console.log('11 ', monitor);
+    //         return {
+    //             isDrag: monitor.getHandlerId(),
+    //         };
+    //     },
+    //     // drop(dropItemTarget) {
+    //     //     // console.log('22 ', dropItemTarget);
+    //     //     dispatch({
+    //     //         type: MOVE_INSIDE_CONSTRUCTOR
+    //     //     })
+    //     // },
+    //     hover(item, monitor) {
+    //         const dragIndex = item.index;
+    //         const hoverIndex = item.id;
+    //         console.log(monitor);
+    //         // if (dragIndex === hoverIndex) {
+    //         //     return;
+    //         // }
+    //         const hoverBoundingRect = ref.current?.getBoundingClientRect();
+    //         const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    //         const clientOffset = monitor.getClientOffset();
+    //         const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    //         if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+    //             return;
+    //         }
+    //         if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+    //             return;
+    //         }
+    //         dispatch({type: MOVE_INSIDE_CONSTRUCTOR, dragIndex, hoverIndex})
+    //         item.index = hoverIndex;
+    //     },
+    // });
 
-    const [items, setItem] = []
-    const moveCard = (dragIndex, hoverIndex) => {
-        const newIngredients = [...constructorIngredients]
-        const dragCard = items[dragIndex];
-        newIngredients.splice(hoverIndex, 0, newIngredients.splice(dragIndex, 1)[0]);
-        dispatch({type: MOVE_INSIDE_CONSTRUCTOR})
-    }
 
 
     return (
@@ -103,11 +113,13 @@ function BurgerConstructor(props) {
             </section>
 
             <div className={styles.container}
-                 ref={dropItemTarget}
+               //  ref={dropItemTarget}
             >
                 {nonBunIngredientsList.map((item, index) => {
                     return (
-                        <div key={uuidv4()}>
+                        <div key={uuidv4()}
+                             id={index}
+                        >
                             <div>{item._id}</div>
                             <ConstructorItem {...item}
                                              isLocked={false}
@@ -116,8 +128,7 @@ function BurgerConstructor(props) {
                                              price={item.price}
                                              thumbnail={item.image}
                                 // removeIngredient={removeIngredient}
-                                             // id={0}
-                                             moveCard={moveCard}
+
                             />
                         </div>
                     )

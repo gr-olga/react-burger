@@ -9,10 +9,12 @@ export function removeFromArray(arr, index) {
 }
 
 export function changeOrder(arr, dragIndex, hoverIndex) {
-    // const dragIndex = arr.findIndex(item => item === 'x')
+   // const dragIndex = arr.findIndex(item => item === 'x')
     const dragItem = arr[dragIndex]
     const result = [...arr];
     const resultWithoutOldItem = removeFromArray(result, dragIndex)
-    // const hoverIndex = resultWithoutOldItem.findIndex(item => item === 'c')
+    //const hoverIndex = resultWithoutOldItem.findIndex(item => item === 'c')
     return insertToArr(resultWithoutOldItem, hoverIndex, dragItem)
 }
+
+
