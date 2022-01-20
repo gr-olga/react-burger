@@ -11,13 +11,11 @@ import {v4 as uuidv4} from "uuid";
 
 function BurgerConstructor(props) {
 
-    // const ref = useRef()
 
     const {constructorIngredients, nonBunIngredientsList} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);
-    //  const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
     const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun})
 
     useEffect(() => {
@@ -78,8 +76,6 @@ function BurgerConstructor(props) {
                                              text={item.name}
                                              price={item.price}
                                              thumbnail={item.image}
-                                // removeIngredient={removeIngredient}
-
                             />
                         </div>
                     )

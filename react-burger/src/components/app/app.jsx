@@ -11,15 +11,6 @@ import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
 function App() {
-
-    // const {
-    //     ingredients,
-    //     order,
-    //     ingredientDetail,
-    //     isIngredientDetailsOpen,
-    //     isOrderDetailsOpen
-    // } = useSelector(state => state)
-
     const dispatch = useDispatch();
 
     useEffect(() => {

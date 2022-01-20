@@ -75,7 +75,7 @@ export const ingredientsReducer = (state = initialState, action) => {
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                constructorIngredients: state.constructorIngredients.filter((item, index) => index !== action.value.index)
+                dragContainer: state.nonBunIngredientsList.filter((item, index) => index !== action.value.index),
             };
         }
         case SHOW_INGREDIENT: {
@@ -94,9 +94,6 @@ export const ingredientsReducer = (state = initialState, action) => {
             };
         }
         case REORDER_CONSTRUCTOR: {
-            console.log('REORDER_CONSTRUCTOR (initial state)', state.nonBunIngredientsList);
-            console.log('REORDER_CONSTRUCTOR:', action.hoverIndex, 'dragIndex', action.dragIndex)
-            console.log('REORDER_CONSTRUCTOR (new state)', changeOrder(state.nonBunIngredientsList, action.dragIndex, action.hoverIndex));
             return {
                 ...state,
                 dragContainer: changeOrder(state.nonBunIngredientsList, action.dragIndex, action.hoverIndex)

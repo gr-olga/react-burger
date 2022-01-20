@@ -21,20 +21,9 @@ export default function ConstructorItem(props) {
     function onHover(item, monitor) {
         const dragIndex = item.index;
         const hoverIndex = props.index
-        // console.log(`dragIndex: ${dragIndex}, hoverIndex: ${hoverIndex}`)
         if (dragIndex === hoverIndex) {
             return;
         }
-        // const hoverBoundingRect = ref.current?.getBoundingClientRect();
-        // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-        // const clientOffset = monitor.getClientOffset();
-        // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-        // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        //     return;
-        // }
-        // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        //     return;
-        // }
         dispatch({type: REORDER_CONSTRUCTOR, dragIndex, hoverIndex})
         item.index = hoverIndex;
         dispatch({
@@ -67,6 +56,9 @@ export default function ConstructorItem(props) {
         dispatch({
             type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
             value: {id, index}
+        })
+        dispatch({
+            type: MOVE_INSIDE_CONSTRUCTOR
         })
         dispatch({
             type: DECREASE_COUNTER,
