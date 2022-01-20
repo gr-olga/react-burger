@@ -85,12 +85,14 @@ export const ingredientsReducer = (state = initialState, action) => {
             };
         }
         case REORDER_CONSTRUCTOR: {
-            console.log('hoverIndex:', action.hoverIndex, 'dragIndex',action.dragIndex)
+            console.log('REORDER_CONSTRUCTOR (initial state)', state.constructorIngredients);
+            console.log('REORDER_CONSTRUCTOR:', action.hoverIndex, 'dragIndex',action.dragIndex)
+            console.log('REORDER_CONSTRUCTOR (new state)', changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex));
              return {...state, dragContainer: changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex)};
         }
 
         case MOVE_INSIDE_CONSTRUCTOR: {
-            console.log('444', state.dragContainer)
+            console.log('MOVE_INSIDE_CONSTRUCTOR', state.dragContainer)
             return {...state, constructorIngredients: state.dragContainer};
         }
 

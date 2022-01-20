@@ -26,9 +26,9 @@ export default function ConstructorItem(props) {
         },
 
         hover(item, monitor) {
-            console.log('111')
             const dragIndex = item.index;
-            const hoverIndex = index
+            const hoverIndex = props.index
+            console.log(`dragIndex: ${dragIndex}, hoverIndex: ${hoverIndex}`)
             if (dragIndex === hoverIndex) {
                 return;
             }
@@ -49,14 +49,14 @@ export default function ConstructorItem(props) {
             })
         },
     });
-    const [{isDrag}, drag] = useDrag({
+    const [{isDragging}, drag] = useDrag({
         type: "primary",
         item: () => {
             return {id, index};
         },
         collect: (monitor) => {
             return ({
-                isDrag: monitor.isDragging(),
+                isDragging: monitor.isDragging(),
             });
         },
     });
@@ -73,15 +73,16 @@ export default function ConstructorItem(props) {
     }
 
     drag(drop(ref));
-
+    const opacity = isDragging ? 0 : 1;
     return (
-        <div>
             <div
                 className={styles.middleItemsList}
                 ref={ref}
-              data-handler-id={handlerId}
+                data-handler-id={handlerId}
+                style={{ opacity }}
             >
                 <DragIcon type="primary"/>
+                <div>{props.index}</div>
                 <ConstructorElement
                     isLocked={false}
                     index={props.index}
@@ -91,6 +92,5 @@ export default function ConstructorItem(props) {
                     handleClose={() => removeIngredient(props._id, props.index)}
                 />
             </div>
-       </div>
     )
 }
