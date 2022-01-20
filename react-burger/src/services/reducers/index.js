@@ -56,7 +56,6 @@ export const ingredientsReducer = (state = initialState, action) => {
             }
         }
         case GET_ORDER_INGREDIENTS_SUCCESS: {
-            console.log(action.order);
             return {
                 ...state,
                 order: action.order,
@@ -101,7 +100,6 @@ export const ingredientsReducer = (state = initialState, action) => {
         }
 
         case MOVE_INSIDE_CONSTRUCTOR: {
-            console.log('MOVE_INSIDE_CONSTRUCTOR', state.dragContainer)
             return {...state, constructorIngredients: [state.constructorIngredients[0], ...state.dragContainer]};
         }
 

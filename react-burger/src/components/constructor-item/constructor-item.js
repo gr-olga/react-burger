@@ -76,7 +76,6 @@ export default function ConstructorItem(props) {
             style={{opacity}}
         >
             <DragIcon type="primary"/>
-            <div>{props.index}</div>
             <ConstructorElement
                 isLocked={false}
                 index={props.index}
