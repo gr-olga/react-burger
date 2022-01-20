@@ -1,5 +1,5 @@
 import styles from "./ingredient.module.css";
-import React, {useState} from "react";
+import React from "react";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {IngredientDetailsTypes} from "../../utils/types";
 import {useDrag} from "react-dnd";

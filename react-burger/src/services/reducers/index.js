@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {
-    ADD_INGREDIENT_TO_CONSTRUCTOR, CLOSE_MODAL,
+    ADD_INGREDIENT_TO_CONSTRUCTOR,
+    CLOSE_MODAL,
     DECREASE_COUNTER,
     GET_INGREDIENTS_FAILED,
     GET_INGREDIENTS_REQUEST,
@@ -8,8 +9,10 @@ import {
     GET_ORDER_INGREDIENTS_FAILED,
     GET_ORDER_INGREDIENTS_REQUEST,
     GET_ORDER_INGREDIENTS_SUCCESS,
-    INCREASE_COUNTER, MOVE_INSIDE_CONSTRUCTOR,
-    REMOVE_INGREDIENT_FROM_CONSTRUCTOR, REORDER_CONSTRUCTOR,
+    INCREASE_COUNTER,
+    MOVE_INSIDE_CONSTRUCTOR,
+    REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
+    REORDER_CONSTRUCTOR,
     SHOW_INGREDIENT
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
@@ -53,15 +56,17 @@ export const ingredientsReducer = (state = initialState, action) => {
         }
         case GET_ORDER_INGREDIENTS_SUCCESS: {
             console.log(action.order);
-            return {...state,
+            return {
+                ...state,
                 order: action.order,
-                isOrderDetailsOpen: true};
+                isOrderDetailsOpen: true
+            };
         }
         case GET_ORDER_INGREDIENTS_FAILED: {
             return {...state, loader: true};
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
-            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient ]};
+            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
         }
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
@@ -86,9 +91,12 @@ export const ingredientsReducer = (state = initialState, action) => {
         }
         case REORDER_CONSTRUCTOR: {
             console.log('REORDER_CONSTRUCTOR (initial state)', state.constructorIngredients);
-            console.log('REORDER_CONSTRUCTOR:', action.hoverIndex, 'dragIndex',action.dragIndex)
+            console.log('REORDER_CONSTRUCTOR:', action.hoverIndex, 'dragIndex', action.dragIndex)
             console.log('REORDER_CONSTRUCTOR (new state)', changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex));
-             return {...state, dragContainer: changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex)};
+            return {
+                ...state,
+                dragContainer: changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex)
+            };
         }
 
         case MOVE_INSIDE_CONSTRUCTOR: {

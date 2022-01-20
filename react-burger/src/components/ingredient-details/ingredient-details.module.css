@@ -1,9 +1,10 @@
-.box{
-    max-width:720px;
-    max-height:539px;
+.box {
+    max-width: 720px;
+    max-height: 539px;
 }
-.title{
-    font-family: JetBrains Mono,sans-serif;
+
+.title {
+    font-family: JetBrains Mono, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -15,17 +16,20 @@
     order: 0;
     flex-grow: 1;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.image{
+
+.image {
     width: 480px;
-    height:240px;
+    height: 240px;
 
 }
-.descriptor{
+
+.descriptor {
     font-family: JetBrains Mono, sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -34,14 +38,16 @@
     text-align: center;
     color: #F2F2F3;
 }
-.list{
+
+.list {
     display: grid;
-    grid-template-columns: repeat(4,120px);
-    grid-template-rows:repeat(2,56px);
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows:repeat(2, 56px);
     grid-column-gap: 20px;
     margin-bottom: 60px;
 }
-.heading{
+
+.heading {
     margin: 0;
     font-family: JetBrains Mono, sans-serif;
     font-size: 16px;
@@ -52,7 +58,8 @@
     order: 0;
     align-self: flex-end;
 }
-.numbers{
+
+.numbers {
     justify-self: center;
     margin: 0;
     font-family: Iceland, sans-serif;

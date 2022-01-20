@@ -1,4 +1,3 @@
-
 export const BASE_URL = "https://norma.nomoreparties.space/api/"
 const handleResponse = (res) => {
     if (!res.ok) {
@@ -10,7 +9,7 @@ const handleResponse = (res) => {
 export function getIngredientsData() {
     return fetch(`${BASE_URL}ingredients`)
         .then(handleResponse)
-       // .then((res) => (res.json()))
+        // .then((res) => (res.json()))
         .catch((err) => console.log("failed", err))
 }
 

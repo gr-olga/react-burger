@@ -24,8 +24,6 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const REORDER_CONSTRUCTOR = 'REORDER_CONSTRUCTOR';
 
 
-
-
 export function getIngredients() {
     return function (dispatch) {
         dispatch({

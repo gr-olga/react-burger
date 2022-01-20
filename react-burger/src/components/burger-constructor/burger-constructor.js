@@ -5,18 +5,13 @@ import {BurgerIngredientsTypes} from "../../utils/types";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
-import {
-    DECREASE_COUNTER,
-    getOrderIngredients,
-    MOVE_INSIDE_CONSTRUCTOR,
-    REMOVE_INGREDIENT_FROM_CONSTRUCTOR
-} from "../../services/actions";
+import {getOrderIngredients} from "../../services/actions";
 import ConstructorItem from "../constructor-item/constructor-item";
 import {v4 as uuidv4} from "uuid";
 
 function BurgerConstructor(props) {
 
-    const  ref=useRef()
+    const ref = useRef()
 
     const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
@@ -95,7 +90,6 @@ function BurgerConstructor(props) {
     // });
 
 
-
     return (
         <div className={styles.box}
              ref={dropTarget}
@@ -111,7 +105,7 @@ function BurgerConstructor(props) {
             </section>
 
             <div className={styles.container}
-               //  ref={dropItemTarget}
+                //  ref={dropItemTarget}
             >
                 {nonBunIngredientsList.map((item, index) => {
                     return (

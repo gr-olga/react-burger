@@ -20,9 +20,9 @@ const state = createStore(rootReducer, enhancer);
 
 ReactDOM.render(
     <React.StrictMode>
-    <Provider store={state}>
-        <App/>
-    </Provider>
+        <Provider store={state}>
+            <App/>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );

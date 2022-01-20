@@ -1,12 +1,13 @@
 import React, {useEffect} from "react";
 import styles from './modal-overlay.module.css'
 import {useDispatch} from "react-redux";
-import {CLOSE_MODAL, SHOW_INGREDIENT} from "../../services/actions";
+import {CLOSE_MODAL} from "../../services/actions";
 
 
 function ModalOverlay(props) {
     const dispatch = useDispatch();
-   function closeModal(){
+
+    function closeModal() {
         dispatch({type: CLOSE_MODAL})
     }
 

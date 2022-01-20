@@ -17,7 +17,7 @@ function Modal(props) {
                 <div className={styles.box}>
                     <div className={styles.btn}>
                         <h1 className={styles.title}>{props.title}</h1>
-                        <CloseIcon type="primary" onClick={()=>dispatch({type: CLOSE_MODAL})}/>
+                        <CloseIcon type="primary" onClick={() => dispatch({type: CLOSE_MODAL})}/>
                     </div>
                     {props.children}
                 </div>

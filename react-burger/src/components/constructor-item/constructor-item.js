@@ -75,22 +75,22 @@ export default function ConstructorItem(props) {
     drag(drop(ref));
     const opacity = isDragging ? 0 : 1;
     return (
-            <div
-                className={styles.middleItemsList}
-                ref={ref}
-                data-handler-id={handlerId}
-                style={{ opacity }}
-            >
-                <DragIcon type="primary"/>
-                <div>{props.index}</div>
-                <ConstructorElement
-                    isLocked={false}
-                    index={props.index}
-                    text={props.name}
-                    price={props.price}
-                    thumbnail={props.image}
-                    handleClose={() => removeIngredient(props._id, props.index)}
-                />
-            </div>
+        <div
+            className={styles.middleItemsList}
+            ref={ref}
+            data-handler-id={handlerId}
+            style={{opacity}}
+        >
+            <DragIcon type="primary"/>
+            <div>{props.index}</div>
+            <ConstructorElement
+                isLocked={false}
+                index={props.index}
+                text={props.name}
+                price={props.price}
+                thumbnail={props.image}
+                handleClose={() => removeIngredient(props._id, props.index)}
+            />
+        </div>
     )
 }

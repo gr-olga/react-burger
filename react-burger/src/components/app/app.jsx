@@ -9,7 +9,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {ADD_INGREDIENT_TO_CONSTRUCTOR, getIngredients, INCREASE_COUNTER, SHOW_INGREDIENT} from "../../services/actions";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import {v4 as uuidv4} from "uuid";
 
 function App() {
 
