@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
@@ -11,7 +11,7 @@ import {v4 as uuidv4} from "uuid";
 
 function BurgerConstructor(props) {
 
-    const ref = useRef()
+    // const ref = useRef()
 
     const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
@@ -50,7 +50,7 @@ function BurgerConstructor(props) {
         const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
         let num = bunItem.price
         setSum(pricesList.reduce((a, b) => a + b, num))
-    }, [constructorIngredients, nonBunIngredientsList])
+    }, [constructorIngredients, nonBunIngredientsList, bunItem])
 
 
     // const [{handlerId}, dropItemTarget] = useDrop({

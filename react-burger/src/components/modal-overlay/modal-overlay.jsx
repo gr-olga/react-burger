@@ -20,7 +20,7 @@ function ModalOverlay(props) {
         document.addEventListener('keydown', closeByEscape)
 
         return () => document.removeEventListener('keydown', closeByEscape)
-    }, [])
+    })
 
 
     function closeModalClick(evt) {

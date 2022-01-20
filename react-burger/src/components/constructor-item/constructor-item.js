@@ -28,7 +28,7 @@ export default function ConstructorItem(props) {
         hover(item, monitor) {
             const dragIndex = item.index;
             const hoverIndex = props.index
-            console.log(`dragIndex: ${dragIndex}, hoverIndex: ${hoverIndex}`)
+            // console.log(`dragIndex: ${dragIndex}, hoverIndex: ${hoverIndex}`)
             if (dragIndex === hoverIndex) {
                 return;
             }
