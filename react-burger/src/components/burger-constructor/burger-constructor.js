@@ -5,7 +5,7 @@ import {BurgerIngredientsTypes} from "../../utils/types";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
-import {getOrderIngredients} from "../../services/actions";
+import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../services/actions";
 import ConstructorItem from "../constructor-item/constructor-item";
 import {v4 as uuidv4} from "uuid";
 
@@ -13,15 +13,18 @@ function BurgerConstructor(props) {
 
     // const ref = useRef()
 
-    const {constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {constructorIngredients, nonBunIngredientsList} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);
-    const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
+    //  const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
     const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun})
 
     useEffect(() => {
-        setNonBunIngredientsList(constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main'))
+        dispatch({
+            type: ADD_INGREDIENT_TO_NON_BUN_ITEMS,
+            items: constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main')
+        })
         const bun = constructorIngredients.find((item) => item.type === 'bun')
         if (bun) setBunItem(bun)
     }, [constructorIngredients])
@@ -40,54 +43,12 @@ function BurgerConstructor(props) {
         dispatch(getOrderIngredients(constructorIngredients.map(item => item._id)))
     }
 
-    // useEffect(() => {
-    //     const pricesList = constructorIngredients.map((item) => Number(item.price))
-    //     let num = 0
-    //     setSum(pricesList.reduce((a, b) => a + b, num))
-    // }, [constructorIngredients])
 
     useEffect(() => {
         const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
         let num = bunItem.price
         setSum(pricesList.reduce((a, b) => a + b, num))
     }, [constructorIngredients, nonBunIngredientsList, bunItem])
-
-
-    // const [{handlerId}, dropItemTarget] = useDrop({
-    //     accept: "primary",
-    //     collect(monitor) {
-    //         console.log('11 ', monitor);
-    //         return {
-    //             isDrag: monitor.getHandlerId(),
-    //         };
-    //     },
-    //     // drop(dropItemTarget) {
-    //     //     // console.log('22 ', dropItemTarget);
-    //     //     dispatch({
-    //     //         type: MOVE_INSIDE_CONSTRUCTOR
-    //     //     })
-    //     // },
-    //     hover(item, monitor) {
-    //         const dragIndex = item.index;
-    //         const hoverIndex = item.id;
-    //         console.log(monitor);
-    //         // if (dragIndex === hoverIndex) {
-    //         //     return;
-    //         // }
-    //         const hoverBoundingRect = ref.current?.getBoundingClientRect();
-    //         const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    //         const clientOffset = monitor.getClientOffset();
-    //         const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    //         if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-    //             return;
-    //         }
-    //         if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-    //             return;
-    //         }
-    //         dispatch({type: MOVE_INSIDE_CONSTRUCTOR, dragIndex, hoverIndex})
-    //         item.index = hoverIndex;
-    //     },
-    // });
 
 
     return (
@@ -104,9 +65,7 @@ function BurgerConstructor(props) {
                 />
             </section>
 
-            <div className={styles.container}
-                //  ref={dropItemTarget}
-            >
+            <div className={styles.container}>
                 {nonBunIngredientsList.map((item, index) => {
                     return (
                         <div key={uuidv4()}

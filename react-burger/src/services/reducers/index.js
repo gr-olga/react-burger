@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {
-    ADD_INGREDIENT_TO_CONSTRUCTOR,
+    ADD_INGREDIENT_TO_CONSTRUCTOR, ADD_INGREDIENT_TO_NON_BUN_ITEMS,
     CLOSE_MODAL,
     DECREASE_COUNTER,
     GET_INGREDIENTS_FAILED,
@@ -20,6 +20,7 @@ import {changeOrder} from "../../utils/array-helper";
 const initialState = {
     ingredients: [],
     constructorIngredients: [],
+    nonBunIngredientsList:[],
     dragContainer: [],
     ingredientDetail: {},
     order: null,
@@ -68,6 +69,9 @@ export const ingredientsReducer = (state = initialState, action) => {
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
             return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
         }
+        case ADD_INGREDIENT_TO_NON_BUN_ITEMS: {
+            return {...state, nonBunIngredientsList: action.items};
+        }
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
@@ -90,18 +94,18 @@ export const ingredientsReducer = (state = initialState, action) => {
             };
         }
         case REORDER_CONSTRUCTOR: {
-            console.log('REORDER_CONSTRUCTOR (initial state)', state.constructorIngredients);
+            console.log('REORDER_CONSTRUCTOR (initial state)', state.nonBunIngredientsList);
             console.log('REORDER_CONSTRUCTOR:', action.hoverIndex, 'dragIndex', action.dragIndex)
-            console.log('REORDER_CONSTRUCTOR (new state)', changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex));
+            console.log('REORDER_CONSTRUCTOR (new state)', changeOrder(state.nonBunIngredientsList, action.dragIndex, action.hoverIndex));
             return {
                 ...state,
-                dragContainer: changeOrder(state.constructorIngredients, action.dragIndex, action.hoverIndex)
+                dragContainer: changeOrder(state.nonBunIngredientsList, action.dragIndex, action.hoverIndex)
             };
         }
 
         case MOVE_INSIDE_CONSTRUCTOR: {
             console.log('MOVE_INSIDE_CONSTRUCTOR', state.dragContainer)
-            return {...state, constructorIngredients: state.dragContainer};
+            return {...state, constructorIngredients: [state.constructorIngredients[0], ...state.dragContainer]};
         }
 
 

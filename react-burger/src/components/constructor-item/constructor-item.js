@@ -9,6 +9,7 @@ import {
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     REORDER_CONSTRUCTOR
 } from "../../services/actions";
+import {debounce} from "lodash";
 
 
 export default function ConstructorItem(props) {
@@ -17,6 +18,30 @@ export default function ConstructorItem(props) {
     const id = props._id
     const dispatch = useDispatch();
 
+    function onHover(item, monitor) {
+        const dragIndex = item.index;
+        const hoverIndex = props.index
+        // console.log(`dragIndex: ${dragIndex}, hoverIndex: ${hoverIndex}`)
+        if (dragIndex === hoverIndex) {
+            return;
+        }
+        // const hoverBoundingRect = ref.current?.getBoundingClientRect();
+        // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+        // const clientOffset = monitor.getClientOffset();
+        // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+        // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        //     return;
+        // }
+        // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        //     return;
+        // }
+        dispatch({type: REORDER_CONSTRUCTOR, dragIndex, hoverIndex})
+        item.index = hoverIndex;
+        dispatch({
+            type: MOVE_INSIDE_CONSTRUCTOR
+        })
+    }
+
     const [{handlerId}, drop] = useDrop({
         accept: "primary",
         collect(monitor) {
@@ -24,30 +49,7 @@ export default function ConstructorItem(props) {
                 isDrag: monitor.getHandlerId(),
             };
         },
-
-        hover(item, monitor) {
-            const dragIndex = item.index;
-            const hoverIndex = props.index
-            // console.log(`dragIndex: ${dragIndex}, hoverIndex: ${hoverIndex}`)
-            if (dragIndex === hoverIndex) {
-                return;
-            }
-            const hoverBoundingRect = ref.current?.getBoundingClientRect();
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-            const clientOffset = monitor.getClientOffset();
-            const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return;
-            }
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return;
-            }
-            dispatch({type: REORDER_CONSTRUCTOR, dragIndex, hoverIndex})
-            item.index = hoverIndex;
-            dispatch({
-                type: MOVE_INSIDE_CONSTRUCTOR
-            })
-        },
+        hover: debounce((item, monitor) => onHover(item, monitor), 300),
     });
     const [{isDragging}, drag] = useDrag({
         type: "primary",
