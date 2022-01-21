@@ -10,6 +10,7 @@ import {
     REORDER_CONSTRUCTOR
 } from "../../services/actions";
 import {debounce} from "lodash";
+import {ConstructorItemTypes} from "../../utils/types";
 
 
 export default function ConstructorItem(props) {
@@ -87,3 +88,5 @@ export default function ConstructorItem(props) {
         </div>
     )
 }
+
+ConstructorItem.propTypes = ConstructorItemTypes

@@ -25,3 +25,13 @@ export const OrderDetailsTypes = {
     type: PropTypes.string,
     price: PropTypes.number,
 }
+
+export const ConstructorItemTypes = {
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.number.isRequired,
+    index:PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    isLocked: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired
+}
