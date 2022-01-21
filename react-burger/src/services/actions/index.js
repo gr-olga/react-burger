@@ -42,7 +42,8 @@ export function getIngredients() {
                     type: GET_INGREDIENTS_FAILED
                 });
             }
-        });
+        })
+            .catch((err) => console.log("failed", err))
     };
 }
 
@@ -63,7 +64,8 @@ export function getOrderIngredients(ingredientIds) {
                     type: GET_ORDER_INGREDIENTS_FAILED
                 });
             }
-        });
+        })
+            .catch((err) => console.log("failed", err))
     };
 }
 
