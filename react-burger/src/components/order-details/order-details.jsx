@@ -11,7 +11,7 @@ function OrderDetails(props) {
     const {order, isOrderDetailsOpen} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     return (
         <Modal
-            onClose={props.onClose}
+            onClose={props.closeModal}
             isOpen={isOrderDetailsOpen}
         >
             <p className="text text_type_digits-large">{order}</p>

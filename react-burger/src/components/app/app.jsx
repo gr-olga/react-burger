@@ -6,7 +6,13 @@ import OrderDetails from "../order-details/order-details";
 import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import {useDispatch} from 'react-redux';
-import {ADD_INGREDIENT_TO_CONSTRUCTOR, getIngredients, INCREASE_COUNTER, SHOW_INGREDIENT} from "../../services/actions";
+import {
+    ADD_INGREDIENT_TO_CONSTRUCTOR,
+    CLOSE_MODAL,
+    getIngredients,
+    INCREASE_COUNTER,
+    SHOW_INGREDIENT
+} from "../../services/actions";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -26,6 +32,10 @@ function App() {
         dispatch({type: INCREASE_COUNTER, itemId: item._id})
     };
 
+    function closeModal() {
+        dispatch({type: CLOSE_MODAL})
+    }
+
     return (
         <div className={styles.app}>
             <AppHeader/>
@@ -40,8 +50,10 @@ function App() {
                 </div>
             </DndProvider>
             <IngredientDetails
+                closeModal={closeModal}
             />
             <OrderDetails
+                closeModal={closeModal}
             />
 
         </div>

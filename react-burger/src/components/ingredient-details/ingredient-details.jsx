@@ -10,7 +10,7 @@ function IngredientDetails(props) {
     return (
         <Modal
             title={'Детали ингредиента'}
-            onClose={props.onClose}
+            onClose={props.closeModal}
             isOpen={isIngredientDetailsOpen}
         >
             <div className={styles.box}>
