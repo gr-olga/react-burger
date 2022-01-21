@@ -1,29 +1,8 @@
 import React, {useEffect} from "react";
 import styles from './modal-overlay.module.css'
-import {useDispatch} from "react-redux";
-import {CLOSE_MODAL} from "../../services/actions";
-
 
 function ModalOverlay(props) {
-    // const dispatch = useDispatch();
-
-    // function closeModal() {
-    //     dispatch({type: CLOSE_MODAL})
-    // }
     const onClose= props.onClose
-
-    useEffect(() => {
-        const closeByEscape = (e) => {
-            if (e.key === "Escape") {
-                onClose()
-            }
-        }
-        document.addEventListener('keydown', closeByEscape)
-
-        return () => document.removeEventListener('keydown', closeByEscape)
-    })
-
-
     function closeModalClick(evt) {
         if (evt.target.classList.contains(styles.overlay)) onClose()
     }
