@@ -17,7 +17,6 @@ import {
     SHOW_INGREDIENT
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
-import {v4 as uuidv4} from "uuid";
 
 const initialState = {
     ingredients: [],
@@ -70,7 +69,7 @@ export const ingredientsReducer = (state = initialState, action) => {
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
             return {
                 ...state,
-                constructorIngredients: [...state.constructorIngredients, {...action.ingredient, key: uuidv4()}]
+                constructorIngredients: [...state.constructorIngredients, action.ingredient]
             };
         }
         case ADD_INGREDIENT_TO_NON_BUN_ITEMS: {

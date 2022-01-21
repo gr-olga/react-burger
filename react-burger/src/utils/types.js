@@ -1,26 +1,33 @@
 import PropTypes from "prop-types";
 
 export const BurgerIngredientsTypes = {
-    name: PropTypes.string,
-    _id: PropTypes.number,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string
+    onIngredientClick: PropTypes.func.isRequired,
+}
+
+export const BurgerConstructorTypes = {
+    onDropHandler: PropTypes.func.isRequired
 }
 
 export const IngredientDetailsTypes = {
-    onClose:PropTypes.func
+    closeModal: PropTypes.func.isRequired
 }
 
 export const OrderDetailsTypes = {
-    onClose:PropTypes.func
+    closeModal: PropTypes.func.isRequired
 }
 
 export const ConstructorItemTypes = {
-    handleClose: PropTypes.func,
-    isLocked: PropTypes.bool
+    _id: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired
+}
+
+export const IngredientTypes = {
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    onItemClick: PropTypes.func.isRequired,
+    img: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired
 }

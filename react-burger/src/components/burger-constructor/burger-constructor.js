@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerIngredientsTypes} from "../../utils/types";
+import {BurgerConstructorTypes} from "../../utils/types";
 import {useDispatch, useSelector} from "react-redux";
 import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
@@ -9,12 +9,9 @@ import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../servic
 import ConstructorItem from "../constructor-item/constructor-item";
 
 function BurgerConstructor(props) {
-
-
     const {
         constructorIngredients,
         nonBunIngredientsList,
-        ingredient
     } = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
@@ -28,7 +25,7 @@ function BurgerConstructor(props) {
         })
         const bun = constructorIngredients.find((item) => item.type === 'bun')
         if (bun) setBunItem(bun)
-    }, [constructorIngredients])
+    }, [constructorIngredients, dispatch])
 
     const [, dropTarget] = useDrop({
         accept: "item",
@@ -102,6 +99,6 @@ function BurgerConstructor(props) {
     )
 }
 
-BurgerConstructor.propTypes = BurgerIngredientsTypes
+BurgerConstructor.propTypes = BurgerConstructorTypes
 
 export default BurgerConstructor

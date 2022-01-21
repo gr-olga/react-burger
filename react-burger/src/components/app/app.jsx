@@ -15,6 +15,7 @@ import {
 } from "../../services/actions";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
+import {v4 as uuidv4} from "uuid";
 
 function App() {
     const dispatch = useDispatch();
@@ -28,13 +29,14 @@ function App() {
     }
 
     const handleDrop = (item) => {
-        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: item})
+        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
         dispatch({type: INCREASE_COUNTER, itemId: item._id})
     };
 
     function closeModal() {
         dispatch({type: CLOSE_MODAL})
     }
+
     return (
         <div className={styles.app}>
             <AppHeader/>

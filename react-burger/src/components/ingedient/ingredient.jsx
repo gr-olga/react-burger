@@ -1,10 +1,9 @@
 import styles from "./ingredient.module.css";
 import React from "react";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {IngredientDetailsTypes} from "../../utils/types";
+import {IngredientTypes} from "../../utils/types";
 import {useDrag} from "react-dnd";
 import {useSelector} from "react-redux";
-
 
 function Ingredient(props) {
 
@@ -21,7 +20,6 @@ function Ingredient(props) {
     function handleClick() {
         props.onItemClick(props)
     }
-
 
     return (
         !isDrag &&
@@ -46,6 +44,6 @@ function Ingredient(props) {
     )
 }
 
-Ingredient.propTypes = IngredientDetailsTypes;
+Ingredient.propTypes = IngredientTypes;
 
 export default Ingredient

@@ -14,7 +14,6 @@ import {ConstructorItemTypes} from "../../utils/types";
 
 
 export default function ConstructorItem(props) {
-    console.log(props)
     const ref = useRef(null);
     const index = props.index;
     const id = props._id

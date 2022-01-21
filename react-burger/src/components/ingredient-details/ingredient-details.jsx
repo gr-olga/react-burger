@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../modal/modal";
 import styles from './ingredient-details.module.css'
-import {BurgerIngredientsTypes} from "../../utils/types";
+import {IngredientDetailsTypes} from "../../utils/types";
 import {useSelector} from "react-redux";
 
 
@@ -29,10 +29,10 @@ function IngredientDetails(props) {
                     </div>
                 </div>
             </div>
-         </Modal>
+        </Modal>
     )
 }
 
-IngredientDetails.propTypes = BurgerIngredientsTypes
+IngredientDetails.propTypes = IngredientDetailsTypes
 
 export default IngredientDetails;
