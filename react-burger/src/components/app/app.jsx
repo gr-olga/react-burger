@@ -35,7 +35,6 @@ function App() {
     function closeModal() {
         dispatch({type: CLOSE_MODAL})
     }
-
     return (
         <div className={styles.app}>
             <AppHeader/>
@@ -55,7 +54,6 @@ function App() {
             <OrderDetails
                 closeModal={closeModal}
             />
-
         </div>
     );
 }

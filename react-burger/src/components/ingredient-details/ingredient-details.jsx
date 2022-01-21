@@ -29,7 +29,7 @@ function IngredientDetails(props) {
                     </div>
                 </div>
             </div>
-        </Modal>
+         </Modal>
     )
 }
 
