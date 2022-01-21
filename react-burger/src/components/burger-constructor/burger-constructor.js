@@ -7,12 +7,15 @@ import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
 import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../services/actions";
 import ConstructorItem from "../constructor-item/constructor-item";
-import {v4 as uuidv4} from "uuid";
 
 function BurgerConstructor(props) {
 
 
-    const {constructorIngredients, nonBunIngredientsList} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {
+        constructorIngredients,
+        nonBunIngredientsList,
+        ingredient
+    } = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);
@@ -34,6 +37,7 @@ function BurgerConstructor(props) {
             if (dropTarget.type === 'bun') {
                 setBunItem(dropTarget)
             }
+
         },
     });
 
@@ -62,18 +66,16 @@ function BurgerConstructor(props) {
                     thumbnail={bunItem.image}
                 />
             </section>
-
             <div className={styles.container}>
                 {nonBunIngredientsList.map((item, index) => {
                     return (
-                            <ConstructorItem {...item}
-                                             key={uuidv4()}
-                                             isLocked={false}
-                                             index={index}
-                                             text={item.name}
-                                             price={item.price}
-                                             thumbnail={item.image}
-                            />
+                        <ConstructorItem {...item}
+                                         isLocked={false}
+                                         index={index}
+                                         text={item.name}
+                                         price={item.price}
+                                         thumbnail={item.image}
+                        />
                     )
                 })}
             </div>

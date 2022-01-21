@@ -13,23 +13,10 @@ export const BurgerIngredientsTypes = {
 }
 
 export const IngredientDetailsTypes = {
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number,
-    calories: PropTypes.number,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
     onClose:PropTypes.func
 }
 
 export const OrderDetailsTypes = {
-    order:PropTypes.number,
-    name: PropTypes.string,
-    _id: PropTypes.number,
-    type: PropTypes.string,
-    price: PropTypes.number,
     onClose:PropTypes.func
 }
 

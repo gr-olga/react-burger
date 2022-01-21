@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {
-    ADD_INGREDIENT_TO_CONSTRUCTOR, ADD_INGREDIENT_TO_NON_BUN_ITEMS,
+    ADD_INGREDIENT_TO_CONSTRUCTOR,
+    ADD_INGREDIENT_TO_NON_BUN_ITEMS,
     CLOSE_MODAL,
     DECREASE_COUNTER,
     GET_INGREDIENTS_FAILED,
@@ -16,11 +17,12 @@ import {
     SHOW_INGREDIENT
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
+import {v4 as uuidv4} from "uuid";
 
 const initialState = {
     ingredients: [],
     constructorIngredients: [],
-    nonBunIngredientsList:[],
+    nonBunIngredientsList: [],
     dragContainer: [],
     ingredientDetail: {},
     order: null,
@@ -66,7 +68,10 @@ export const ingredientsReducer = (state = initialState, action) => {
             return {...state, loader: true};
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
-            return {...state, constructorIngredients: [...state.constructorIngredients, action.ingredient]};
+            return {
+                ...state,
+                constructorIngredients: [...state.constructorIngredients, {...action.ingredient, key: uuidv4()}]
+            };
         }
         case ADD_INGREDIENT_TO_NON_BUN_ITEMS: {
             return {...state, nonBunIngredientsList: action.items};
