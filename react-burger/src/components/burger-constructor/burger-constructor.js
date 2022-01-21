@@ -66,7 +66,6 @@ function BurgerConstructor(props) {
             <div className={styles.container}>
                 {nonBunIngredientsList.map((item, index) => {
                     return (
-                        <div key={uuidv4()}>
                             <ConstructorItem {...item}
                                              key={uuidv4()}
                                              isLocked={false}
@@ -75,7 +74,6 @@ function BurgerConstructor(props) {
                                              price={item.price}
                                              thumbnail={item.image}
                             />
-                        </div>
                     )
                 })}
             </div>
