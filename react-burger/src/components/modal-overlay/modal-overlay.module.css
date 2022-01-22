@@ -42,7 +42,7 @@
     max-height: 64px;
 }
 
-.modal_open{
+.modal_open {
     z-index: 9;
     visibility: visible;
     transition: visibility .35s, opacity 0.35s ease-in-out;

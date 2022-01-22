@@ -1,32 +1,59 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
-import {ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerIngredientsTypes} from "../../utils/types";
-import {BurgerContext} from "../../services/BurgerContext";
+import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import {BurgerConstructorTypes} from "../../utils/types";
+import {useDispatch, useSelector} from "react-redux";
+import {useDrop} from "react-dnd";
+import bun from '../../images/bun01.png'
+import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../services/actions";
+import ConstructorItem from "../constructor-item/constructor-item";
 
 function BurgerConstructor(props) {
-    const ingredientsData = useContext(BurgerContext)
+    const {
+        constructorIngredients,
+        nonBunIngredientsList,
+    } = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const dispatch = useDispatch();
+
     const [sum, setSum] = useState(0);
-    const [nonBunIngredientsList, setNonBunIngredientsList] = React.useState([])
-    const [bunItem, setBunItem] = React.useState({})
+    const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun})
 
     useEffect(() => {
-        setNonBunIngredientsList(ingredientsData.filter((item) => item.type === 'sauce' || item.type === 'main'))
-        const bun = ingredientsData.find((item) => item.type === 'bun')
+        dispatch({
+            type: ADD_INGREDIENT_TO_NON_BUN_ITEMS,
+            items: constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main')
+        })
+        const bun = constructorIngredients.find((item) => item.type === 'bun')
         if (bun) setBunItem(bun)
-    }, [ingredientsData])
+    }, [constructorIngredients, dispatch])
 
-    // const firstItem = data[0] ?? {};
+    const [, dropTarget] = useDrop({
+        accept: "item",
+        drop(dropTarget) {
+            props.onDropHandler(dropTarget);
+            if (dropTarget.type === 'bun') {
+                setBunItem(dropTarget)
+            }
+
+        },
+    });
+
+    function handleOrderDetailClick() {
+        dispatch(getOrderIngredients(constructorIngredients.map(item => item._id)))
+    }
 
 
     useEffect(() => {
         const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
-        let num = bunItem.price ? bunItem.price * 2 : 0
+        let num = bunItem.price
         setSum(pricesList.reduce((a, b) => a + b, num))
-    }, [ingredientsData, nonBunIngredientsList])
+    }, [constructorIngredients, nonBunIngredientsList, bunItem])
+
 
     return (
-        <div className={styles.box}>
+        <div className={styles.box}
+             ref={dropTarget}
+        >
             <section className={styles.bunSection}>
                 <ConstructorElement
                     type="top"
@@ -37,17 +64,15 @@ function BurgerConstructor(props) {
                 />
             </section>
             <div className={styles.container}>
-                {nonBunIngredientsList.map((item) => {
+                {nonBunIngredientsList.map((item, index) => {
                     return (
-                        <div className={styles.middleItemsList} key={item._id}>
-                            <DragIcon type="primary"/>
-                            <ConstructorElement
-                                isLocked={false}
-                                text={item.name}
-                                price={item.price}
-                                thumbnail={item.image}
-                            />
-                        </div>
+                        <ConstructorItem {...item}
+                                         isLocked={false}
+                                         index={index}
+                                         text={item.name}
+                                         price={item.price}
+                                         thumbnail={item.image}
+                        />
                     )
                 })}
             </div>
@@ -65,7 +90,7 @@ function BurgerConstructor(props) {
                 <CurrencyIcon type="primary"/>
                 <button
                     className={styles.btn}
-                    onClick={props.onOrderClick}
+                    onClick={handleOrderDetailClick}
                 >
                     Оформить заказ
                 </button>
@@ -74,6 +99,6 @@ function BurgerConstructor(props) {
     )
 }
 
-BurgerConstructor.propTypes = BurgerIngredientsTypes
+BurgerConstructor.propTypes = BurgerConstructorTypes
 
 export default BurgerConstructor

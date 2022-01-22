@@ -1,11 +1,12 @@
-.app{
-display: flex;
-  flex-direction: column;
+.app {
+    display: flex;
+    flex-direction: column;
 }
-.bar{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  max-width: 1400px;
-  justify-items: flex-end;
-  align-self: center;
+
+.bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1400px;
+    justify-items: flex-end;
+    align-self: center;
 }

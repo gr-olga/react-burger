@@ -17,7 +17,8 @@
     border: 1px dashed #4C4CFF;
     margin-top: 60px;
 }
-.orderStatus{
+
+.orderStatus {
     font-family: JetBrains Mono, sans-serif;
     font-size: 16px;
     line-height: 24px;
@@ -26,8 +27,9 @@
     margin-top: 60px;
     margin-bottom: 0;
 }
-.addInfo{
-    font-family: JetBrains Mono,sans-serif;
+
+.addInfo {
+    font-family: JetBrains Mono, sans-serif;
     font-size: 16px;
     line-height: 24px;
     text-align: center;

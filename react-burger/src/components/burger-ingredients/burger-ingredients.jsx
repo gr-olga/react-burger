@@ -1,14 +1,13 @@
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import {BurgerIngredientsTypes} from "../../utils/types";
-import {BurgerContext} from "../../services/BurgerContext";
+import {useSelector} from "react-redux";
 
 
 function BurgerIngredients(props) {
-   const data = useContext(BurgerContext)
-
+    const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const bunSection = useRef(null)
     const sauceSection = useRef(null)
     const mainSection = useRef(null)
@@ -20,10 +19,10 @@ function BurgerIngredients(props) {
 
 
     useEffect(() => {
-        setBunList(data.filter((item) => item.type === 'bun'))
-        setSauceList(data.filter((item) => item.type === 'sauce'))
-        setMainList(data.filter((item) => item.type === 'main'))
-    }, [data])
+        setBunList(ingredients.filter((item) => item.type === 'bun'))
+        setSauceList(ingredients.filter((item) => item.type === 'sauce'))
+        setMainList(ingredients.filter((item) => item.type === 'main'))
+    }, [ingredients])
 
 
     function onScroll(evt) {
@@ -72,7 +71,9 @@ function BurgerIngredients(props) {
                     Начинка
                 </Tab>
             </div>
-            <div className={styles.ingredients} onScroll={onScroll}>
+            <div className={styles.ingredients}
+                 onScroll={onScroll}
+            >
                 <section
                     ref={bunSection}
                 >
@@ -80,11 +81,11 @@ function BurgerIngredients(props) {
                     <div className={styles.container}>
                         {bunList.map((item) => {
                             return (<Ingredient {...item}
-                                key={item._id}
-                                img={item.image}
-                                price={item.price}
-                                name={item.name}
-                                onItemClick={onItemClick}
+                                                key={item._id}
+                                                img={item.image}
+                                                price={item.price}
+                                                name={item.name}
+                                                onItemClick={onItemClick}
                             />)
                         })}
                     </div>
@@ -96,11 +97,11 @@ function BurgerIngredients(props) {
                     <div className={styles.container}>
                         {sauceList.map((item) => {
                             return (<Ingredient {...item}
-                                onItemClick={onItemClick}
-                                key={item._id}
-                                img={item.image}
-                                price={item.price}
-                                name={item.name}
+                                                onItemClick={onItemClick}
+                                                key={item._id}
+                                                img={item.image}
+                                                price={item.price}
+                                                name={item.name}
                             />)
                         })}
                     </div>
@@ -112,11 +113,11 @@ function BurgerIngredients(props) {
                     <div className={styles.container}>
                         {mainList.map((item) => {
                             return (<Ingredient {...item}
-                                key={item._id}
-                                img={item.image}
-                                price={item.price}
-                                name={item.name}
-                                onItemClick={onItemClick}
+                                                key={item._id}
+                                                img={item.image}
+                                                price={item.price}
+                                                name={item.name}
+                                                onItemClick={onItemClick}
                             />)
                         })}
                     </div>

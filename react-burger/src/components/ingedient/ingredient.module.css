@@ -1,9 +1,10 @@
-.box{
+.box {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.price{
+
+.price {
     font-family: JetBrains Mono, sans-serif;
     font-size: 8px;
     line-height: 8px;
@@ -12,8 +13,9 @@
     display: flex;
     flex-direction: row;
 }
-.name{
-    font-family: JetBrains Mono,sans-serif;
+
+.name {
+    font-family: JetBrains Mono, sans-serif;
     font-size: 16px;
     line-height: 24px;
     text-align: center;
@@ -21,8 +23,9 @@
     margin: 0;
     margin-top: 9px;
 }
-.number{
-    font-family: JetBrains Mono,sans-serif;
+
+.number {
+    font-family: JetBrains Mono, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 28px;
@@ -34,10 +37,12 @@
     flex-grow: 0;
     margin: 0px 8px;
 }
-.image{
+
+.image {
     width: 240px;
     height: 120px;
 }
-.wrapper{
+
+.wrapper {
     position: relative;
 }
