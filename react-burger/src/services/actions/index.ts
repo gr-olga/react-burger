@@ -1,4 +1,5 @@
 import {getIngredientsData, getInitialOrder} from "../../api/api";
+import {TClearIngredient, TIngredient, TIngredientForConstructor, TOrder} from "../../utils/types";
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS: 'GET_INGREDIENTS_SUCCESS' = 'GET_INGREDIENTS_SUCCESS';
@@ -22,6 +23,7 @@ export interface getIngredientRequest {
 
 export interface getIngredientSuccess {
     type: typeof GET_INGREDIENTS_SUCCESS;
+    ingredients: [TIngredient]
 }
 
 export interface getIngredientFailed {
@@ -30,11 +32,12 @@ export interface getIngredientFailed {
 
 export interface getOrderIngredientRequest {
     type: typeof GET_ORDER_INGREDIENTS_REQUEST;
+    order: TOrder
 }
 
 export interface getOrderIngredientSuccess {
     type: typeof GET_ORDER_INGREDIENTS_SUCCESS;
-    payload:
+    order: TOrder
 }
 
 export interface getOrderIngredientFailed {
@@ -43,10 +46,12 @@ export interface getOrderIngredientFailed {
 
 export interface addIngredientToConstructor {
     type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR;
+    ingredient: TIngredientForConstructor
 }
 
 export interface addIngredientToNonBunItems {
     type: typeof ADD_INGREDIENT_TO_NON_BUN_ITEMS;
+    items: TClearIngredient
 }
 
 export interface removeIngredientFromConstructor {

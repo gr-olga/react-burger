@@ -17,6 +17,7 @@ import {
     SHOW_INGREDIENT, TAction
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
+import {TState} from "../../utils/types";
 
 
 export const initialState: TState = {
@@ -34,7 +35,7 @@ export const initialState: TState = {
 };
 
 
-export const ingredientsReducer = (state = initialState, action: TAction) => {
+export const ingredientsReducer = (state = initialState, action: TAction): TState => {
     switch (action.type) {
         case GET_INGREDIENTS_REQUEST: {
             return {

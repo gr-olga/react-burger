@@ -36,16 +36,16 @@ export const IngredientDetailsTypes = {
 
 
 export type TState = {
-    ingredients: [TClearIngredient],
-    constructorIngredients: [TIngredientForConstructor],
-    nonBunIngredientsList: any,
-    dragContainer: [TConstructorItem],
-    ingredientDetail: TClearIngredient,
-    order:TOrder,
+    ingredients: []| [TClearIngredient],
+    constructorIngredients: []| [TIngredientForConstructor],
+    nonBunIngredientsList:[]| any,
+    dragContainer:[]| [TConstructorItem],
+    ingredientDetail:{} | TClearIngredient,
+    order: null | TOrder,
     isOrderDetailsOpen: boolean,
     isIngredientDetailsOpen: boolean,
     loader: boolean,
-    counter: number,
+    counter:{} | number,
     itemsRequest: boolean
 }
 
