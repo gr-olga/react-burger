@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import
 import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     ADD_INGREDIENT_TO_NON_BUN_ITEMS,
@@ -18,7 +19,8 @@ import {
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
 
-const initialState = {
+
+export const initialState: TState = {
     ingredients: [],
     constructorIngredients: [],
     nonBunIngredientsList: [],
@@ -28,7 +30,8 @@ const initialState = {
     isOrderDetailsOpen: false,
     isIngredientDetailsOpen: false,
     loader: true,
-    counter: {}
+    counter: {},
+    itemsRequest: false
 };
 
 

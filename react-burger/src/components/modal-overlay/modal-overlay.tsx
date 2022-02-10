@@ -1,10 +1,11 @@
 import React, {SyntheticEvent} from "react";
 import styles from './modal-overlay.module.css'
+import {TModal} from "../../utils/types";
 
-function ModalOverlay(props:any) {
-    const onClose= props.onClose
+function ModalOverlay(props:TModal) {
+    const closeModal= props.closeModal
     function closeModalClick(evt: any) {
-        if (evt.target.classList.contains(styles.overlay)) onClose()
+        if (evt.target.classList.contains(styles.overlay)) closeModal()
     }
 
     return (

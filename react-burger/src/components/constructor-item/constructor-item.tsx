@@ -1,7 +1,7 @@
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {useRef} from "react";
 import {useDispatch} from "react-redux";
-import {useDrag, useDrop} from "react-dnd";
+import {DropTargetMonitor, useDrag, useDrop} from "react-dnd";
 import styles from "../burger-constructor/burger-constructor.module.css";
 import {
     DECREASE_COUNTER,
@@ -10,16 +10,16 @@ import {
     REORDER_CONSTRUCTOR
 } from "../../services/actions";
 import {debounce} from "lodash";
-import {ConstructorItemTypes} from "../../utils/types";
+import { TConstructorItem} from "../../utils/types";
 
 
-export default function ConstructorItem(props) {
-    const ref = useRef(null);
+export default function ConstructorItem(props: TConstructorItem) {
+    const ref = useRef<HTMLHeadingElement>(null);
     const index = props.index;
     const id = props._id
     const dispatch = useDispatch();
 
-    function onHover(item, monitor) {
+    function onHover(item:TConstructorItem, monitor:DropTargetMonitor) {
         const dragIndex = item.index;
         const hoverIndex = props.index
         if (dragIndex === hoverIndex) {
@@ -32,14 +32,14 @@ export default function ConstructorItem(props) {
         })
     }
 
-    const [{handlerId}, drop] = useDrop({
+    const [{handlerId}, drop]: any = useDrop({
         accept: "primary",
         collect(monitor) {
             return {
                 isDrag: monitor.getHandlerId(),
             };
         },
-        hover: debounce((item, monitor) => onHover(item, monitor), 300),
+        hover: debounce((item: TConstructorItem, monitor: DropTargetMonitor) => onHover(item, monitor), 300),
     });
     const [{isDragging}, drag] = useDrag({
         type: "primary",
@@ -53,7 +53,7 @@ export default function ConstructorItem(props) {
         },
     });
 
-    function removeIngredient(id, index) {
+    function removeIngredient(id: string, index: number) {
         dispatch({
             type: REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
             value: {id, index}
@@ -79,7 +79,7 @@ export default function ConstructorItem(props) {
             <DragIcon type="primary"/>
             <ConstructorElement
                 isLocked={false}
-                index={props.index}
+             //   index={props.index}
                 text={props.name}
                 price={props.price}
                 thumbnail={props.image}
@@ -88,5 +88,3 @@ export default function ConstructorItem(props) {
         </div>
     )
 }
-
-ConstructorItem.propTypes = ConstructorItemTypes

@@ -48,6 +48,7 @@ export type TModal  = {
     closeModal: () => void
     children: any,
     title: string,
+     isOpen: boolean
 }
 
 export type TIngredient = {
