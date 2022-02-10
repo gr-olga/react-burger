@@ -99,6 +99,6 @@ function BurgerConstructor(props) {
     )
 }
 
-BurgerConstructor.propTypes = BurgerConstructorTypes
+//BurgerConstructor.propTypes = BurgerConstructorTypes
 
 export default BurgerConstructor

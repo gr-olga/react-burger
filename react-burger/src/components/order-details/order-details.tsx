@@ -2,16 +2,16 @@ import React from "react";
 import CekMark from '../../images/check-mark.png'
 import styles from './order-ditails.module.css'
 import Modal from "../modal/modal";
-import {OrderDetailsTypes} from "../../utils/types";
 import {useSelector} from "react-redux";
+import {TModal} from "../../utils/types";
 
 
-function OrderDetails(props) {
+function OrderDetails(props: TModal) {
 
     const {order, isOrderDetailsOpen} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     return (
         <Modal
-            onClose={props.closeModal}
+            closeModal={props.closeModal}
             isOpen={isOrderDetailsOpen}
         >
             <p className="text text_type_digits-large">{order}</p>
@@ -23,6 +23,5 @@ function OrderDetails(props) {
     )
 }
 
-OrderDetails.propTypes = OrderDetailsTypes
 
 export default OrderDetails;
