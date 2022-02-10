@@ -33,8 +33,21 @@ export const IngredientDetailsTypes = {
 //     price: PropTypes.number.isRequired
 // }
 
-//import {TState} from "../services/reducers/index";
 
+
+export type TState = {
+    ingredients: [TClearIngredient],
+    constructorIngredients: [TIngredientForConstructor],
+    nonBunIngredientsList: any,
+    dragContainer: [TConstructorItem],
+    ingredientDetail: TClearIngredient,
+    order:TOrder,
+    isOrderDetailsOpen: boolean,
+    isIngredientDetailsOpen: boolean,
+    loader: boolean,
+    counter: number,
+    itemsRequest: boolean
+}
 
 export type TOrder = {
     success: boolean;
@@ -51,15 +64,18 @@ export type TModal  = {
      isOpen: boolean
 }
 
-export type TIngredient = {
+export interface  TIngredient extends  TClearIngredient{
+    onItemClick: (item: TIngredient) => void
+};
+
+export type TClearIngredient ={
     _id: string,
     name: string,
-    onItemClick: (item: TIngredient) => void
     image: string,
     price: number
     img: string;
     type: string
-};
+}
 
 export type StoredIngredient = Omit<TIngredient, 'onItemClick'>
 
@@ -68,16 +84,11 @@ export interface BurgerIngredientsTypes {
     onIngredientClick: (item: TIngredient) => void
 }
 
-export interface TConstructorItem {
-    type: string
+export interface TConstructorItem extends TClearIngredient{
     text: string
     thumbnail: string
-    _id: string
     isLocked: boolean
     index: number
-    name: string
-    price: number
-    image: string
     handleClose: (_id: string | number, index: string | number,) => void
 }
 

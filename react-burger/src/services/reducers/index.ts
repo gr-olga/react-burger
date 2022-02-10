@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux';
-import
 import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     ADD_INGREDIENT_TO_NON_BUN_ITEMS,
@@ -15,7 +14,7 @@ import {
     MOVE_INSIDE_CONSTRUCTOR,
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     REORDER_CONSTRUCTOR,
-    SHOW_INGREDIENT
+    SHOW_INGREDIENT, TAction
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
 
@@ -35,7 +34,7 @@ export const initialState: TState = {
 };
 
 
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action: TAction) => {
     switch (action.type) {
         case GET_INGREDIENTS_REQUEST: {
             return {

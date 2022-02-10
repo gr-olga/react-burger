@@ -34,6 +34,7 @@ export interface getOrderIngredientRequest {
 
 export interface getOrderIngredientSuccess {
     type: typeof GET_ORDER_INGREDIENTS_SUCCESS;
+    payload:
 }
 
 export interface getOrderIngredientFailed {
