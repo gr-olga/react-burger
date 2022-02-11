@@ -7,7 +7,6 @@ import {TModal} from "../../utils/types";
 
 
 function OrderDetails(props: TModal) {
-
     const {order, isOrderDetailsOpen} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     return (
         <Modal
