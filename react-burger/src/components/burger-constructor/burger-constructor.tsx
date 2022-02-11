@@ -1,35 +1,34 @@
 import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerConstructorTypes} from "../../utils/types";
-import {useDispatch, useSelector} from "react-redux";
+import {BurgerConstructorTypes, TIngredient, useDispatch, useSelector} from "../../utils/types";
 import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
 import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../services/actions";
 import ConstructorItem from "../constructor-item/constructor-item";
 
-function BurgerConstructor(props) {
+function BurgerConstructor(props: BurgerConstructorTypes) {
     const {
         constructorIngredients,
         nonBunIngredientsList,
-    } = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    }: { constructorIngredients: Array<TIngredient>, nonBunIngredientsList: Array<TIngredient> } = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);
-    const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun})
+    const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun, price: 0})
 
     useEffect(() => {
         dispatch({
             type: ADD_INGREDIENT_TO_NON_BUN_ITEMS,
-            items: constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main')
+            items: constructorIngredients.filter((item: TIngredient) => item.type === 'sauce' || item.type === 'main')
         })
-        const bun = constructorIngredients.find((item) => item.type === 'bun')
+        const bun = constructorIngredients.find((item: TIngredient) => item.type === 'bun')
         if (bun) setBunItem(bun)
     }, [constructorIngredients, dispatch])
 
     const [, dropTarget] = useDrop({
         accept: "item",
-        drop(dropTarget) {
+        drop(dropTarget: TIngredient) {
             props.onDropHandler(dropTarget);
             if (dropTarget.type === 'bun') {
                 setBunItem(dropTarget)
@@ -39,12 +38,12 @@ function BurgerConstructor(props) {
     });
 
     function handleOrderDetailClick() {
-        dispatch(getOrderIngredients(constructorIngredients.map(item => item._id)))
+        dispatch(getOrderIngredients(constructorIngredients.map((item: TIngredient) => item._id)))
     }
 
 
     useEffect(() => {
-        const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
+        const pricesList = nonBunIngredientsList.map((item: TIngredient) => Number(item.price))
         let num = bunItem.price
         setSum(pricesList.reduce((a, b) => a + b, num))
     }, [constructorIngredients, nonBunIngredientsList, bunItem])
@@ -64,15 +63,9 @@ function BurgerConstructor(props) {
                 />
             </section>
             <div className={styles.container}>
-                {nonBunIngredientsList.map((item, index) => {
+                {nonBunIngredientsList.map((item: TIngredient, index: number) => {
                     return (
-                        <ConstructorItem {...item}
-                                         isLocked={false}
-                                         index={index}
-                                         text={item.name}
-                                         price={item.price}
-                                         thumbnail={item.image}
-                        />
+                        <ConstructorItem {...item} index={index}/>
                     )
                 })}
             </div>

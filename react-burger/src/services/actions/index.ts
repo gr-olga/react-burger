@@ -58,7 +58,7 @@ export interface addIngredientToConstructor {
 
 export interface addIngredientToNonBunItems {
     type: typeof ADD_INGREDIENT_TO_NON_BUN_ITEMS;
-    items: TClearIngredient
+    items: Array<TClearIngredient>
 }
 
 export interface removeIngredientFromConstructor {

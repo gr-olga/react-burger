@@ -10,16 +10,16 @@ import {
     REORDER_CONSTRUCTOR
 } from "../../services/actions";
 import {debounce} from "lodash";
-import { TConstructorItem} from "../../utils/types";
+import {ConstructorItemProps, TConstructorItem} from "../../utils/types";
 
 
-export default function ConstructorItem(props: TConstructorItem) {
+export default function ConstructorItem(props: ConstructorItemProps) {
     const ref = useRef<HTMLHeadingElement>(null);
     const index = props.index;
     const id = props._id
     const dispatch = useDispatch();
 
-    function onHover(item:TConstructorItem, monitor:DropTargetMonitor) {
+    function onHover(item: TConstructorItem, monitor: DropTargetMonitor) {
         const dragIndex = item.index;
         const hoverIndex = props.index
         if (dragIndex === hoverIndex) {
@@ -79,7 +79,6 @@ export default function ConstructorItem(props: TConstructorItem) {
             <DragIcon type="primary"/>
             <ConstructorElement
                 isLocked={false}
-             //   index={props.index}
                 text={props.name}
                 price={props.price}
                 thumbnail={props.image}
