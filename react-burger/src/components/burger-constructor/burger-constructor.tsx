@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerConstructorTypes, TIngredient, useDispatch, useSelector} from "../../utils/types";
+import {BurgerConstructorTypes, TIngredient, useSelector} from "../../utils/types";
+import {useDispatch} from 'react-redux';
 import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
 import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../services/actions";

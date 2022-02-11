@@ -1,7 +1,7 @@
 import {getIngredientsData, getInitialOrder} from "../../api/api";
 import {
     AppDispatch,
-    AppThank,
+    AppThunk,
     TClearIngredient,
     TIngredient,
     TIngredientForConstructor,
@@ -30,7 +30,7 @@ export interface getIngredientRequest {
 
 export interface getIngredientSuccess {
     type: typeof GET_INGREDIENTS_SUCCESS;
-    ingredients: [TIngredient]
+    ingredients: Array<TIngredient>
 }
 
 export interface getIngredientFailed {
@@ -149,42 +149,36 @@ export type TAction =
     | reorderConstructor
     | showIngredient
 
-//
-// export function getIngredients() {
-//     return function (dispatch: any) {
-//         dispatch(GET_INGREDIENTS_REQUEST);
-//         getIngredientsData().then(res => {
-//             if (res && res.success) {
-//                 dispatch({
-//                     GET_INGREDIENTS_SUCCESS,
-//                     ingredients: res.data
-//                 });
-//             } else {
-//                 dispatch(GET_INGREDIENTS_FAILED);
-//             }
-//         })
-//             .catch((err) => console.log("failed", err))
-//     };
-// }
+const getIngredientRequest = ():getIngredientRequest=>({
+    type:GET_INGREDIENTS_REQUEST
+})
+const getIngredientSuccess = (ingredients: Array<TIngredient>):getIngredientSuccess=>({
+    type: GET_INGREDIENTS_SUCCESS,
+    ingredients
+})
+const getIngredientFailed = ():getIngredientFailed=>({
+    type: GET_INGREDIENTS_FAILED,
 
-export const getIngredients:AppThank = () => (dispatch: AppDispatch) => {
-  return function (dispatch: any) {
-        dispatch(GET_INGREDIENTS_REQUEST);
+})
+
+export const getIngredients:AppThunk = () => (dispatch: AppDispatch) => {
+  // return function (dispatch: any) {
+        dispatch(getIngredientRequest());
         getIngredientsData().then(res => {
             if (res && res.success) {
-                dispatch({
-                    GET_INGREDIENTS_SUCCESS,
-                    ingredients: res.data
-                });
+                dispatch(
+                    getIngredientSuccess(res.data),
+                  //  ingredients: res.data
+                );
             } else {
-                dispatch(GET_INGREDIENTS_FAILED);
+                dispatch(getIngredientFailed());
             }
         })
             .catch((err) => console.log("failed", err))
-    };
+    // };
 }
 
-export function getOrderIngredients(ingredientIds: string) {
+export const getOrderIngredients:AppThunk = (ingredientIds: string) =>(dispatch: AppDispatch) =>{
     return function (dispatch: any) {
         dispatch(GET_ORDER_INGREDIENTS_REQUEST);
         getInitialOrder(ingredientIds).then(res => {
@@ -200,38 +194,3 @@ export function getOrderIngredients(ingredientIds: string) {
             .catch((err) => console.log("failed", err))
     };
 }
-
-// export function getIngredients() {
-//     return function (dispatch:any) {
-//         dispatch(getIngredientRequest);
-//         getIngredientsData().then(res => {
-//             if (res && res.success) {
-//                 dispatch({
-//                     getIngredientSuccess,
-//                     ingredients: res.data
-//                 });
-//             } else {
-//                 dispatch(getIngredientFailed);
-//             }
-//         })
-//             .catch((err) => console.log("failed", err))
-//     };
-// }
-//
-//
-// export function getOrderIngredients(ingredientIds:number) {
-//     return function (dispatch:any) {
-//         dispatch(getOrderIngredientRequest);
-//         getInitialOrder(ingredientIds).then(res => {
-//             if (res && res.success) {
-//                 dispatch({
-//                     getOrderIngredientSuccess,
-//                     order: res.order.number
-//                 });
-//             } else {
-//                 dispatch(getOrderIngredientFailed);
-//             }
-//         })
-//             .catch((err) => console.log("failed", err))
-//     };
-// }

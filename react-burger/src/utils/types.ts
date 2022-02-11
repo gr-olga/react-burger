@@ -38,15 +38,15 @@ import {state} from "../index";
 export type TState = {
     ingredients: Array<TClearIngredient>,
     constructorIngredients: Array<TIngredientForConstructor>,
-    nonBunIngredientsList: Array<TIngredientForConstructor>,
-    dragContainer: Array<TConstructorItem>,
+    nonBunIngredientsList:any | Array<TIngredientForConstructor>,
+    dragContainer:any| Array<TConstructorItem>,
     ingredientDetail: {} | TClearIngredient,
     order: null | TOrder,
     isOrderDetailsOpen: boolean,
     isIngredientDetailsOpen: boolean,
     loader: boolean,
     // counter:{} | number,
-    counter: number,
+    counter: any|number,
     itemsRequest: boolean
 }
 
@@ -60,9 +60,9 @@ export type TOrder = {
 
 export type TModal = {
     closeModal: () => void
-    children: any,
+    children?: any,
     title?: string,
-    isOpen: boolean
+    isOpen?: boolean
 }
 
 export interface TIngredient extends TClearIngredient {
@@ -116,9 +116,9 @@ export interface ConstructorItemProps {
 
 export type RootState = ReturnType<typeof state.getState>
 
-export type AppThank<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TAction>>;
+export type AppThunk<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TAction>>;
 // export type AppDispatch = typeof initialState.dispatch
 export type AppDispatch = Dispatch<TAction>
 
 export const useSelector: TypedUseSelectorHook<RootState> = selectorHook
-export const useDispatch = () => dispatchHook<AppDispatch | AppThank>();
+export const useDispatch = () => dispatchHook<AppDispatch | AppThunk>();

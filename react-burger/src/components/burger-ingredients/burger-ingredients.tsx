@@ -2,32 +2,34 @@ import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerIngredientsTypes} from "../../utils/types";
-import {useSelector} from "react-redux";
+import {BurgerIngredientsTypes, TIngredient} from "../../utils/types";
+import {useSelector} from "../../utils/types";
 
 
-function BurgerIngredients(props) {
+function BurgerIngredients(props: BurgerIngredientsTypes) {
     const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
-    const bunSection = useRef(null)
-    const sauceSection = useRef(null)
-    const mainSection = useRef(null)
+    const bunSection = useRef<HTMLHeadingElement>(null)
+    const sauceSection = useRef<HTMLHeadingElement>(null)
+    const mainSection = useRef<HTMLHeadingElement>(null)
 
-    const [current, setCurrent] = React.useState('one')
-    const [bunList, setBunList] = React.useState([])
-    const [sauceList, setSauceList] = React.useState([])
-    const [mainList, setMainList] = React.useState([])
-
+    const [current, setCurrent] = React.useState<string>('one')
+    const [bunList, setBunList] = React.useState<Array<TIngredient>>([])
+    const [sauceList, setSauceList] = React.useState<Array<TIngredient>>([])
+    const [mainList, setMainList] = React.useState<Array<TIngredient>>([])
 
     useEffect(() => {
-        setBunList(ingredients.filter((item) => item.type === 'bun'))
-        setSauceList(ingredients.filter((item) => item.type === 'sauce'))
-        setMainList(ingredients.filter((item) => item.type === 'main'))
+        setBunList(ingredients.filter((item:TIngredient) => item.type === 'bun'))
+        setSauceList(ingredients.filter((item:TIngredient) => item.type === 'sauce'))
+        setMainList(ingredients.filter((item:TIngredient) => item.type === 'main'))
     }, [ingredients])
 
-
-    function onScroll(evt) {
+    function onScroll(evt: any) {
         const container = evt.target
         const scrollPosition = container.scrollTop
+
+        if (!sauceSection || !sauceSection.current) return;
+        if (!mainSection || !mainSection.current) return;
+
         const positionSauce = sauceSection.current.offsetTop
         const positionMain = mainSection.current.offsetTop
         if (scrollPosition + 100 <= positionSauce) {
@@ -39,7 +41,7 @@ function BurgerIngredients(props) {
         }
     }
 
-    function onItemClick(item) {
+    function onItemClick(item: TIngredient): void {
         props.onIngredientClick(item)
     }
 
@@ -50,21 +52,24 @@ function BurgerIngredients(props) {
                 <h1 className="text text_type_main-large">Соберите бургер</h1>
             </div>
             <div className={styles.nav}>
-                <Tab className={styles.btn} value="one" active={current === 'one'} onClick={value => {
+                <Tab value="one" active={current === 'one'} onClick={value => {
                     setCurrent(value)
+                    if (!bunSection || !bunSection.current) return;
                     bunSection.current.scrollIntoView({behavior: "smooth"})
                 }}>
                     Булки
                 </Tab>
-                <Tab className={styles.btn} value="two" active={current === 'two'} onClick={value => {
+                <Tab value="two" active={current === 'two'} onClick={value => {
                     setCurrent(value)
+                    if (!sauceSection || !sauceSection.current) return;
                     sauceSection.current.scrollIntoView({behavior: "smooth"})
                 }}
                 >
                     Соусы
                 </Tab>
-                <Tab className={styles.btn} value="three" active={current === 'three'} onClick={value => {
+                <Tab value="three" active={current === 'three'} onClick={value => {
                     setCurrent(value)
+                    if (!mainSection || !mainSection.current) return;
                     mainSection.current.scrollIntoView({behavior: "smooth"})
                 }}
                 >
@@ -79,7 +84,7 @@ function BurgerIngredients(props) {
                 >
                     <h2 className={styles.tag}> Булки </h2>
                     <div className={styles.container}>
-                        {bunList.map((item) => {
+                        {bunList.map((item: TIngredient) => {
                             return (<Ingredient {...item}
                                                 key={item._id}
                                                 img={item.image}
@@ -128,7 +133,5 @@ function BurgerIngredients(props) {
 
     )
 }
-
-BurgerIngredients.propTypes = BurgerIngredientsTypes;
 
 export default BurgerIngredients
