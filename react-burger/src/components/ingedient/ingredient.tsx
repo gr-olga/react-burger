@@ -22,7 +22,6 @@ function Ingredient(props: TIngredient) {
     }
 
     return (
-        // !isDrag &&
         <section
             onClick={handleClick}
             ref={dragRef}
