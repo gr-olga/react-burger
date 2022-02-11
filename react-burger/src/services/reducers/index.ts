@@ -17,7 +17,7 @@ import {
     SHOW_INGREDIENT, TAction
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
-import {TState} from "../../utils/types";
+import {TConstructorItem, TState} from "../../utils/types";
 
 
 export const initialState: TState = {
@@ -81,7 +81,8 @@ export const ingredientsReducer = (state = initialState, action: TAction): TStat
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                dragContainer: state.nonBunIngredientsList.filter((item, index) => index !== action.value.index),
+                dragContainer: state.nonBunIngredientsList.filter((item:TConstructorItem, index:number) => index !== action.index),
+                //TODO action.value.index need value or not
             };
         }
         case SHOW_INGREDIENT: {

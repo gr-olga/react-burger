@@ -1,5 +1,12 @@
 import PropTypes from "prop-types";
+import {Action, ActionCreator} from 'redux'
 import {extend} from "lodash";
+import {TAction} from "../services/actions";
+import {initialState, rootReducer} from '../services/reducers/';
+import {ThunkAction} from "redux-thunk";
+import {Dispatch} from "react";
+import {TypedUseSelectorHook, useSelector as selectorHook,  useDispatch as dispatchHook} from "react-redux";
+import {state} from "../index";
 //
 // export const BurgerIngredientsTypes = {
 //     onIngredientClick: PropTypes.func.isRequired,
@@ -9,9 +16,6 @@ import {extend} from "lodash";
 //     onDropHandler: PropTypes.func.isRequired
 // }
 //
-export const IngredientDetailsTypes = {
-    closeModal: PropTypes.func.isRequired
-}
 //
 // export const OrderDetailsTypes = {
 //     closeModal: PropTypes.func.isRequired
@@ -37,15 +41,18 @@ export const IngredientDetailsTypes = {
 
 export type TState = {
     ingredients: []| [TClearIngredient],
-    constructorIngredients: []| [TIngredientForConstructor],
+   // constructorIngredients: [] | [TIngredientForConstructor],
+    constructorIngredients: any | [TIngredientForConstructor],
     nonBunIngredientsList:[]| any,
-    dragContainer:[]| [TConstructorItem],
+   // dragContainer:[]| [TConstructorItem],
+    dragContainer:any | [TConstructorItem],
     ingredientDetail:{} | TClearIngredient,
     order: null | TOrder,
     isOrderDetailsOpen: boolean,
     isIngredientDetailsOpen: boolean,
     loader: boolean,
-    counter:{} | number,
+   // counter:{} | number,
+    counter: any | number,
     itemsRequest: boolean
 }
 
@@ -60,7 +67,7 @@ export type TOrder = {
 export type TModal  = {
     closeModal: () => void
     children: any,
-    title: string,
+     title?: string,
      isOpen: boolean
 }
 
@@ -103,4 +110,11 @@ export interface BurgerConstructorTypes {
 export interface TIngredientForConstructor extends TConstructorItem {
     unikey: string
 }
+export type RootState = ReturnType<typeof state.getState>
 
+export type AppThank<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action,  RootState, TAction>>;
+// export type AppDispatch = typeof initialState.dispatch
+ export type AppDispatch = Dispatch<TAction>
+
+export const  useSelector: TypedUseSelectorHook<RootState> = selectorHook
+export const  useDispatch = () => dispatchHook<AppDispatch | AppThank>();

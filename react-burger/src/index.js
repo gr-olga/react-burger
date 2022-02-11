@@ -5,7 +5,8 @@ import App from './components/app/app';
 import reportWebVitals from './reportWebVitals';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-import {rootReducer} from './services/reducers';
+import {initialState, rootReducer} from './services/reducers';
+import {TAction} from './services/actions/index'
 import {applyMiddleware, compose, createStore} from 'redux';
 
 const composeEnhancers =
@@ -15,7 +16,7 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-const state = createStore(rootReducer, enhancer);
+export const state = createStore(rootReducer, enhancer);
 
 
 ReactDOM.render(

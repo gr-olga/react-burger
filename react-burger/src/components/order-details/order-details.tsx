@@ -2,7 +2,7 @@ import React from "react";
 import CekMark from '../../images/check-mark.png'
 import styles from './order-ditails.module.css'
 import Modal from "../modal/modal";
-import {useSelector} from "react-redux";
+import {useSelector} from "../../utils/types";
 import {TModal} from "../../utils/types";
 
 

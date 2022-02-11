@@ -1,5 +1,12 @@
 import {getIngredientsData, getInitialOrder} from "../../api/api";
-import {TClearIngredient, TIngredient, TIngredientForConstructor, TOrder} from "../../utils/types";
+import {
+    AppDispatch,
+    AppThank,
+    TClearIngredient,
+    TIngredient,
+    TIngredientForConstructor,
+    TOrder
+} from "../../utils/types";
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS: 'GET_INGREDIENTS_SUCCESS' = 'GET_INGREDIENTS_SUCCESS';
@@ -56,18 +63,22 @@ export interface addIngredientToNonBunItems {
 
 export interface removeIngredientFromConstructor {
     type: typeof REMOVE_INGREDIENT_FROM_CONSTRUCTOR;
+    index: number
 }
 
 export interface showIngredient {
     type: typeof SHOW_INGREDIENT;
+    ingredient: TClearIngredient
 }
 
 export interface increaseCounter {
     type: typeof INCREASE_COUNTER;
+    itemId: number
 }
 
 export interface decreaseCounter {
     type: typeof DECREASE_COUNTER;
+    itemId: number
 }
 
 export interface moveInsideConstructor {
@@ -80,6 +91,8 @@ export interface closeModal {
 
 export interface reorderConstructor {
     type: typeof REORDER_CONSTRUCTOR;
+    dragIndex: number
+    hoverIndex: number
 }
 
 //     createAction('GET_INGREDIENTS_SUCCESS');
@@ -136,9 +149,26 @@ export type TAction =
     | reorderConstructor
     | showIngredient
 
+//
+// export function getIngredients() {
+//     return function (dispatch: any) {
+//         dispatch(GET_INGREDIENTS_REQUEST);
+//         getIngredientsData().then(res => {
+//             if (res && res.success) {
+//                 dispatch({
+//                     GET_INGREDIENTS_SUCCESS,
+//                     ingredients: res.data
+//                 });
+//             } else {
+//                 dispatch(GET_INGREDIENTS_FAILED);
+//             }
+//         })
+//             .catch((err) => console.log("failed", err))
+//     };
+// }
 
-export function getIngredients() {
-    return function (dispatch) {
+export const getIngredients:AppThank = () => (dispatch: AppDispatch) => {
+  return function (dispatch: any) {
         dispatch(GET_INGREDIENTS_REQUEST);
         getIngredientsData().then(res => {
             if (res && res.success) {
@@ -154,9 +184,8 @@ export function getIngredients() {
     };
 }
 
-
-export function getOrderIngredients(ingredientIds) {
-    return function (dispatch) {
+export function getOrderIngredients(ingredientIds: string) {
+    return function (dispatch: any) {
         dispatch(GET_ORDER_INGREDIENTS_REQUEST);
         getInitialOrder(ingredientIds).then(res => {
             if (res && res.success) {
