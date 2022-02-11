@@ -1,7 +1,6 @@
 import React from "react";
 import Modal from "../modal/modal";
 import styles from './ingredient-details.module.css'
-import {IngredientDetailsTypes} from "../../utils/types";
 import {useSelector} from "react-redux";
 
 

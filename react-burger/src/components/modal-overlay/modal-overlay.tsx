@@ -1,4 +1,4 @@
-import React, {SyntheticEvent} from "react";
+import React from "react";
 import styles from './modal-overlay.module.css'
 import {TModal} from "../../utils/types";
 

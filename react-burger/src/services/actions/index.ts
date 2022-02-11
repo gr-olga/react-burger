@@ -39,7 +39,7 @@ export interface getIngredientFailed {
 
 export interface getOrderIngredientRequest {
     type: typeof GET_ORDER_INGREDIENTS_REQUEST;
-    order: TOrder
+    ingredientIds: Array<number>
 }
 
 export interface getOrderIngredientSuccess {
@@ -95,43 +95,6 @@ export interface reorderConstructor {
     hoverIndex: number
 }
 
-//     createAction('GET_INGREDIENTS_SUCCESS');
-// export const getIngredientFailed =
-//     createAction('GET_INGREDIENTS_FAILED');
-//
-// export const getOrderIngredientRequest =
-//     createAction('GET_ORDER_INGREDIENTS_REQUEST');
-// export const getOrderIngredientSuccess =
-//     createAction('GET_ORDER_INGREDIENTS_SUCCESS');
-// export const getOrderIngredientFailed =
-//     createAction('GET_ORDER_INGREDIENTS_FAILED');
-
-// export const addIngredientToConstructor =
-//     createAction('ADD_INGREDIENT_TO_CONSTRUCTOR');
-
-// export const addIngredientToNonBunItems =
-//     createAction('ADD_INGREDIENT_TO_NON_BUN_ITEMS');
-// export const removeIngredientFromConstructor =
-//     createAction('REMOVE_INGREDIENT_FROM_CONSTRUCTOR');
-//
-// export const showIngredient =
-//     createAction('SHOW_INGREDIENT');
-
-// export const increaseCounter =
-//     createAction('INCREASE_COUNTER');
-// export const decreaseCounter =
-//     createAction('DECREASE_COUNTER');
-
-// export const moveInsideConstructor =
-//     createAction('MOVE_INSIDE_CONSTRUCTOR');
-//
-// export const closeModal =
-//     createAction('CLOSE_MODAL');
-//
-// export const reorderConstructor =
-//     createAction('REORDER_CONSTRUCTOR');
-
-
 export type TAction =
     | addIngredientToConstructor
     | addIngredientToNonBunItems
@@ -158,7 +121,6 @@ const getIngredientSuccess = (ingredients: Array<TIngredient>):getIngredientSucc
 })
 const getIngredientFailed = ():getIngredientFailed=>({
     type: GET_INGREDIENTS_FAILED,
-
 })
 
 export const getIngredients:AppThunk = () => (dispatch: AppDispatch) => {
@@ -178,19 +140,29 @@ export const getIngredients:AppThunk = () => (dispatch: AppDispatch) => {
     // };
 }
 
-export const getOrderIngredients:AppThunk = (ingredientIds: string) =>(dispatch: AppDispatch) =>{
-    return function (dispatch: any) {
-        dispatch(GET_ORDER_INGREDIENTS_REQUEST);
+const getOrderIngredientRequest = (ingredientIds: Array<number>):getOrderIngredientRequest=>({
+    type:GET_ORDER_INGREDIENTS_REQUEST,
+    ingredientIds
+})
+const getOrderIngredientSuccess = (order: TOrder):getOrderIngredientSuccess=>({
+    type: GET_ORDER_INGREDIENTS_SUCCESS,
+    order
+})
+const getOrderIngredientFailed = ():getOrderIngredientFailed=>({
+    type: GET_ORDER_INGREDIENTS_FAILED,
+})
+
+export const getOrderIngredients:AppThunk = (ingredientIds: Array<number>) =>(dispatch: AppDispatch) =>{
+   // return function (dispatch: any) {
+        dispatch(getOrderIngredientRequest(ingredientIds));
         getInitialOrder(ingredientIds).then(res => {
             if (res && res.success) {
-                dispatch({
-                    GET_ORDER_INGREDIENTS_SUCCESS,
-                    order: res.order.number
-                });
+                dispatch(getOrderIngredientSuccess(res.order.number)
+                );
             } else {
-                dispatch(GET_ORDER_INGREDIENTS_FAILED);
+                dispatch(getOrderIngredientFailed());
             }
         })
             .catch((err) => console.log("failed", err))
-    };
+ //   };
 }

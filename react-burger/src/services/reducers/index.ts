@@ -21,6 +21,7 @@ import {TConstructorItem, TState} from "../../utils/types";
 
 
 export const initialState: TState = {
+    ingredientIds: [],
     ingredients: [],
     constructorIngredients: [],
     nonBunIngredientsList: [],
@@ -56,7 +57,7 @@ export const ingredientsReducer = (state = initialState, action: TAction): TStat
         case GET_ORDER_INGREDIENTS_REQUEST: {
             return {
                 ...state,
-                order: action.order,
+                ingredientIds: action.ingredientIds,
             }
         }
         case GET_ORDER_INGREDIENTS_SUCCESS: {
