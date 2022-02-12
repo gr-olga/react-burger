@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {UIEventHandler, useEffect, useRef, WheelEventHandler} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
@@ -23,8 +23,8 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
         setMainList(ingredients.filter((item) => item.type === 'main'))
     }, [ingredients])
 
-    function onScroll(evt: any) {
-        const container = evt.target
+    function onScroll(event: React.SyntheticEvent) {
+        const container: any = event.target;
         const scrollPosition = container.scrollTop
 
         if (!sauceSection || !sauceSection.current) return;
