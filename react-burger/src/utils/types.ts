@@ -9,16 +9,24 @@ export type TState = {
     ingredientIds: Array<number>
     ingredients: Array<TClearIngredient>,
     constructorIngredients: Array<TIngredientForConstructor>,
-    nonBunIngredientsList:any | Array<TIngredientForConstructor>,
-    dragContainer:any| Array<TConstructorItem>,
-    ingredientDetail: {} | TClearIngredient,
+    nonBunIngredientsList: Array<TIngredientForConstructor>,
+    dragContainer: any | Array<TConstructorItem>,
+    ingredientDetail: Record<string, any> | TIngredientDetail,
     order: null | TOrder,
     isOrderDetailsOpen: boolean,
     isIngredientDetailsOpen: boolean,
     loader: boolean,
-    // counter:{} | number,
-    counter: any|number,
+    counter: Record<string, number>,
     itemsRequest: boolean
+}
+
+export type TIngredientDetail = {
+    calories: number
+    proteins: number
+    fat: number
+    carbohydrates: number
+    image: string
+    name: string
 }
 
 export type TOrder = {
@@ -57,9 +65,9 @@ export interface BurgerIngredientsTypes {
 }
 
 export interface TConstructorItem extends TClearIngredient {
-    text: string
-    thumbnail: string
-    isLocked: boolean
+    // text: string
+    // thumbnail: string
+    // isLocked: boolean
     index: number
     handleClose: (_id: string | number, index: string | number,) => void
 }
@@ -74,6 +82,7 @@ export interface BurgerConstructorTypes {
 
 export interface TIngredientForConstructor extends TConstructorItem {
     unikey: string
+    type: string
 }
 
 export interface ConstructorItemProps {

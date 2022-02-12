@@ -14,7 +14,8 @@ import {
     MOVE_INSIDE_CONSTRUCTOR,
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     REORDER_CONSTRUCTOR,
-    SHOW_INGREDIENT, TAction
+    SHOW_INGREDIENT,
+    TAction
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
 import {TConstructorItem, TState} from "../../utils/types";
@@ -36,7 +37,7 @@ export const initialState: TState = {
 };
 
 
-export const ingredientsReducer = (state = initialState, action: TAction): TState => {
+export const ingredientsReducer = (state: TState = initialState, action: TAction): TState => {
     switch (action.type) {
         case GET_INGREDIENTS_REQUEST: {
             return {
@@ -82,7 +83,7 @@ export const ingredientsReducer = (state = initialState, action: TAction): TStat
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                dragContainer: state.nonBunIngredientsList.filter((item:TConstructorItem, index:number) => index !== action.index),
+                dragContainer: state.nonBunIngredientsList.filter((item: TConstructorItem, index: number) => index !== action.index),
                 //TODO action.value.index need value or not
             };
         }
@@ -117,6 +118,7 @@ export const ingredientsReducer = (state = initialState, action: TAction): TStat
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
             return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
         }
+
         case DECREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 1;
             return {...state, counter: {...state.counter, [action.itemId]: prevValue - 1}};

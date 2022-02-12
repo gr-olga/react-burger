@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerIngredientsTypes, TIngredient} from "../../utils/types";
+import {BurgerIngredientsTypes, TClearIngredient, TIngredient} from "../../utils/types";
 import {useSelector} from "../../utils/types";
 
 
@@ -13,14 +13,14 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
     const mainSection = useRef<HTMLHeadingElement>(null)
 
     const [current, setCurrent] = React.useState<string>('one')
-    const [bunList, setBunList] = React.useState<Array<TIngredient>>([])
-    const [sauceList, setSauceList] = React.useState<Array<TIngredient>>([])
-    const [mainList, setMainList] = React.useState<Array<TIngredient>>([])
+    const [bunList, setBunList] = React.useState<Array<TClearIngredient>>([])
+    const [sauceList, setSauceList] = React.useState<Array<TClearIngredient>>([])
+    const [mainList, setMainList] = React.useState<Array<TClearIngredient>>([])
 
     useEffect(() => {
-        setBunList(ingredients.filter((item:TIngredient) => item.type === 'bun'))
-        setSauceList(ingredients.filter((item:TIngredient) => item.type === 'sauce'))
-        setMainList(ingredients.filter((item:TIngredient) => item.type === 'main'))
+        setBunList(ingredients.filter((item) => item.type === 'bun'))
+        setSauceList(ingredients.filter((item) => item.type === 'sauce'))
+        setMainList(ingredients.filter((item) => item.type === 'main'))
     }, [ingredients])
 
     function onScroll(evt: any) {
@@ -84,7 +84,7 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
                 >
                     <h2 className={styles.tag}> Булки </h2>
                     <div className={styles.container}>
-                        {bunList.map((item: TIngredient) => {
+                        {bunList.map((item) => {
                             return (<Ingredient {...item}
                                                 key={item._id}
                                                 img={item.image}

@@ -12,7 +12,7 @@ function BurgerConstructor(props: BurgerConstructorTypes) {
     const {
         constructorIngredients,
         nonBunIngredientsList,
-    }: { constructorIngredients: Array<TIngredient>, nonBunIngredientsList: Array<TIngredient> } = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    } = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);
@@ -21,9 +21,9 @@ function BurgerConstructor(props: BurgerConstructorTypes) {
     useEffect(() => {
         dispatch({
             type: ADD_INGREDIENT_TO_NON_BUN_ITEMS,
-            items: constructorIngredients.filter((item: TIngredient) => item.type === 'sauce' || item.type === 'main')
+            items: constructorIngredients.filter((item) => item.type === 'sauce' || item.type === 'main')
         })
-        const bun = constructorIngredients.find((item: TIngredient) => item.type === 'bun')
+        const bun = constructorIngredients.find((item) => item.type === 'bun')
         if (bun) setBunItem(bun)
     }, [constructorIngredients, dispatch])
 
@@ -39,12 +39,12 @@ function BurgerConstructor(props: BurgerConstructorTypes) {
     });
 
     function handleOrderDetailClick() {
-        dispatch(getOrderIngredients(constructorIngredients.map((item: TIngredient) => item._id)))
+        dispatch(getOrderIngredients(constructorIngredients.map((item) => item._id)))
     }
 
 
     useEffect(() => {
-        const pricesList = nonBunIngredientsList.map((item: TIngredient) => Number(item.price))
+        const pricesList = nonBunIngredientsList.map((item) => Number(item.price))
         let num = bunItem.price
         setSum(pricesList.reduce((a, b) => a + b, num))
     }, [constructorIngredients, nonBunIngredientsList, bunItem])
@@ -64,7 +64,7 @@ function BurgerConstructor(props: BurgerConstructorTypes) {
                 />
             </section>
             <div className={styles.container}>
-                {nonBunIngredientsList.map((item: TIngredient, index: number) => {
+                {nonBunIngredientsList.map((item, index) => {
                     return (
                         <ConstructorItem {...item} index={index}/>
                     )

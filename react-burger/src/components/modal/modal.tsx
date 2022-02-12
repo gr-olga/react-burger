@@ -10,7 +10,7 @@ function Modal(props: TModal) {
     const modalRoot = document.getElementById('modal-root') as HTMLElement
 
     useEffect(() => {
-        const closeByEscape = (e: any) => {
+        const closeByEscape = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
                 props.closeModal()
             }

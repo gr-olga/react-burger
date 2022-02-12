@@ -3,7 +3,7 @@ import {
     AppDispatch,
     AppThunk,
     TClearIngredient,
-    TIngredient,
+    TIngredient, TIngredientDetail,
     TIngredientForConstructor,
     TOrder
 } from "../../utils/types";
@@ -30,7 +30,7 @@ export interface getIngredientRequest {
 
 export interface getIngredientSuccess {
     type: typeof GET_INGREDIENTS_SUCCESS;
-    ingredients: Array<TIngredient>
+    ingredients: Array<TClearIngredient>
 }
 
 export interface getIngredientFailed {
@@ -58,7 +58,7 @@ export interface addIngredientToConstructor {
 
 export interface addIngredientToNonBunItems {
     type: typeof ADD_INGREDIENT_TO_NON_BUN_ITEMS;
-    items: Array<TClearIngredient>
+    items: Array<TIngredientForConstructor>
 }
 
 export interface removeIngredientFromConstructor {
@@ -68,7 +68,7 @@ export interface removeIngredientFromConstructor {
 
 export interface showIngredient {
     type: typeof SHOW_INGREDIENT;
-    ingredient: TClearIngredient
+    ingredient: TIngredientDetail
 }
 
 export interface increaseCounter {
