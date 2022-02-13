@@ -1,14 +1,16 @@
-export function insertToArr(arr, index, newItem) {
+import {TIngredientForConstructor} from "./types";
+
+export function insertToArr(arr:Array<any>, index:number, newItem:TIngredientForConstructor) {
     return [...arr.slice(0, index), newItem, ...arr.slice(index)]
 }
 
-export function removeFromArray(arr, index) {
+export function removeFromArray(arr:Array<any>, index:number) {
     const arr1 = [...arr].splice(0, index)
     const arr2 = [...arr].splice(index + 1)
     return [...arr1, ...arr2]
 }
 
-export function changeOrder(arr, dragIndex, hoverIndex) {
+export function changeOrder(arr:Array<any>, dragIndex:number, hoverIndex:number) {
     // const dragIndex = arr.findIndex(item => item === 'x')
     const dragItem = arr[dragIndex]
     const result = [...arr];

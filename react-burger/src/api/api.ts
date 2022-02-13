@@ -1,5 +1,5 @@
 export const BASE_URL = "https://norma.nomoreparties.space/api/"
-const handleResponse = (res) => {
+const handleResponse = (res:any) => {
     if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
     }
@@ -13,7 +13,7 @@ export function getIngredientsData() {
         // .catch((err) => console.log("failed", err))
 }
 
-export function getInitialOrder(ingredientIds) {
+export function getInitialOrder(ingredientIds: Array<number>) {
     return fetch(`${BASE_URL}orders`, {
         method: "POST",
         body: JSON.stringify({ingredients: ingredientIds}),
