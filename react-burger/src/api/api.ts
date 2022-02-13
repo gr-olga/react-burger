@@ -1,5 +1,5 @@
 export const BASE_URL = "https://norma.nomoreparties.space/api/"
-const handleResponse = (res:any) => {
+const handleResponse = (res:Response) => {
     if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
     }
