@@ -43,17 +43,17 @@ function App() {
     return (
         <div className={styles.app}>
             <AppHeader/>
-            <DndProvider backend={HTML5Backend}>
-                <div className={styles.bar}>
-                    <BurgerIngredients
-                        onIngredientClick={handleIngredientClick}
-                    />
-                    <BurgerConstructor
-                        onDropHandler={handleDrop}
-                    />
-                </div>
-            </DndProvider>
-            {/*<Enterence/>*/}
+            {/*<DndProvider backend={HTML5Backend}>*/}
+            {/*    <div className={styles.bar}>*/}
+            {/*        <BurgerIngredients*/}
+            {/*            onIngredientClick={handleIngredientClick}*/}
+            {/*        />*/}
+            {/*        <BurgerConstructor*/}
+            {/*            onDropHandler={handleDrop}*/}
+            {/*        />*/}
+            {/*    </div>*/}
+            {/*</DndProvider>*/}
+            <Enterence/>
             <IngredientDetails
                 closeModal={closeModal}
             />

@@ -19,14 +19,16 @@ function AppHeader() {
                             Лента заказов</p>
                     </div>
                 </div>
-                <div>
+                <div className={styles.logo}>
                     <Logo/>
                 </div>
-                <div className={styles.navBox}>
+                <div className={styles.navBox2}>
                     <ProfileIcon type="primary"/>
-                    <p className="text text_type_main-default text_color_inactive">
-                        личный кабинет
-                    </p>
+                    <div className={styles.text_margin}>
+                        <p className="text text_type_main-default text_color_inactive">
+                            личный кабинет
+                        </p>
+                    </div>
                 </div>
             </div>
         </nav>
