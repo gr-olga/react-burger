@@ -19,6 +19,8 @@ import {v4 as uuidv4} from "uuid";
 import {TIngredient} from "../../utils/types";
 import Register from "../enterence/enterence";
 import Enterence from "../enterence/enterence";
+import Registration from "../registration/registration";
+import Entrance from "../enterence/enterence";
 
 function App() {
     const dispatch = useDispatch();
@@ -53,7 +55,8 @@ function App() {
             {/*        />*/}
             {/*    </div>*/}
             {/*</DndProvider>*/}
-            <Enterence/>
+            {/*<Entrance/>*/}
+            <Registration/>
             <IngredientDetails
                 closeModal={closeModal}
             />
