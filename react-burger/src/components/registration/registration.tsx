@@ -18,10 +18,6 @@ function Registration() {
         setPassword(e.target.value)
     }
     return (
-        // <div className={styles.main}>
-        //     <div className={styles.container}>
-        //         <h2 className={styles.title}> {"Регистрация"} </h2>
-        //         <form className={styles.form}>
         <AuthForm
             title={'Регистрация'}
             text={'Уже зарегистрированы?'}
@@ -49,12 +45,6 @@ function Registration() {
                         <Button type="primary" size="large">{'Зарегистрироваться'}</Button>
                     </div>
         </AuthForm>
-        //         <div className={styles.extra}>
-        //             <h3 className={styles.option}>Уже зарегистрированы?</h3>
-        //             <a className={styles.link} href={''}>Войти</a>
-        //         </div>
-        //     </div>
-        // </div>
 )
 }
 
