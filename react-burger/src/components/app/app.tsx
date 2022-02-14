@@ -23,6 +23,7 @@ import Registration from "../registration/registration";
 import Entrance from "../enterence/enterence";
 import ForgotPassword from "../forgot-password/forgot-password";
 import PasswordRecovery from "../password-recovery/password-recovery";
+import UserProfile from "../user-profile/user-profile";
 
 function App() {
     const dispatch = useDispatch();
@@ -60,7 +61,8 @@ function App() {
             {/*<Entrance/>*/}
             {/*<Registration/>*/}
             {/*<ForgotPassword/>*/}
-            <PasswordRecovery/>
+            {/*<PasswordRecovery/>*/}
+<UserProfile/>
             <IngredientDetails
                 closeModal={closeModal}
             />
