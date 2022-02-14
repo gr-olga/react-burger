@@ -1,16 +1,16 @@
 import React from "react";
 import Modal from "../modal/modal";
 import styles from './ingredient-details.module.css'
-import {IngredientDetailsTypes} from "../../utils/types";
-import {useSelector} from "react-redux";
+import {useSelector} from "../../utils/types";
+import {TModal} from "../../utils/types";
 
 
-function IngredientDetails(props) {
+function IngredientDetails(props: TModal) {
     const {isIngredientDetailsOpen, ingredientDetail} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     return (
         <Modal
             title={'Детали ингредиента'}
-            onClose={props.closeModal}
+            closeModal={props.closeModal}
             isOpen={isIngredientDetailsOpen}
         >
             <div className={styles.box}>
@@ -32,7 +32,5 @@ function IngredientDetails(props) {
         </Modal>
     )
 }
-
-IngredientDetails.propTypes = IngredientDetailsTypes
 
 export default IngredientDetails;
