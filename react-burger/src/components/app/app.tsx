@@ -57,8 +57,8 @@ function App() {
             {/*    </div>*/}
             {/*</DndProvider>*/}
             {/*<Entrance/>*/}
-            {/*<Registration/>*/}
-            <ForgotPassword/>
+            <Registration/>
+            {/*<ForgotPassword/>*/}
             <IngredientDetails
                 closeModal={closeModal}
             />

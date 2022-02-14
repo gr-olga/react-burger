@@ -13,6 +13,9 @@ export function AuthForm(props: TAuthFormProps) {
                            link={props.link}
                            linkText={props.linkText}
                 />
+                {/*<AuthExtra text={props.text}*/}
+                {/*           link={props.link}*/}
+                {/*           linkText={props.linkText}/>*/}
             </div>
         </div>
     )
