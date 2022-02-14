@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerConstructorTypes} from "../../utils/types";
-import {useDispatch, useSelector} from "react-redux";
+import {BurgerConstructorTypes, TIngredient, useSelector} from "../../utils/types";
+import {useDispatch} from 'react-redux';
 import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
 import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../services/actions";
 import ConstructorItem from "../constructor-item/constructor-item";
 
-function BurgerConstructor(props) {
+function BurgerConstructor(props: BurgerConstructorTypes) {
     const {
         constructorIngredients,
         nonBunIngredientsList,
@@ -16,7 +16,7 @@ function BurgerConstructor(props) {
     const dispatch = useDispatch();
 
     const [sum, setSum] = useState(0);
-    const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun})
+    const [bunItem, setBunItem] = React.useState({name: 'add bun', image: bun, price: 0})
 
     useEffect(() => {
         dispatch({
@@ -29,7 +29,7 @@ function BurgerConstructor(props) {
 
     const [, dropTarget] = useDrop({
         accept: "item",
-        drop(dropTarget) {
+        drop(dropTarget: TIngredient) {
             props.onDropHandler(dropTarget);
             if (dropTarget.type === 'bun') {
                 setBunItem(dropTarget)
@@ -39,7 +39,7 @@ function BurgerConstructor(props) {
     });
 
     function handleOrderDetailClick() {
-        dispatch(getOrderIngredients(constructorIngredients.map(item => item._id)))
+        dispatch(getOrderIngredients(constructorIngredients.map((item) => item._id)))
     }
 
 
@@ -66,13 +66,7 @@ function BurgerConstructor(props) {
             <div className={styles.container}>
                 {nonBunIngredientsList.map((item, index) => {
                     return (
-                        <ConstructorItem {...item}
-                                         isLocked={false}
-                                         index={index}
-                                         text={item.name}
-                                         price={item.price}
-                                         thumbnail={item.image}
-                        />
+                        <ConstructorItem {...item} index={index}/>
                     )
                 })}
             </div>
@@ -99,6 +93,6 @@ function BurgerConstructor(props) {
     )
 }
 
-BurgerConstructor.propTypes = BurgerConstructorTypes
+//BurgerConstructor.propTypes = BurgerConstructorTypes
 
 export default BurgerConstructor

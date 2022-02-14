@@ -16,6 +16,7 @@ import {
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {v4 as uuidv4} from "uuid";
+import {TIngredient} from "../../utils/types";
 
 function App() {
     const dispatch = useDispatch();
@@ -24,11 +25,11 @@ function App() {
         dispatch(getIngredients())
     }, [dispatch])
 
-    function handleIngredientClick(item) {
+    function handleIngredientClick(item: TIngredient) {
         dispatch({type: SHOW_INGREDIENT, ingredient: item})
     }
 
-    const handleDrop = (item) => {
+    const handleDrop = (item: TIngredient) => {
         dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
         dispatch({type: INCREASE_COUNTER, itemId: item._id})
     };
