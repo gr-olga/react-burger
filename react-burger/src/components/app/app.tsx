@@ -21,6 +21,7 @@ import Register from "../enterence/enterence";
 import Enterence from "../enterence/enterence";
 import Registration from "../registration/registration";
 import Entrance from "../enterence/enterence";
+import ForgotPassword from "../forgot-password/forgot-password";
 
 function App() {
     const dispatch = useDispatch();
@@ -56,7 +57,8 @@ function App() {
             {/*    </div>*/}
             {/*</DndProvider>*/}
             {/*<Entrance/>*/}
-            <Registration/>
+            {/*<Registration/>*/}
+            <ForgotPassword/>
             <IngredientDetails
                 closeModal={closeModal}
             />
