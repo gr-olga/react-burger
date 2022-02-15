@@ -17,13 +17,12 @@ import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {v4 as uuidv4} from "uuid";
 import {TIngredient} from "../../utils/types";
-import Register from "../enterence/enterence";
-import Enterence from "../enterence/enterence";
-import Registration from "../registration/registration";
 import Entrance from "../enterence/enterence";
+import Registration from "../registration/registration";
 import ForgotPassword from "../forgot-password/forgot-password";
 import PasswordRecovery from "../password-recovery/password-recovery";
 import UserProfile from "../user-profile/user-profile";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 function App() {
     const dispatch = useDispatch();
@@ -48,21 +47,37 @@ function App() {
     return (
         <div className={styles.app}>
             <AppHeader/>
-            {/*<DndProvider backend={HTML5Backend}>*/}
-            {/*    <div className={styles.bar}>*/}
-            {/*        <BurgerIngredients*/}
-            {/*            onIngredientClick={handleIngredientClick}*/}
-            {/*        />*/}
-            {/*        <BurgerConstructor*/}
-            {/*            onDropHandler={handleDrop}*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*</DndProvider>*/}
-            {/*<Entrance/>*/}
-            {/*<Registration/>*/}
-            {/*<ForgotPassword/>*/}
-            {/*<PasswordRecovery/>*/}
-<UserProfile/>
+            <Router>
+                <Switch>
+                    <Route path="/" exact={true}>
+                        <DndProvider backend={HTML5Backend}>
+                            <div className={styles.bar}>
+                                <BurgerIngredients
+                                    onIngredientClick={handleIngredientClick}
+                                />
+                                <BurgerConstructor
+                                    onDropHandler={handleDrop}
+                                />
+                            </div>
+                        </DndProvider>
+                    </Route>
+                    <Route path='/login'>
+                        <Entrance/>
+                    </Route>
+                    <Route path='/register'>
+                        <Registration/>
+                    </Route>
+                    <Route path='/forgot-password'>
+                        <ForgotPassword/>
+                    </Route>
+                    <Route path='/password-recovery'>
+                        <PasswordRecovery/>
+                    </Route>
+                    <Route path='/profile'>
+                        <UserProfile/>
+                    </Route>
+                </Switch>
+            </Router>
             <IngredientDetails
                 closeModal={closeModal}
             />
