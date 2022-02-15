@@ -22,7 +22,9 @@ function Registration() {
             title={'Регистрация'}
             text={'Уже зарегистрированы?'}
             link={''}
-            linkText={'Войти'}>
+            linkText={'Войти'}
+            route={'/login'}
+        >
                     <div className={styles.box}>
                         <Input
                             type={'text'}

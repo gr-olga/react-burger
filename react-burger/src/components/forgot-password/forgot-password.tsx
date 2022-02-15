@@ -15,6 +15,7 @@ function ForgotPassword() {
             text={'Вспомнили пароль?'}
             link={''}
             linkText={'Войти'}
+            route={'/login'}
         >
             <div className={styles.box}>
             <EmailInput onChange={onChangeEmail} value={email} name={'Укажите e-mail'}/>

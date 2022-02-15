@@ -21,6 +21,7 @@ function Entrance() {
                 text={'Вы — новый пользователь?'}
                 link={''}
                 linkText={'Зарегистрироваться'}
+                route={'/register'}
             >
                 <div className={styles.box}>
                     <EmailInput onChange={onChangeEmail} value={email} name={'email'}/>
@@ -32,7 +33,7 @@ function Entrance() {
                     <Button type="primary" size="large">{'Войти'}</Button>
                 </div>
             </AuthForm>
-            <AuthExtra text={'Забыли пароль?'} link={''} linkText={'Восстановить пароль'}/>
+            <AuthExtra text={'Забыли пароль?'} link={''} linkText={'Восстановить пароль'} route={'/forgot-password'}/>
         </>
     )
 }

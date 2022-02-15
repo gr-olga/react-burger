@@ -17,7 +17,9 @@ function PasswordRecovery(){
             title={'Восстановление пароля'}
             text={'Вспомнили пароль?'}
             link={''}
-            linkText={'Войти'}>
+            linkText={'Войти'}
+            route={'/login'}
+        >
 
             <div className={styles.box}>
                 <PasswordInput onChange={onChangePassword} value={password} name={'password'} />

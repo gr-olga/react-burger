@@ -12,6 +12,7 @@ export function AuthForm(props: TAuthFormProps) {
                 <AuthExtra text={props.text}
                            link={props.link}
                            linkText={props.linkText}
+                           route={props.route}
                 />
                 {/*<AuthExtra text={props.text}*/}
                 {/*           link={props.link}*/}
@@ -27,4 +28,5 @@ interface TAuthFormProps {
     text: string;
     link: string;
     linkText: string;
+    route:string
 }
