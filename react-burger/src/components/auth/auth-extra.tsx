@@ -7,9 +7,7 @@ export function AuthExtra(props: TAuthExtraProps){
     return(
         <div className={styles.extra}>
             <h3 className={styles.option}>{props.text}</h3>
-            <Link to={props.route}>
-                <a className={styles.link} href={props.link}> {props.linkText}</a>
-            </Link>
+            <Link className={styles.link} to={props.route}>{props.linkText}</Link>
         </div>
     )
 }
