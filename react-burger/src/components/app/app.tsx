@@ -46,8 +46,8 @@ function App() {
 
     return (
         <div className={styles.app}>
-            <AppHeader/>
             <Router>
+                <AppHeader/>
                 <Switch>
                     <Route path="/" exact={true}>
                         <DndProvider backend={HTML5Backend}>

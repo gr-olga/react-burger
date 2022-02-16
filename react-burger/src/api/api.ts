@@ -35,3 +35,13 @@ export function getReorderPassword(email: string): Promise<{ success: boolean, m
     })
         .then(handleResponse)
 }
+export function getInitialUserData(userData: Array<string>):Promise<{ success: boolean, message: string }> {
+    return fetch(`${BASE_URL}register`, {
+        method: "POST",
+        body: JSON.stringify({userData}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(handleResponse)
+}

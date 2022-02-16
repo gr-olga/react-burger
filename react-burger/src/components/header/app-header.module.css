@@ -4,8 +4,10 @@
     flex-direction: row;
 }
 
-.py {
+.text {
     margin-right: 28px;
+   font-family: JetBrains Mono, sans-serif;
+    margin-left: 11px;
 }
 
 .header {
@@ -42,7 +44,5 @@
     margin: 0;
     align-items: flex-end;
     justify-content: center;
-}
-.text_margin {
-    margin-left: 11px;
+    text-decoration: none;
 }

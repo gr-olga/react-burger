@@ -1,9 +1,9 @@
-
 import styles from './user-profile.module.css'
 import {EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ChangeEvent, useState} from "react";
+import ProfileNavigation from "../profile-navigation/profile-navigation";
 
-function UserProfile(){
+function UserProfile() {
     const [name, setName] = useState('Mark')
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -17,35 +17,21 @@ function UserProfile(){
         setPassword(e.target.value)
     }
 
-    return(
+    return (
         <div className={styles.mainContainer}>
-            <div className={styles.navContainer}>
-<nav className={styles.linksList}>
-    <a className={styles.link}>
-        Профиль
-    </a>
-    <a className={styles.link}>
-        История заказов
-    </a>
-    <a className={styles.link}>
-        Выход
-    </a>
-</nav>
-                <p className={styles.paragraph}>В этом разделе вы можете
-                    изменить свои персональные данные</p>
-            </div>
+       <ProfileNavigation type={'profile'}/>
             <div className={styles.formContainer}>
                 <div className={styles.box}>
-                <Input
-                    type={'text'}
-                    onChange={onChangeName}
-                    placeholder={'Имя'}
-                    value={name}
-                    name={'name'}
-                    error={false}
-                    errorText={'Ошибка'}
-                    size={'default'}
-                />
+                    <Input
+                        type={'text'}
+                        onChange={onChangeName}
+                        placeholder={'Имя'}
+                        value={name}
+                        name={'name'}
+                        error={false}
+                        errorText={'Ошибка'}
+                        size={'default'}
+                    />
                 </div>
                 <div className={styles.box}>
                     <EmailInput onChange={onChangeEmail} value={email} name={'email'}/>
@@ -58,4 +44,5 @@ function UserProfile(){
         </div>
     )
 }
+
 export default UserProfile
