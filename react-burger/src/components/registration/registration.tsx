@@ -5,6 +5,7 @@ import {AuthForm} from "../auth/auth-form";
 import {getRegisterUserData, TRegistrationResponse} from "../../api/api";
 import {useDispatch} from "../../utils/types";
 import {setUserData} from "../../services/actions/auth";
+import {useHistory} from "react-router-dom";
 
 
 function Registration() {
@@ -22,6 +23,8 @@ function Registration() {
         setPassword(e.target.value)
     }
 
+    const history = useHistory();
+
     function signUp(): Promise<void> {
         return getRegisterUserData({email, password, name})
             .then((res: TRegistrationResponse) => {
@@ -31,6 +34,7 @@ function Registration() {
                     accessToken: res.accessToken
                 }))
             })
+            .then(() => history.replace({pathname: '/'}))
     }
 
     return (

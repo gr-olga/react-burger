@@ -6,6 +6,7 @@ import {AuthExtra} from "../auth/auth-extra";
 import {getLoginUserData, TRegistrationResponse} from "../../api/api";
 import {setUserData} from "../../services/actions/auth";
 import {useDispatch} from "../../utils/types";
+import {useHistory} from "react-router-dom";
 
 
 function Entrance() {
@@ -19,6 +20,8 @@ function Entrance() {
         setPassword(e.target.value)
     }
 
+    const history = useHistory();
+
     function logIn(): Promise<void> {
         console.log(12345678);
         return getLoginUserData({email, password})
@@ -29,10 +32,11 @@ function Entrance() {
                     accessToken: res.accessToken
                 }))
             })
+            .then(() => history.replace({pathname: '/'}))
     }
 
     return (
-        <>
+        <div className={styles.container}>
             <AuthForm
                 onSubmit={logIn}
                 title={'Вход'}
@@ -52,7 +56,7 @@ function Entrance() {
                 </div>
             </AuthForm>
             <AuthExtra text={'Забыли пароль?'} link={''} linkText={'Восстановить пароль'} route={'/forgot-password'}/>
-        </>
+        </div>
     )
 }
 
