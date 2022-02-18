@@ -19,6 +19,7 @@ import {
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
 import {TConstructorItem, TState} from "../../utils/types";
+import {userReducer} from "./auth";
 
 
 export const initialState: TState = {
@@ -127,4 +128,4 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
 }
 
 
-export const rootReducer = combineReducers({ingredientsReducer})
+export const rootReducer = combineReducers({ingredientsReducer, userReducer})
