@@ -29,10 +29,16 @@ export type TUserData = {
 export interface TUser {
     email: string,
     name: string
+    // password:string
 }
 
 export interface TUserWithPassword extends TUser {
     password: string
+}
+
+export interface TUserLoginData {
+    email: string,
+    password:string
 }
 
 export type TIngredientDetail = {

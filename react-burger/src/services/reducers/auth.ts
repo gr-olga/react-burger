@@ -2,7 +2,6 @@ import {TUserData} from '../../utils/types'
 import {TAction} from "../actions";
 import {SET_USER_DATA} from "../actions/auth";
 
-
 export const userData: TUserData = {
     user: {
         email: "",
@@ -11,6 +10,7 @@ export const userData: TUserData = {
     accessToken: "",
     refreshToken: ""
 }
+
 
 export const userReducer = (state: TUserData = userData, action: TAction): TUserData => {
     switch (action.type) {

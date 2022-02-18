@@ -1,4 +1,4 @@
-import {TUserData, TUserWithPassword} from "../utils/types";
+import {TUserData, TUserLoginData, TUserWithPassword} from "../utils/types";
 
 export const BASE_URL = "https://norma.nomoreparties.space/api/"
 const handleResponse = (res: Response) => {
@@ -54,13 +54,13 @@ export function getRegisterUserData(userData: TUserWithPassword): Promise<TRegis
         .then(handleResponse)
 }
 
-// export function getLoginUserData(userData: Array<string>): Promise<TRegistrationResponse> {
-//     return fetch(`${BASE_URL}auth/login`, {
-//         method: "POST",
-//         body: JSON.stringify({}),
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//         .then(handleResponse)
-// }
+export function getLoginUserData(userData: TUserLoginData): Promise<TRegistrationResponse> {
+    return fetch(`${BASE_URL}auth/login`, {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(handleResponse)
+}

@@ -4,6 +4,7 @@ import {ChangeEvent, useState} from "react";
 import ProfileNavigation from "../profile-navigation/profile-navigation";
 
 function UserProfile() {
+
     const [name, setName] = useState('Mark')
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -19,7 +20,7 @@ function UserProfile() {
 
     return (
         <div className={styles.mainContainer}>
-       <ProfileNavigation type={'profile'}/>
+            <ProfileNavigation type={'profile'}/>
             <div className={styles.formContainer}>
                 <div className={styles.box}>
                     <Input

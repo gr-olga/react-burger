@@ -36,7 +36,6 @@ export const setUserData = (userData: TUserData): setUserData => ({
 export type TAuthAction = setUserData
 
 
-
 // const getProfileRequest = (userData: TUserData): getProfileRequest => ({
 //     type: GET_PROFILE_REQUEST,
 //     userData
