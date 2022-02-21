@@ -3,31 +3,32 @@ import {getLogOut} from "../../api/api";
 import {useSelector} from "../../utils/types";
 import {REMOVE_USER} from "../../services/actions/auth";
 import {useDispatch} from 'react-redux';
+import {userData} from "../../services/reducers/auth";
+import {useHistory} from "react-router-dom";
 
 function ProfileNavigation(props: any) {
+    const history = useHistory();
     const dispatch = useDispatch();
     const {refreshToken} = useSelector(({userReducer}) => userReducer)
 
     function logOut() {
         getLogOut(refreshToken)
-            // .then(
-            //     dispatch( {type: REMOVE_USER, userData})
-            // )
+            .then(() => dispatch({type: REMOVE_USER, userData}))
+            .then(() => history.replace({pathname: '/login'}))
     }
-
 
     return (
         <div className={styles.navContainer}>
             <nav className={styles.linksList}>
-                <a className={props.type === 'profile' ? styles.linkActive : styles.link}>
+                <button type="button" className={props.type === 'profile' ? styles.linkActive : styles.link}>
                     Профиль
-                </a>
-                <a className={props.type === 'orderHistory' ? styles.linkActive : styles.link}>
+                </button>
+                <button type="button" className={props.type === 'orderHistory' ? styles.linkActive : styles.link}>
                     История заказов
-                </a>
-                <a className={styles.link} onClick={logOut}>
+                </button>
+                <button type="button" className={styles.link} onClick={logOut}>
                     Выход
-                </a>
+                </button>
             </nav>
             <p className={styles.paragraph}>В этом разделе вы можете
                 изменить свои персональные данные</p>
