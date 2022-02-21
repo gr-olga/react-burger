@@ -38,9 +38,12 @@ export function getReorderPassword(email: string): Promise<{ success: boolean, m
         .then(handleResponse)
 }
 
-export interface TRegistrationResponse extends TUserData {
-    success: boolean,
-    message: string,
+export type TRegistrationResponse = TUserData & TResponse
+
+
+export interface TResponse {
+    success: boolean;
+    message: string;
 }
 
 export function getRegisterUserData(userData: TUserWithPassword): Promise<TRegistrationResponse> {
@@ -58,6 +61,17 @@ export function getLoginUserData(userData: TUserLoginData): Promise<TRegistratio
     return fetch(`${BASE_URL}auth/login`, {
         method: "POST",
         body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(handleResponse)
+}
+
+export function getLogOut(token: string): Promise<TResponse> {
+    return fetch(`${BASE_URL}auth/logout`, {
+        method: "POST",
+        body: JSON.stringify({token}),
         headers: {
             'Content-Type': 'application/json'
         }

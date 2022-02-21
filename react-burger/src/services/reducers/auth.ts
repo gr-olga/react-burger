@@ -1,6 +1,6 @@
 import {TUserData} from '../../utils/types'
 import {TAction} from "../actions";
-import {SET_USER_DATA} from "../actions/auth";
+import {REMOVE_USER, SET_USER_DATA} from "../actions/auth";
 
 export const userData: TUserData = {
     user: {
@@ -22,9 +22,19 @@ export const userReducer = (state: TUserData = userData, action: TAction): TUser
                 accessToken: action.userData.accessToken
             };
         }
+        case REMOVE_USER: {
+            return {
+                ...state,
+                user: {
+                    email: "",
+                    name: ""
+                },
+                accessToken: "",
+                refreshToken: ""
+            }
+        }
         default: {
             return state
         }
-    }
 
-}
+    }}

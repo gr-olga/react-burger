@@ -23,6 +23,7 @@ import ForgotPassword from "../forgot-password/forgot-password";
 import PasswordRecovery from "../password-recovery/password-recovery";
 import UserProfile from "../user-profile/user-profile";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {NotFoundPage} from "../not-found-page/not-found-page";
 
 function App() {
     const dispatch = useDispatch();
@@ -75,6 +76,9 @@ function App() {
                     </Route>
                     <Route path='/profile'>
                         <UserProfile/>
+                    </Route>
+                    <Route>
+                        <NotFoundPage/>
                     </Route>
                 </Switch>
             </Router>

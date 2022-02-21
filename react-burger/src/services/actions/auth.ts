@@ -12,6 +12,11 @@ export const setUserData = (userData: TUserData): setUserData => ({
     userData
 })
 
+export const REMOVE_USER : "REMOVE_USER" ="REMOVE_USER";
+export interface removeUser {
+    type: typeof REMOVE_USER
+    userData: TUserData
+}
 
 // export const GET_PROFILE_REQUEST: "GET_PROFILE_REQUEST" = 'GET_PROFILE_REQUEST';
 // export const GET_PROFILE_SUCCESS: 'GET_PROFILE_SUCCESS' = 'GET_PROFILE_SUCCESS';
