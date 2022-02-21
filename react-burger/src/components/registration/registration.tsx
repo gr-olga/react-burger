@@ -6,6 +6,7 @@ import {getRegisterUserData, TRegistrationResponse} from "../../api/api";
 import {useDispatch} from "../../utils/types";
 import {setUserData} from "../../services/actions/auth";
 import {useHistory} from "react-router-dom";
+import {setCookie} from "../../utils/cookies-helpers";
 
 
 function Registration() {
@@ -33,6 +34,13 @@ function Registration() {
                     refreshToken: res.refreshToken,
                     accessToken: res.accessToken
                 }))
+
+                return res;
+            })
+            .then((res: TRegistrationResponse) => {
+                sessionStorage.setItem('refreshToken', res.refreshToken);
+                const seconds = 1200; //20 mins
+                setCookie('accessToken', res.accessToken, seconds);
             })
             .then(() => history.replace({pathname: '/'}))
     }

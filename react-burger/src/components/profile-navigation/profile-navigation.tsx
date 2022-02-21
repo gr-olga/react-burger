@@ -5,6 +5,7 @@ import {REMOVE_USER} from "../../services/actions/auth";
 import {useDispatch} from 'react-redux';
 import {userData} from "../../services/reducers/auth";
 import {useHistory} from "react-router-dom";
+import {eraseCookie} from "../../utils/cookies-helpers";
 
 function ProfileNavigation(props: any) {
     const history = useHistory();
@@ -14,7 +15,11 @@ function ProfileNavigation(props: any) {
     function logOut() {
         getLogOut(refreshToken)
             .then(() => dispatch({type: REMOVE_USER, userData}))
-            .then(() => history.replace({pathname: '/login'}))
+            .finally(() => {
+                sessionStorage.removeItem('refreshToken')
+                eraseCookie('accessToken')
+                history.replace({pathname: '/login'})
+            })
     }
 
     return (
