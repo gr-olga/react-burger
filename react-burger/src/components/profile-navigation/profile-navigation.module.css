@@ -9,6 +9,8 @@
 }
 
 .link{
+    background: none;
+    border: none;
     font-family: JetBrains Mono, sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -20,6 +22,8 @@
     margin-bottom: 20px;
 }
 .linkActive{
+    background: none;
+    border: none;
     font-family: JetBrains Mono, sans-serif;
     font-style: normal;
     font-weight: bold;

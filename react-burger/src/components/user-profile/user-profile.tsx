@@ -1,5 +1,5 @@
 import styles from './user-profile.module.css'
-import {EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ChangeEvent, useState} from "react";
 import ProfileNavigation from "../profile-navigation/profile-navigation";
 
@@ -40,8 +40,12 @@ function UserProfile() {
                 <div className={styles.box}>
                     <PasswordInput onChange={onChangePassword} value={password} name={'password'}/>
                 </div>
+                <div className={styles.button}>
+                    <Button type="secondary" size="medium">{'Отмена'}</Button>
+                    <Button type="primary" size="large">{'Сохранить'}</Button>
+                </div>
             </div>
-            <div className={styles.emptyContainer}></div>
+
         </div>
     )
 }

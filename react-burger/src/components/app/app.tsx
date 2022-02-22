@@ -24,9 +24,25 @@ import PasswordRecovery from "../password-recovery/password-recovery";
 import UserProfile from "../user-profile/user-profile";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {NotFoundPage} from "../not-found-page/not-found-page";
+import {getCookie} from "../../utils/cookies-helpers";
+import {getUserData, TRegistrationResponse} from "../../api/api";
+import {setUserData} from "../../services/actions/auth";
 
 function App() {
     const dispatch = useDispatch();
+
+    const token = getCookie('accessToken');
+    if (token) {
+        getUserData(token)
+            .then((res: TRegistrationResponse) => {
+                dispatch(setUserData({
+                    user: res.user,
+                    refreshToken: res.refreshToken,
+                    accessToken: res.accessToken
+                }))
+                return res;
+            })
+    }
 
     useEffect(() => {
         dispatch(getIngredients())

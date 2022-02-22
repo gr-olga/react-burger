@@ -78,3 +78,15 @@ export function getLogOut(token: string): Promise<TResponse> {
     })
         .then(handleResponse)
 }
+
+export function getUserData(accessToken: string): Promise<TRegistrationResponse> {
+    return fetch(`${BASE_URL}auth/user`, {
+        method: "POST",
+        // body: JSON.stringify({token}),
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': accessToken
+        }
+    })
+        .then(handleResponse)
+}
