@@ -27,6 +27,7 @@ import {NotFoundPage} from "../not-found-page/not-found-page";
 import {getCookie} from "../../utils/cookies-helpers";
 import {getUserData, TRegistrationResponse} from "../../api/api";
 import {setUserData} from "../../services/actions/auth";
+import OrderFeed from "../order-feed/order-feed";
 
 function App() {
     const dispatch = useDispatch();
@@ -92,6 +93,9 @@ function App() {
                     </Route>
                     <Route path='/profile'>
                         <UserProfile/>
+                    </Route>
+                    <Route path='/order'>
+                        <OrderFeed/>
                     </Route>
                     <Route>
                         <NotFoundPage/>

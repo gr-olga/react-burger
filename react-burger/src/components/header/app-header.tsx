@@ -10,14 +10,18 @@ function AppHeader() {
             <div className={styles.header}>
                 <div className={styles.navBox}>
                     <div className={styles.btn}>
+                        <Link className={styles.navBox2} to={"/"}>
                         <BurgerIcon type="primary"/>
                         <p className={`text text_type_main-default ${styles.text}`}>
                             Конструктор</p>
+                        </Link>
                     </div>
                     <div className={styles.btn}>
+                        <Link className={styles.navBox2} to={"/order"}>
                         <MenuIcon type="primary"/>
                         <p className={`text text_type_main-default text_color_inactive ${styles.text}`}>
                             Лента заказов</p>
+                        </Link>
                     </div>
                 </div>
                 <div className={styles.logo}>
