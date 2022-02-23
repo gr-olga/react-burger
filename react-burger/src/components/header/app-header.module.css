@@ -9,10 +9,7 @@
     margin-right: 28px;
     font-family: JetBrains Mono, sans-serif;
     margin-left: 11px;
-    color: #F2F2F3;
-}
-.text:active{
-    color: #8585AD;
+    /*color: #F2F2F3;*/
 }
 
 .header {
@@ -50,4 +47,9 @@
     align-items: flex-end;
     justify-content: center;
     text-decoration: none;
+    color: #8585AD;
+}
+
+.activeLink{
+    color: #F2F2F3;
 }

@@ -17,33 +17,20 @@ import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {v4 as uuidv4} from "uuid";
 import {TIngredient} from "../../utils/types";
-import Entrance from "../enterence/enterence";
-import Registration from "../registration/registration";
-import ForgotPassword from "../forgot-password/forgot-password";
-import PasswordRecovery from "../password-recovery/password-recovery";
-import UserProfile from "../user-profile/user-profile";
+import Entrance from "../../pages/enterence/enterence";
+import Registration from "../../pages/registration/registration";
+import ForgotPassword from "../../pages/forgot-password/forgot-password";
+import PasswordRecovery from "../../pages/password-recovery/password-recovery";
+import UserProfile from "../../pages/user-profile/user-profile";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {NotFoundPage} from "../not-found-page/not-found-page";
+import {NotFoundPage} from "../../pages/not-found-page/not-found-page";
 import {getCookie} from "../../utils/cookies-helpers";
-import {getUserData, TRegistrationResponse} from "../../api/api";
+import {updateUserData, getUserData, TRegistrationResponse} from "../../api/api";
 import {setUserData} from "../../services/actions/auth";
-import OrderFeed from "../order-feed/order-feed";
+import OrderFeed from "../../pages/order-feed/order-feed";
 
 function App() {
     const dispatch = useDispatch();
-
-    const token = getCookie('accessToken');
-    if (token) {
-        getUserData(token)
-            .then((res: TRegistrationResponse) => {
-                dispatch(setUserData({
-                    user: res.user,
-                    refreshToken: res.refreshToken,
-                    accessToken: res.accessToken
-                }))
-                return res;
-            })
-    }
 
     useEffect(() => {
         dispatch(getIngredients())

@@ -6,6 +6,7 @@ import {useDispatch} from 'react-redux';
 import {userData} from "../../services/reducers/auth";
 import {useHistory} from "react-router-dom";
 import {eraseCookie} from "../../utils/cookies-helpers";
+import {NavLink} from 'react-router-dom';
 
 function ProfileNavigation(props: any) {
     const history = useHistory();
@@ -25,12 +26,12 @@ function ProfileNavigation(props: any) {
     return (
         <div className={styles.navContainer}>
             <nav className={styles.linksList}>
-                <button type="button" className={props.type === 'profile' ? styles.linkActive : styles.link}>
+                <NavLink className={styles.link}  to={"/profile"} activeClassName={styles.activeLink}>
                     Профиль
-                </button>
-                <button type="button" className={props.type === 'orderHistory' ? styles.linkActive : styles.link}>
+                </NavLink>
+                <NavLink className={styles.link} to={"/order"} activeClassName={styles.activeLink}>
                     История заказов
-                </button>
+                </NavLink>
                 <button type="button" className={styles.link} onClick={logOut}>
                     Выход
                 </button>

@@ -23,7 +23,6 @@ function Entrance() {
     const history = useHistory();
 
     function logIn(): Promise<void> {
-        console.log(12345678);
         return getLoginUserData({email, password})
             .then((res: TRegistrationResponse) => {
                 dispatch(setUserData({
