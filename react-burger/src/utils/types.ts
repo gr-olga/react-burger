@@ -38,7 +38,7 @@ export interface TUserWithPassword extends TUser {
 
 export interface TUserLoginData {
     email: string,
-    password:string
+    password: string
 }
 
 export type TIngredientDetail = {

@@ -1,8 +1,9 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .box {
     margin-bottom: 24px;
     width: 100%;

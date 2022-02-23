@@ -1,9 +1,9 @@
 import {AuthForm} from "../auth/auth-form";
 import styles from "../registration/registration.module.css";
-import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ChangeEvent, useState} from "react";
 
-function PasswordRecovery(){
+function PasswordRecovery() {
     const [emailCode, setEmailCode] = useState('')
     const [password, setPassword] = useState('')
     const onChangeCode = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +12,7 @@ function PasswordRecovery(){
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
-    return(
+    return (
         <AuthForm
             title={'Восстановление пароля'}
             text={'Вспомнили пароль?'}
@@ -22,7 +22,7 @@ function PasswordRecovery(){
         >
 
             <div className={styles.box}>
-                <PasswordInput onChange={onChangePassword} value={password} name={'password'} />
+                <PasswordInput onChange={onChangePassword} value={password} name={'password'}/>
             </div>
             <div className={styles.box}>
                 <Input
@@ -42,4 +42,5 @@ function PasswordRecovery(){
         </AuthForm>
     )
 }
+
 export default PasswordRecovery

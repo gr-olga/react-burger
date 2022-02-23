@@ -12,7 +12,8 @@ export const setUserData = (userData: TUserData): setUserData => ({
     userData
 })
 
-export const REMOVE_USER : "REMOVE_USER" ="REMOVE_USER";
+export const REMOVE_USER: "REMOVE_USER" = "REMOVE_USER";
+
 export interface removeUser {
     type: typeof REMOVE_USER
     userData: TUserData

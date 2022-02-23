@@ -1,9 +1,8 @@
-import React, {UIEventHandler, useEffect, useRef, WheelEventHandler} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerIngredientsTypes, TClearIngredient, TIngredient} from "../../utils/types";
-import {useSelector} from "../../utils/types";
+import {BurgerIngredientsTypes, TClearIngredient, TIngredient, useSelector} from "../../utils/types";
 
 
 function BurgerIngredients(props: BurgerIngredientsTypes) {

@@ -4,9 +4,8 @@ import {useSelector} from "../../utils/types";
 import {REMOVE_USER} from "../../services/actions/auth";
 import {useDispatch} from 'react-redux';
 import {userData} from "../../services/reducers/auth";
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import {eraseCookie} from "../../utils/cookies-helpers";
-import {NavLink} from 'react-router-dom';
 
 function ProfileNavigation(props: any) {
     const history = useHistory();
@@ -26,7 +25,7 @@ function ProfileNavigation(props: any) {
     return (
         <div className={styles.navContainer}>
             <nav className={styles.linksList}>
-                <NavLink className={styles.link}  to={"/profile"} activeClassName={styles.activeLink}>
+                <NavLink className={styles.link} to={"/profile"} activeClassName={styles.activeLink}>
                     Профиль
                 </NavLink>
                 <NavLink className={styles.link} to={"/order"} activeClassName={styles.activeLink}>

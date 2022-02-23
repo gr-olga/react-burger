@@ -11,16 +11,16 @@ function AppHeader() {
                 <div className={styles.navBox}>
                     <div className={styles.btn}>
                         <NavLink className={styles.navBox2} to={"/"} activeClassName={styles.activeLink}>
-                        <BurgerIcon type="primary"/>
-                        <p className={`text text_type_main-default ${styles.text}`}>
-                            Конструктор</p>
+                            <BurgerIcon type="primary"/>
+                            <p className={`text text_type_main-default ${styles.text}`}>
+                                Конструктор</p>
                         </NavLink>
                     </div>
                     <div className={styles.btn}>
                         <NavLink className={styles.navBox2} to={"/order"} activeClassName={styles.activeLink}>
-                        <MenuIcon type="primary"/>
-                        <p className={`text text_type_main-default ${styles.text}`}>
-                            Лента заказов</p>
+                            <MenuIcon type="primary"/>
+                            <p className={`text text_type_main-default ${styles.text}`}>
+                                Лента заказов</p>
                         </NavLink>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ function AppHeader() {
                 </div>
                 <NavLink className={styles.navBox2} to={"/profile"} activeClassName={styles.activeLink}>
                     <ProfileIcon type="primary"/>
-                        <span className={`text text_type_main-default ${styles.text}`}>личный кабинет</span>
+                    <span className={`text text_type_main-default ${styles.text}`}>личный кабинет</span>
                 </NavLink>
             </div>
         </nav>

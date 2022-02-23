@@ -1,8 +1,7 @@
 import React from "react";
 import Modal from "../modal/modal";
 import styles from './ingredient-details.module.css'
-import {useSelector} from "../../utils/types";
-import {TModal} from "../../utils/types";
+import {TModal, useSelector} from "../../utils/types";
 
 
 function IngredientDetails(props: TModal) {

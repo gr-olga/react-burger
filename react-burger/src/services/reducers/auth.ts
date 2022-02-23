@@ -37,4 +37,5 @@ export const userReducer = (state: TUserData = userData, action: TAction): TUser
             return state
         }
 
-    }}
+    }
+}

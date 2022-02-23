@@ -24,9 +24,6 @@ import PasswordRecovery from "../../pages/password-recovery/password-recovery";
 import UserProfile from "../../pages/user-profile/user-profile";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {NotFoundPage} from "../../pages/not-found-page/not-found-page";
-import {getCookie} from "../../utils/cookies-helpers";
-import {updateUserData, getUserData, TRegistrationResponse} from "../../api/api";
-import {setUserData} from "../../services/actions/auth";
 import OrderFeed from "../../pages/order-feed/order-feed";
 
 function App() {

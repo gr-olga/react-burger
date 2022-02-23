@@ -2,8 +2,7 @@ import styles from "./ingredient.module.css";
 import React from "react";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {useDrag} from "react-dnd";
-import {useSelector} from "../../utils/types";
-import { TIngredient} from "../../utils/types";
+import {TIngredient, useSelector} from "../../utils/types";
 
 function Ingredient(props: TIngredient) {
 
