@@ -25,6 +25,8 @@ import UserProfile from "../../pages/user-profile/user-profile";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {NotFoundPage} from "../../pages/not-found-page/not-found-page";
 import OrderFeed from "../../pages/order-feed/order-feed";
+import {ProtectedRoute} from ".././protected-route/protected-route";
+import {NonLoginRoute} from "../non-login-route/non-login-route";
 
 function App() {
     const dispatch = useDispatch();
@@ -63,24 +65,24 @@ function App() {
                             </div>
                         </DndProvider>
                     </Route>
-                    <Route path='/login'>
+                    <NonLoginRoute path='/login'>
                         <Entrance/>
-                    </Route>
-                    <Route path='/register'>
+                    </NonLoginRoute>
+                    <NonLoginRoute path='/register'>
                         <Registration/>
-                    </Route>
-                    <Route path='/forgot-password'>
+                    </NonLoginRoute>
+                    <NonLoginRoute path='/forgot-password'>
                         <ForgotPassword/>
-                    </Route>
-                    <Route path='/password-recovery'>
+                    </NonLoginRoute>
+                    <NonLoginRoute path='/password-recovery'>
                         <PasswordRecovery/>
-                    </Route>
-                    <Route path='/profile'>
+                    </NonLoginRoute>
+                    <ProtectedRoute path='/profile'>
                         <UserProfile/>
-                    </Route>
-                    <Route path='/order'>
+                    </ProtectedRoute>
+                    <ProtectedRoute path='/order'>
                         <OrderFeed/>
-                    </Route>
+                    </ProtectedRoute>
                     <Route>
                         <NotFoundPage/>
                     </Route>

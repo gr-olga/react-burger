@@ -21,7 +21,6 @@ import {changeOrder} from "../../utils/array-helper";
 import {TConstructorItem, TState} from "../../utils/types";
 import {userReducer} from "./auth";
 
-
 export const initialState: TState = {
     ingredientIds: [],
     ingredients: [],
@@ -36,7 +35,6 @@ export const initialState: TState = {
     counter: {},
     itemsRequest: false
 };
-
 
 export const ingredientsReducer = (state: TState = initialState, action: TAction): TState => {
     switch (action.type) {
@@ -126,6 +124,5 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
         }
     }
 }
-
 
 export const rootReducer = combineReducers({ingredientsReducer, userReducer})

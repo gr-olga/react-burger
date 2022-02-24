@@ -3,16 +3,14 @@ import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-deve
 import ProfileNavigation from "../profile-navigation/profile-navigation";
 import {setUserData} from "../../services/actions/auth";
 import {useDispatch} from "react-redux";
-import {useSelector} from "../../utils/types";
-import {userData} from "../../services/reducers/auth";
 import {ChangeEvent, useEffect, useState} from "react";
 import {getCookie} from "../../utils/cookies-helpers";
 import {getUserData, TRegistrationResponse, updateUserData} from "../../api/api";
+import {TUser, useSelector} from "../../utils/types";
 
 function UserProfile() {
     const dispatch = useDispatch();
-
-    const {user} = useSelector(() => userData)
+    const {user} = useSelector(({userReducer}) => userReducer)
 
 
     const [targetName, setTargetName] = useState(user.name)
@@ -41,12 +39,19 @@ function UserProfile() {
                 }))
                 return res;
             })
+            .then((res: TRegistrationResponse) => {
+                setUserForm(res.user)
+            })
     }, [])
 
     function updateData() {
         const token = getCookie('accessToken');
         if (token) {
-            updateUserData(token)
+            updateUserData(token, {
+                name: targetName,
+                email: targetEmail,
+                password: targetPassword
+            })
                 .then((res: TRegistrationResponse) => {
                     dispatch(setUserData({
                         user: res.user,
@@ -55,10 +60,13 @@ function UserProfile() {
                     }))
                     return res;
                 })
+                .then((res: TRegistrationResponse) => {
+                    setUserForm(res.user)
+                })
         }
     }
 
-    function removeChanges() {
+    function setUserForm(user: TUser): void {
         setTargetName(user.name)
         setTargetEmail(user.email)
         setTargetPassword('')
@@ -67,7 +75,7 @@ function UserProfile() {
     return (
         <div className={styles.mainContainer}>
             <ProfileNavigation type={'profile'}/>
-            <div className={styles.formContainer} onSubmit={updateData}>
+            <div className={styles.formContainer}>
                 <div className={styles.box}>
                     <Input
                         type={'text'}
@@ -87,8 +95,8 @@ function UserProfile() {
                     <PasswordInput onChange={onChangePassword} value={targetPassword} name={'password'}/>
                 </div>
                 <div className={styles.button}>
-                    <Button type="secondary" size="medium" onClick={removeChanges}>{'Отмена'}</Button>
-                    <Button type="primary" size="large">{'Сохранить'}</Button>
+                    <Button type="secondary" size="medium">{'Отмена'}</Button>
+                    <Button type="primary" size="large" onClick={updateData}>{'Сохранить'}</Button>
                 </div>
             </div>
 

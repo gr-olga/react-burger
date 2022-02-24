@@ -1,4 +1,4 @@
-import {TUserData, TUserLoginData, TUserWithPassword} from "../utils/types";
+import {TUser, TUserData, TUserLoginData, TUserWithPassword} from "../utils/types";
 
 export const BASE_URL = "https://norma.nomoreparties.space/api/"
 const handleResponse = (res: Response) => {
@@ -79,10 +79,10 @@ export function getLogOut(token: string): Promise<TResponse> {
         .then(handleResponse)
 }
 
-export function updateUserData(accessToken: string): Promise<TRegistrationResponse> {
+export function updateUserData(accessToken: string, user: TUserWithPassword): Promise<TRegistrationResponse> {
     return fetch(`${BASE_URL}auth/user`, {
         method: "PATCH",
-        // body: JSON.stringify({token}),
+        body: JSON.stringify(user),
         headers: {
             'Content-Type': 'application/json',
             'authorization': accessToken
