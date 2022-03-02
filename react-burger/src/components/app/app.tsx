@@ -56,7 +56,11 @@ function App() {
         dispatch({type: CLOSE_MODAL})
     }
 
-    const {isOrderDetailsOpen, isIngredientDetailsOpen} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {
+        isOrderDetailsOpen,
+        isIngredientDetailsOpen,
+        ingredients
+    } = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
     return (
         <div className={styles.app}>
@@ -93,12 +97,15 @@ function App() {
                     <ProtectedRoute path='/order' exact={true}>
                         <OrderFeed/>
                     </ProtectedRoute>
+                    <Route path="/ingredient/:id" exact={true}>
+                        <IngredientDetails/>
+                    </Route>
                     <Route>
                         <NotFoundPage/>
                     </Route>
                 </Switch>
-                {background && <Route path="/ingredient/:ingredientId">
-                    <div>1111232444123213 {String(isOrderDetailsOpen)}</div>
+                <div>1111232444123213 {String(isIngredientDetailsOpen)}</div>
+                {isIngredientDetailsOpen && <Route path="/ingredient/:id">
                     <Modal closeModal={closeModal}
                            title={'Детали ингредиента'}
                            isOpen={isIngredientDetailsOpen}
@@ -106,10 +113,6 @@ function App() {
                         <IngredientDetails/>
                     </Modal>
                 </Route>}
-
-                {/*<IngredientDetails*/}
-                {/*    closeModal={closeModal}*/}
-                {/*/>*/}
                 <OrderDetails
                     closeModal={closeModal}
                 />
