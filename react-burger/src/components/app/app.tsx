@@ -31,7 +31,7 @@ import Modal from "../modal/modal";
 
 function App() {
     let location: any = useLocation()
-    let background = location.state && location.state.background
+    // let background = location.state && location.state.background
 
     // isPush = history.action === "PUSH";
     // const background = isPush &&   location.state && location.state.background;
@@ -57,16 +57,14 @@ function App() {
     }
 
     const {
-        isOrderDetailsOpen,
         isIngredientDetailsOpen,
-        ingredients
     } = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
     return (
         <div className={styles.app}>
             <Router>
                 <AppHeader/>
-                <Switch location={location}>
+                <Switch>
                     <Route path="/" exact={true}>
                         <DndProvider backend={HTML5Backend}>
                             <div className={styles.bar}>
@@ -79,25 +77,25 @@ function App() {
                             </div>
                         </DndProvider>
                     </Route>
-                    <NonLoginRoute path='/login' exact={true}>
+                    <NonLoginRoute path='/login'>
                         <Entrance/>
                     </NonLoginRoute>
-                    <NonLoginRoute path='/register' exact={true}>
+                    <NonLoginRoute path='/register'>
                         <Registration/>
                     </NonLoginRoute>
-                    <NonLoginRoute path='/forgot-password' exact={true}>
+                    <NonLoginRoute path='/forgot-password'>
                         <ForgotPassword/>
                     </NonLoginRoute>
-                    <NonLoginRoute path='/password-recovery' exact={true}>
+                    <NonLoginRoute path='/password-recovery'>
                         <PasswordRecovery/>
                     </NonLoginRoute>
-                    <ProtectedRoute path='/profile' exact={true}>
+                    <ProtectedRoute path='/profile'>
                         <UserProfile/>
                     </ProtectedRoute>
-                    <ProtectedRoute path='/order' exact={true}>
+                    <ProtectedRoute path='/order'>
                         <OrderFeed/>
                     </ProtectedRoute>
-                    <Route path="/ingredient/:id" exact={true}>
+                    <Route path="/ingredient/:id">
                         <IngredientDetails/>
                     </Route>
                     <Route>
