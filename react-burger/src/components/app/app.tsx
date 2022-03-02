@@ -104,7 +104,6 @@ function App() {
                         <NotFoundPage/>
                     </Route>
                 </Switch>
-                <div>1111232444123213 {String(isIngredientDetailsOpen)}</div>
                 {isIngredientDetailsOpen && <Route path="/ingredient/:id">
                     <Modal closeModal={closeModal}
                            title={'Детали ингредиента'}
