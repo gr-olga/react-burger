@@ -4,15 +4,17 @@ import ModalOverlay from "../modal-overlay/modal-overlay";
 import styles from "../modal-overlay/modal-overlay.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {TModal} from "../../utils/types";
+import {useHistory} from "react-router-dom";
 
 function Modal(props: TModal) {
-
+    let history = useHistory();
     const modalRoot = document.getElementById('modal-root') as HTMLElement
 
     useEffect(() => {
         const closeByEscape = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
                 props.closeModal()
+                history.goBack();
             }
         }
         document.addEventListener('keydown', closeByEscape)

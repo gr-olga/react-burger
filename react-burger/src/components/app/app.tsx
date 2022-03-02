@@ -30,8 +30,11 @@ import {NonLoginRoute} from "../non-login-route/non-login-route";
 import Modal from "../modal/modal";
 
 function App() {
-    const location: any = useLocation()
-    const background = location.state && location.state.background
+    let location: any = useLocation()
+    let background = location.state && location.state.background
+
+    // isPush = history.action === "PUSH";
+    // const background = isPush &&   location.state && location.state.background;
     const dispatch = useDispatch();
 
     // const history = useHistory();
@@ -53,7 +56,8 @@ function App() {
         dispatch({type: CLOSE_MODAL})
     }
 
-    const {isOrderDetailsOpen, ingredientDetail} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {isOrderDetailsOpen, isIngredientDetailsOpen} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+
     return (
         <div className={styles.app}>
             <Router>
@@ -71,40 +75,41 @@ function App() {
                             </div>
                         </DndProvider>
                     </Route>
-                    <NonLoginRoute path='/login'>
+                    <NonLoginRoute path='/login' exact={true}>
                         <Entrance/>
                     </NonLoginRoute>
-                    <NonLoginRoute path='/register'>
+                    <NonLoginRoute path='/register' exact={true}>
                         <Registration/>
                     </NonLoginRoute>
-                    <NonLoginRoute path='/forgot-password'>
+                    <NonLoginRoute path='/forgot-password' exact={true}>
                         <ForgotPassword/>
                     </NonLoginRoute>
-                    <NonLoginRoute path='/password-recovery'>
+                    <NonLoginRoute path='/password-recovery' exact={true}>
                         <PasswordRecovery/>
                     </NonLoginRoute>
-                    <ProtectedRoute path='/profile'>
+                    <ProtectedRoute path='/profile' exact={true}>
                         <UserProfile/>
                     </ProtectedRoute>
-                    <ProtectedRoute path='/order'>
+                    <ProtectedRoute path='/order' exact={true}>
                         <OrderFeed/>
                     </ProtectedRoute>
                     <Route>
                         <NotFoundPage/>
                     </Route>
                 </Switch>
-                {/*{background && <Route path="/ingredients/:ingredientId">*/}
-                {/*    /!*<Modal closeModal={closeModal}*!/*/}
-                {/*    /!*       title={'Детали ингредиента'}*!/*/}
-                {/*    /!*       isOpen={isOrderDetailsOpen}*!/*/}
-                {/*    /!*>*!/*/}
-                {/*        <IngredientDetails/>*/}
-                {/*    /!*</Modal>*!/*/}
-                {/*</Route>}*/}
+                {background && <Route path="/ingredient/:ingredientId">
+                    <div>1111232444123213 {String(isOrderDetailsOpen)}</div>
+                    <Modal closeModal={closeModal}
+                           title={'Детали ингредиента'}
+                           isOpen={isIngredientDetailsOpen}
+                    >
+                        <IngredientDetails/>
+                    </Modal>
+                </Route>}
 
-                <IngredientDetails
-                    closeModal={closeModal}
-                />
+                {/*<IngredientDetails*/}
+                {/*    closeModal={closeModal}*/}
+                {/*/>*/}
                 <OrderDetails
                     closeModal={closeModal}
                 />

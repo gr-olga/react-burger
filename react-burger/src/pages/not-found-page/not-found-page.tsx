@@ -5,7 +5,7 @@ export function NotFoundPage() {
     return (
         <div className={styles.box}>
             <h2 className={styles.text}> 404 Not Found </h2>
-            <img src={bun}/>
+            <img src={bun} alt="булка"/>
         </div>
     )
 }

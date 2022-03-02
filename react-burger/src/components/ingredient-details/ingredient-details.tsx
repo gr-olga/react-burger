@@ -1,20 +1,12 @@
 import React from "react";
 import styles from './ingredient-details.module.css'
 import {useSelector} from "../../utils/types";
-import Modal from "../modal/modal";
-import {Link, useLocation} from 'react-router-dom';
 
 
-function IngredientDetails(props: any) {
-    // let location = useLocation();
-    const {ingredientDetail, isIngredientDetailsOpen } = useSelector(({ingredientsReducer}) => ingredientsReducer);
+function IngredientDetails() {
+    const {ingredientDetail} = useSelector(({ingredientsReducer}) => ingredientsReducer);
 
     return (
-        <Modal
-            title={'Детали ингредиента'}
-            closeModal={props.closeModal}
-            isOpen={isIngredientDetailsOpen}
-        >
         <div className={styles.box}>
             <div className={styles.container}>
                 <img className={styles.image} src={ingredientDetail?.image} alt={'name'}/>
@@ -31,7 +23,6 @@ function IngredientDetails(props: any) {
                 </div>
             </div>
         </div>
-        </Modal>
     )
 }
 

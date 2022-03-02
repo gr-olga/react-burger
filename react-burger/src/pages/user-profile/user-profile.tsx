@@ -42,7 +42,7 @@ function UserProfile() {
             .then((res: TRegistrationResponse) => {
                 setUserForm(res.user)
             })
-    }, [])
+    }, [dispatch])
 
     function updateData() {
         const token = getCookie('accessToken');

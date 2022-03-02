@@ -124,6 +124,7 @@ const getIngredientSuccess = (ingredients: Array<TIngredient>): getIngredientSuc
     type: GET_INGREDIENTS_SUCCESS,
     ingredients
 })
+
 const getIngredientFailed = (): getIngredientFailed => ({
     type: GET_INGREDIENTS_FAILED,
 })

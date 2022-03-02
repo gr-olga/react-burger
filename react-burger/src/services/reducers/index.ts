@@ -87,6 +87,7 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
             };
         }
         case SHOW_INGREDIENT: {
+            console.log(212312);
             return {
                 ...state,
                 isIngredientDetailsOpen: true,
