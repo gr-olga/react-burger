@@ -42,6 +42,8 @@ export interface TUserLoginData {
 }
 
 export type TIngredientDetail = {
+    _id?: number
+    id: number
     calories: number
     proteins: number
     fat: number
@@ -65,11 +67,13 @@ export type TModal = {
     isOpen?: boolean
 }
 
+
 export interface TIngredient extends TClearIngredient {
     onItemClick: (item: TIngredient) => void
 }
 
 export type TClearIngredient = {
+    id?: number
     _id: string,
     name: string,
     image: string,

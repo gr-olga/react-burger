@@ -1,4 +1,4 @@
-import {TUser, TUserData, TUserLoginData, TUserWithPassword} from "../utils/types";
+import { TUserData, TUserLoginData, TUserWithPassword} from "../utils/types";
 
 export const BASE_URL = "https://norma.nomoreparties.space/api/"
 const handleResponse = (res: Response) => {
