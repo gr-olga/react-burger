@@ -66,7 +66,7 @@ function App() {
         <div className={styles.app}>
             <Router>
                 <AppHeader/>
-                <Switch location={background || location}>
+                <Switch location={location}>
                     <Route path="/" exact={true}>
                         <DndProvider backend={HTML5Backend}>
                             <div className={styles.bar}>
