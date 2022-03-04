@@ -117,7 +117,7 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
                                     className={styles.link}
                                     key={item._id}
                                     to={{
-                                        pathname: `/ingredient/${item._id}`,
+                                        pathname: `/ingredient/$${item._id}`,
                                         state: { background: location }
                                     }}
                                 >

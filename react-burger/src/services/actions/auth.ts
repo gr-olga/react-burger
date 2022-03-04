@@ -1,4 +1,5 @@
 import {TUserData} from "../../utils/types";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export const SET_USER_DATA: "SET_USER_DATA" = 'SET_USER_DATA';
 
@@ -18,54 +19,92 @@ export interface removeUser {
     type: typeof REMOVE_USER
     userData: TUserData
 }
+export type TAuthAction = setUserData
 
-// export const GET_PROFILE_REQUEST: "GET_PROFILE_REQUEST" = 'GET_PROFILE_REQUEST';
-// export const GET_PROFILE_SUCCESS: 'GET_PROFILE_SUCCESS' = 'GET_PROFILE_SUCCESS';
-// export const GET_PROFILE_FAILED: 'GET_PROFILE_FAILED' = 'GET_PROFILE_FAILED';
-
-
-// export interface getProfileRequest {
-//     type: typeof GET_PROFILE_REQUEST;
+// export const GET_REGISTER_PROFILE_REQUEST: "GET_REGISTER_PROFILE_REQUEST" = 'GET_REGISTER_PROFILE_REQUEST';
+// export const GET_REGISTER_PROFILE_SUCCESS: 'GET_REGISTER_PROFILE_SUCCESS' = 'GET_REGISTER_PROFILE_SUCCESS';
+// export const GET_REGISTER_PROFILE_FAILED: 'GET_REGISTER_PROFILE_FAILED' = 'GET_REGISTER_PROFILE_FAILED';
+//
+//
+// export interface getRegisterProfileRequest {
+//     type: typeof GET_REGISTER_PROFILE_REQUEST;
 //     userData: TUserData
 // }
 //
-// export interface getProfileSuccess {
-//     type: typeof GET_PROFILE_SUCCESS;
+// export interface getRegisterProfileSuccess {
+//     type: typeof GET_REGISTER_PROFILE_SUCCESS;
 //     user: TUserData
 // }
 //
-// export interface getIProfileFailed {
-//     type: typeof GET_PROFILE_FAILED;
+// export interface getRegisterIProfileFailed {
+//     type: typeof GET_REGISTER_PROFILE_FAILED;
 // }
-
-
-export type TAuthAction = setUserData
-
-
-// const getProfileRequest = (userData: TUserData): getProfileRequest => ({
-//     type: GET_PROFILE_REQUEST,
+//
+//
+// const getRegisterProfileRequest = (userData: TUserData): getProfileRequest => ({
+//     type: GET_REGISTER_PROFILE_REQUEST,
 //     userData
 // })
-// const getProfileSuccess = (user: TUserData): getProfileSuccess => ({
-//     type: GET_PROFILE_SUCCESS,
+// const getRegisterProfileSuccess = (user: TUserData): getProfileSuccess => ({
+//     type: GET_REGISTER_PROFILE_SUCCESS,
 //     user
 // })
-// const getIProfileFailed = (): getIProfileFailed => ({
-//     type: GET_PROFILE_FAILED,
+// const getRegisterIProfileFailed = (): getIProfileFailed => ({
+//     type: GET_REGISTER_PROFILE_FAILED,
 // })
-
 //
-// export const getProfile:AppThunk = (token: any) =>(dispatch: AppDispatch) =>{
+//
+// export const getRegisterProfile:AppThunk = (token: any) =>(dispatch: AppDispatch) =>{
 //     // return function (dispatch: any) {
-//     dispatch(getProfileRequest(userData));
+//     dispatch(getRegisterProfileRequest(userData));
 //     getRegisterUserData(userData).then(res => {
 //         if (res && res.success) {
-//             dispatch(getProfileSuccess(res.accessToken)
+//             dispatch(getRegisterProfileSuccess(res.accessToken)
 //             );
 //         } else {
-//             dispatch(getIProfileFailed());
+//             dispatch(getIRegisterProfileFailed());
 //         }
 //     })
 //         .catch((err) => console.log("failed", err))
 //     //   };
 // }
+
+
+
+// export const fetchIngredients = createAsyncThunk(
+//     "ingredients/fetchIngredients",
+//     async () => {
+//         const response = await newApi.getIdegrients();
+//         return response.data
+//     }
+// );
+//
+// class IStateIgredients {
+// }
+//
+// const initialStateIgredients: IStateIgredients = {
+//     ingredients: [],
+//     isIngredients: false,
+// };
+//
+// const ingredientsSlice = createSlice({
+//     name: "ingredients",
+//     initialState: initialStateIgredients,
+//     extraReducers: {
+//
+// // вот здесь на самом деле надо вместо строки писать [fetchIngredients].pending
+// // но я не смог это типизировать, поэтому тупо строкой написал этот экстра редьюсер
+//         "ingredients/fetchIngredients/pending": (state) => state,
+//         "ingredients/fetchIngredients/fulfilled": (state, action: PayloadAction<IResponseIngredients> ) => {
+//             state.ingredients = action.payload;
+//             state.isIngredients = true;
+//         },
+//         "ingredients/fetchIngredients/rejected": (state) => {
+//             state.isIngredients = false;
+//         },
+//     },
+//     reducers: {},
+// });
+//
+// export const ingredientsReducers = ingredientsSlice.reducer;
+// export const ingredientsActions = ingredientsSlice.actions;

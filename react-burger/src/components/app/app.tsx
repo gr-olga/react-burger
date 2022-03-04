@@ -22,22 +22,23 @@ import Registration from "../../pages/registration/registration";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
 import PasswordRecovery from "../../pages/password-recovery/password-recovery";
 import UserProfile from "../../pages/user-profile/user-profile";
-import {BrowserRouter as Router, Route, Switch, useLocation} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import {NotFoundPage} from "../../pages/not-found-page/not-found-page";
 import OrderFeed from "../../pages/order-feed/order-feed";
-import {ProtectedRoute} from ".././protected-route/protected-route";
+import {ProtectedRoute} from "../protected-route/protected-route";
 import {NonLoginRoute} from "../non-login-route/non-login-route";
 import Modal from "../modal/modal";
 
 function App() {
+    let history = useHistory();
     let location: any = useLocation()
-    // let background = location.state && location.state.background
+    let background =
+        history.action === 'PUSH' && location.state && location.state.background;
 
     // isPush = history.action === "PUSH";
     // const background = isPush &&   location.state && location.state.background;
     const dispatch = useDispatch();
 
-    // const history = useHistory();
 
     useEffect(() => {
         dispatch(getIngredients())
@@ -54,6 +55,7 @@ function App() {
 
     function closeModal() {
         dispatch({type: CLOSE_MODAL})
+        history.goBack();
     }
 
     const {
@@ -64,7 +66,7 @@ function App() {
         <div className={styles.app}>
             <Router>
                 <AppHeader/>
-                <Switch>
+                <Switch location={background || location}>
                     <Route path="/" exact={true}>
                         <DndProvider backend={HTML5Backend}>
                             <div className={styles.bar}>
@@ -102,17 +104,18 @@ function App() {
                         <NotFoundPage/>
                     </Route>
                 </Switch>
-                {isIngredientDetailsOpen && <Route path="/ingredient/:id">
-                    <Modal closeModal={closeModal}
-                           title={'Детали ингредиента'}
-                           isOpen={isIngredientDetailsOpen}
-                    >
-                        <IngredientDetails/>
-                    </Modal>
-                </Route>}
+                {background && <Route path="/ingredient/:id"
+                                      children={<Modal closeModal={closeModal}
+                                                       title={'Детали ингредиента'}
+                                                       isOpen={isIngredientDetailsOpen}
+                                      >
+                                          <IngredientDetails/>
+                                      </Modal>}
+                />}
                 <OrderDetails
                     closeModal={closeModal}
                 />
+
             </Router>
         </div>
     );

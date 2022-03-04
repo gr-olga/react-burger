@@ -17,7 +17,7 @@ function ForgotPassword() {
         return getReorderPassword(email)
             .then((res) => {
                 if (res && res.success) {
-                    history.replace({pathname: '/password-recovery'});
+                    history.push({pathname: '/password-recovery'});
                 }
             })
     }

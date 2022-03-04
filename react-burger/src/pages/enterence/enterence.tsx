@@ -31,7 +31,7 @@ function Entrance() {
                     accessToken: res.accessToken
                 }))
             })
-            .then(() => history.replace({pathname: '/'}))
+            .then(() => history.push({pathname: '/'}))
     }
 
     return (
