@@ -64,7 +64,6 @@ function App() {
 
     return (
         <div className={styles.app}>
-            <Router>
                 <AppHeader/>
                 <Switch location={background || location}>
                     <Route path="/" exact={true}>
@@ -115,8 +114,6 @@ function App() {
                 <OrderDetails
                     closeModal={closeModal}
                 />
-
-            </Router>
         </div>
     );
 }
