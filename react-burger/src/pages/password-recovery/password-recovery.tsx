@@ -2,8 +2,11 @@ import {AuthForm} from "../auth/auth-form";
 import styles from "../registration/registration.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ChangeEvent, useState} from "react";
+import {useHistory, withRouter} from "react-router-dom";
+import {NotFoundPage} from "../not-found-page/not-found-page";
 
-function PasswordRecovery() {
+function PasswordRecovery(props: any):any {
+
     const [emailCode, setEmailCode] = useState('')
     const [password, setPassword] = useState('')
     const onChangeCode = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,6 +15,11 @@ function PasswordRecovery() {
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
+
+    if (!props.location.state?.fromRecovery) {
+        return <NotFoundPage/>
+    }
+
     return (
         <AuthForm
             title={'Восстановление пароля'}
@@ -43,4 +51,4 @@ function PasswordRecovery() {
     )
 }
 
-export default PasswordRecovery
+export default withRouter(PasswordRecovery)

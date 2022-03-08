@@ -22,7 +22,7 @@ import Registration from "../../pages/registration/registration";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
 import PasswordRecovery from "../../pages/password-recovery/password-recovery";
 import UserProfile from "../../pages/user-profile/user-profile";
-import {BrowserRouter as Router, Route, Switch, useHistory, useLocation} from "react-router-dom";
+import {Route, Switch, useHistory, useLocation} from "react-router-dom";
 import {NotFoundPage} from "../../pages/not-found-page/not-found-page";
 import OrderFeed from "../../pages/order-feed/order-feed";
 import {ProtectedRoute} from "../protected-route/protected-route";
@@ -35,10 +35,7 @@ function App() {
     let background =
         history.action === 'PUSH' && location.state && location.state.background;
 
-    // isPush = history.action === "PUSH";
-    // const background = isPush &&   location.state && location.state.background;
     const dispatch = useDispatch();
-
 
     useEffect(() => {
         dispatch(getIngredients())
@@ -48,74 +45,83 @@ function App() {
         dispatch({type: SHOW_INGREDIENT, ingredient: item})
     }
 
-    const handleDrop = (item: TIngredient) => {
-        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
-        dispatch({type: INCREASE_COUNTER, itemId: item._id})
-    };
+    const {nonBunIngredientsList} = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
-    function closeModal() {
-        dispatch({type: CLOSE_MODAL})
-        history.goBack();
+    const handleDrop = (item: TIngredient) => {
+        if (nonBunIngredientsList) {
+            dispatch({type: INCREASE_COUNTER, itemId: item._id})
+            dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
+        }
+else
+    if (!nonBunIngredientsList) {
+        dispatch({type: INCREASE_COUNTER, itemId: item._id})
+        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
+    }
     }
 
-    const {
-        isIngredientDetailsOpen,
-    } = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
-    return (
-        <div className={styles.app}>
-                <AppHeader/>
-                <Switch location={background || location}>
-                    <Route path="/" exact={true}>
-                        <DndProvider backend={HTML5Backend}>
-                            <div className={styles.bar}>
-                                <BurgerIngredients
-                                    onIngredientClick={handleIngredientClick}
-                                />
-                                <BurgerConstructor
-                                    onDropHandler={handleDrop}
-                                />
-                            </div>
-                        </DndProvider>
-                    </Route>
-                    <NonLoginRoute path='/login'>
-                        <Entrance/>
-                    </NonLoginRoute>
-                    <NonLoginRoute path='/register'>
-                        <Registration/>
-                    </NonLoginRoute>
-                    <NonLoginRoute path='/forgot-password'>
-                        <ForgotPassword/>
-                    </NonLoginRoute>
-                    <NonLoginRoute path='/password-recovery'>
-                        <PasswordRecovery/>
-                    </NonLoginRoute>
-                    <ProtectedRoute path='/profile'>
-                        <UserProfile/>
-                    </ProtectedRoute>
-                    <ProtectedRoute path='/order'>
-                        <OrderFeed/>
-                    </ProtectedRoute>
-                    <Route path="/ingredient/:id">
-                        <IngredientDetails/>
-                    </Route>
-                    <Route>
-                        <NotFoundPage/>
-                    </Route>
-                </Switch>
-                {background && <Route path="/ingredient/:id"
-                                      children={<Modal closeModal={closeModal}
-                                                       title={'Детали ингредиента'}
-                                                       isOpen={isIngredientDetailsOpen}
-                                      >
-                                          <IngredientDetails/>
-                                      </Modal>}
-                />}
-                <OrderDetails
-                    closeModal={closeModal}
-                />
-        </div>
-    );
+function closeModal() {
+    dispatch({type: CLOSE_MODAL})
+}
+
+const {
+    isIngredientDetailsOpen,
+} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+
+return (
+    <div className={styles.app}>
+        <AppHeader/>
+        <Switch location={background || location}>
+            <Route path="/" exact={true}>
+                <DndProvider backend={HTML5Backend}>
+                    <div className={styles.bar}>
+                        <BurgerIngredients
+                            onIngredientClick={handleIngredientClick}
+                        />
+                        <BurgerConstructor
+                            onDropHandler={handleDrop}
+                        />
+                    </div>
+                </DndProvider>
+            </Route>
+            <NonLoginRoute path='/login'>
+                <Entrance/>
+            </NonLoginRoute>
+            <NonLoginRoute path='/register'>
+                <Registration/>
+            </NonLoginRoute>
+            <NonLoginRoute path='/forgot-password'>
+                <ForgotPassword/>
+            </NonLoginRoute>
+            <NonLoginRoute path='/password-recovery'>
+                <PasswordRecovery/>
+            </NonLoginRoute>
+            <ProtectedRoute path='/profile'>
+                <UserProfile/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/order'>
+                <OrderFeed/>
+            </ProtectedRoute>
+            <Route path="/ingredient/:id">
+                <IngredientDetails/>
+            </Route>
+            <Route>
+                <NotFoundPage/>
+            </Route>
+        </Switch>
+        {background && <Route path="/ingredient/:id"
+                              children={<Modal closeModal={closeModal}
+                                               title={'Детали ингредиента'}
+                                               isOpen={isIngredientDetailsOpen}
+                              >
+                                  <IngredientDetails/>
+                              </Modal>}
+        />}
+        <OrderDetails
+            closeModal={closeModal}
+        />
+    </div>
+);
 }
 
 export default App;

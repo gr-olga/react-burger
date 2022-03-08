@@ -30,12 +30,11 @@ function BurgerConstructor(props: BurgerConstructorTypes) {
     const [, dropTarget] = useDrop({
         accept: "item",
         drop(dropTarget: TIngredient) {
-            props.onDropHandler(dropTarget);
+           props.onDropHandler(dropTarget)
             if (dropTarget.type === 'bun') {
                 setBunItem(dropTarget)
             }
-
-        },
+        }
     });
 
     function handleOrderDetailClick() {
