@@ -9,7 +9,7 @@ import {useDispatch} from 'react-redux';
 import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     CLOSE_MODAL,
-    getIngredients,
+    getIngredients, INCREASE_BUN_COUNTER,
     INCREASE_COUNTER,
     SHOW_INGREDIENT
 } from "../../services/actions";
@@ -45,18 +45,12 @@ function App() {
         dispatch({type: SHOW_INGREDIENT, ingredient: item})
     }
 
-    const {nonBunIngredientsList} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {nonBunIngredientsList, constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
     const handleDrop = (item: TIngredient) => {
-        if (nonBunIngredientsList) {
+        console.log(constructorIngredients)
             dispatch({type: INCREASE_COUNTER, itemId: item._id})
             dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
-        }
-else
-    if (!nonBunIngredientsList) {
-        dispatch({type: INCREASE_COUNTER, itemId: item._id})
-        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
-    }
     }
 
 

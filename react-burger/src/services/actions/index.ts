@@ -25,6 +25,7 @@ export const DECREASE_COUNTER: 'DECREASE_COUNTER' = 'DECREASE_COUNTER';
 export const MOVE_INSIDE_CONSTRUCTOR: 'MOVE_INSIDE_CONSTRUCTOR' = 'MOVE_INSIDE_CONSTRUCTOR';
 export const CLOSE_MODAL: "CLOSE_MODAL" = 'CLOSE_MODAL';
 export const REORDER_CONSTRUCTOR: "REORDER_CONSTRUCTOR" = 'REORDER_CONSTRUCTOR';
+export const INCREASE_BUN_COUNTER: "INCREASE_BUN_COUNTER" = "INCREASE_BUN_COUNTER"
 
 export interface getIngredientRequest {
     type: typeof GET_INGREDIENTS_REQUEST;
@@ -97,6 +98,11 @@ export interface reorderConstructor {
     hoverIndex: number
 }
 
+export interface increaseBunCounter {
+    type: typeof INCREASE_BUN_COUNTER;
+    itemId: number
+}
+
 export type TAction =
     | addIngredientToConstructor
     | addIngredientToNonBunItems
@@ -115,6 +121,7 @@ export type TAction =
     | showIngredient
     | TAuthAction
     | removeUser
+    | increaseBunCounter
 
 const getIngredientRequest = (): getIngredientRequest => ({
     type: GET_INGREDIENTS_REQUEST

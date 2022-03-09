@@ -28,8 +28,8 @@ function Ingredient(props: TIngredient) {
             <div className={styles.box}>
                 <div className={styles.wrapper}>
                     <img className={styles.image} src={props.img} alt={props.name}/>
-                    {counter[props._id] > 0 &&
-                    <Counter count={counter[props._id]} size="default"/>
+                    {counter[props._id] > 0 && props.type !== 'bun' &&
+                        <Counter count={counter[props._id]} size="default"/>
                     }
                 </div>
                 <h3 className={styles.price}>

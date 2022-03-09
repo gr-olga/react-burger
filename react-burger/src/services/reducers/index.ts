@@ -15,6 +15,7 @@ import {
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     REORDER_CONSTRUCTOR,
     SHOW_INGREDIENT,
+    INCREASE_BUN_COUNTER,
     TAction
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
@@ -71,10 +72,25 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
             return {...state, loader: true};
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
-            return {
-                ...state,
-                constructorIngredients: [...state.constructorIngredients, action.ingredient]
-            };
+            const isBun = action.ingredient.type === 'bun';
+            const isBunAdded = Boolean(state.constructorIngredients.find((item) => item.type === 'bun'));
+
+            if (isBun && isBunAdded) {
+                // const bunIndex = state.constructorIngredients.findIndex((item) => item.type === 'bun')
+                let ingredients = state.constructorIngredients.filter((item) => item.type !== 'bun')
+                ingredients = [...ingredients, action.ingredient]
+                return {
+                    ...state,
+                    constructorIngredients: ingredients
+                };
+            } else {
+                return {
+                    ...state,
+                    constructorIngredients: [...state.constructorIngredients, action.ingredient]
+                };
+            }
+
+
         }
         case ADD_INGREDIENT_TO_NON_BUN_ITEMS: {
             return {...state, nonBunIngredientsList: action.items};
@@ -117,6 +133,9 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
                 const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
                 return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
         }
+        // case INCREASE_BUN_COUNTER:{
+        //     return {...state, counter: {...state.counter, [action.itemId]: 1}}
+        // }
 
         case DECREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 1;
