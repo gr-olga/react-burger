@@ -29,7 +29,6 @@ function UserProfile() {
     useEffect(() => {
         const token = getCookie('accessToken');
         if (!token) return;
-
         getUserData(token)
             .then((res: TRegistrationResponse) => {
                 dispatch(setUserData({

@@ -6,7 +6,9 @@ import {AuthExtra} from "../auth/auth-extra";
 import {getLoginUserData, TRegistrationResponse} from "../../api/api";
 import {setUserData} from "../../services/actions/auth";
 import {useDispatch} from "../../utils/types";
-import {useHistory} from "react-router-dom";
+import {Redirect, useHistory, useLocation} from "react-router-dom";
+import {getCookie, setCookie} from "../../utils/cookies-helpers";
+import {state} from "../../index";
 
 
 function Entrance() {
@@ -19,8 +21,10 @@ function Entrance() {
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
-
+    // const [auth, setAuth] = useState(false)
     const history = useHistory();
+    const location = useLocation();
+    const token = getCookie('accessToken');
 
     function logIn(): Promise<void> {
         return getLoginUserData({email, password})
@@ -30,8 +34,10 @@ function Entrance() {
                     refreshToken: res.refreshToken,
                     accessToken: res.accessToken
                 }))
+                const seconds = 1200; //20 mins
+                setCookie('accessToken', res.accessToken, seconds);
             })
-            .then(() => history.push({pathname: '/'}))
+              // .then(() => history.replace(state?from || '/') )
     }
 
     return (

@@ -8,7 +8,7 @@ import {
     TIngredientForConstructor,
     TOrder
 } from "../../utils/types";
-import {removeUser, TAuthAction} from "./auth";
+import {getRegisterProfile, removeUser, TAuthAction} from "./auth";
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS: 'GET_INGREDIENTS_SUCCESS' = 'GET_INGREDIENTS_SUCCESS';
@@ -122,6 +122,7 @@ export type TAction =
     | TAuthAction
     | removeUser
     | increaseBunCounter
+
 
 const getIngredientRequest = (): getIngredientRequest => ({
     type: GET_INGREDIENTS_REQUEST

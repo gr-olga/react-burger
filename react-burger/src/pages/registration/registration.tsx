@@ -2,15 +2,14 @@ import styles from "./registration.module.css";
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ChangeEvent, useState} from "react";
 import {AuthForm} from "../auth/auth-form";
-import {getRegisterUserData, TRegistrationResponse} from "../../api/api";
-import {useDispatch} from "../../utils/types";
-import {setUserData} from "../../services/actions/auth";
+import {TRegistrationResponse} from "../../api/api";
+import {useDispatch} from 'react-redux';
+import {getRegisterProfile} from "../../services/actions/auth";
 import {useHistory} from "react-router-dom";
 import {setCookie} from "../../utils/cookies-helpers";
 
 
 function Registration() {
-    const dispatch = useDispatch()
     const [name, setName] = useState('')
     const onChangeName = (e: ChangeEvent<HTMLInputElement>): void => {
         setName(e.target.value)
@@ -23,20 +22,21 @@ function Registration() {
     const onChangePassword = (e: ChangeEvent<HTMLInputElement>): void => {
         setPassword(e.target.value)
     }
-
+    const dispatch = useDispatch();
     const history = useHistory();
 
-    function signUp(): Promise<void> {
-        return getRegisterUserData({email, password, name})
-            .then((res: TRegistrationResponse) => {
-                dispatch(setUserData({
-                    user: res.user,
-                    refreshToken: res.refreshToken,
-                    accessToken: res.accessToken
-                }))
-
-                return res;
-            })
+    function signUp() {
+        // return getRegisterUserData({email, password, name})
+        //     .then((res: TRegistrationResponse) => {
+        //         dispatch(setUserData({
+        //             user: res.user,
+        //             refreshToken: res.refreshToken,
+        //             accessToken: res.accessToken
+        //         }))
+        //
+        //         return res;
+        //     })
+        (dispatch(getRegisterProfile({email, password, name})) as any) //Promise
             .then((res: TRegistrationResponse) => {
                 sessionStorage.setItem('refreshToken', res.refreshToken);
                 const seconds = 1200; //20 mins
