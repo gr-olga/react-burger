@@ -5,7 +5,6 @@ import {getCookie} from "../../utils/cookies-helpers";
 export function NonLoginRoute({children, ...rest}: Record<string, any>) {
     const token = getCookie('accessToken');
 
-
     return (
         <Route
             {...rest}
