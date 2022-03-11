@@ -2,8 +2,9 @@ import styles from "./forgot-password.module.css";
 import {Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ChangeEvent, useState} from "react";
 import {AuthForm} from "../auth/auth-form";
-import {getReorderPassword} from "../../api/api";
 import {useHistory} from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {reorderPassword} from "../../services/actions/auth";
 
 
 function ForgotPassword() {
@@ -12,14 +13,11 @@ function ForgotPassword() {
     const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     }
+    const dispatch = useDispatch()
 
-    function resetPassword(): Promise<void> {
-        return getReorderPassword(email)
-            .then((res) => {
-                if (res && res.success) {
-                    history.push({pathname: '/password-recovery', state: { fromRecovery: true }});
-                }
-            })
+    function resetPassword() {
+        (dispatch(reorderPassword(email)) as any)
+            .then(() => history.push({pathname: '/password-recovery', state: {fromRecovery: true}}))
     }
 
     return (

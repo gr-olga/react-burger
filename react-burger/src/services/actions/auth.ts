@@ -1,5 +1,11 @@
 import {AppDispatch, AppThunk, TUserData, TUserLoginData, TUserWithPassword} from "../../utils/types";
-import {getLoginUserData, getRegisterUserData, TRegistrationResponse} from "../../api/api";
+import {
+    getLoginUserData,
+    getRegisterUserData,
+    getReorderPassword,
+    TRegistrationResponse,
+    TResponse
+} from "../../api/api";
 
 export const SET_USER_DATA: "SET_USER_DATA" = 'SET_USER_DATA';
 
@@ -28,6 +34,9 @@ export type TAuthAction =
     | getLoginRequest
     | getLoginSuccess
     | getLoginFailed
+    | reorderPasswordRequest
+    | reorderPasswordSuccess
+    | reorderPasswordFailed
 
 export const GET_REGISTER_PROFILE_REQUEST: "GET_REGISTER_PROFILE_REQUEST" = 'GET_REGISTER_PROFILE_REQUEST';
 export const GET_REGISTER_PROFILE_SUCCESS: 'GET_REGISTER_PROFILE_SUCCESS' = 'GET_REGISTER_PROFILE_SUCCESS';
@@ -124,6 +133,52 @@ export const getLogin: AppThunk = (userData: TUserLoginData) => (dispatch: AppDi
                 }));
             } else {
                 dispatch(getLoginFailed());
+            }
+            return res;
+        })
+        .catch((err) => console.log("failed", err))
+}
+
+
+export const REORDER_PASSWORD_REQUEST: "REORDER_PASSWORD_REQUEST" = 'REORDER_PASSWORD_REQUEST';
+export const REORDER_PASSWORD_SUCCESS: 'REORDER_PASSWORD_SUCCESS' = 'REORDER_PASSWORD_SUCCESS';
+export const REORDER_PASSWORD_FAILED: 'REORDER_PASSWORD_FAILED' = 'REORDER_PASSWORD_FAILED';
+
+
+export interface reorderPasswordRequest {
+    type: typeof REORDER_PASSWORD_REQUEST;
+    email: string;
+}
+
+export interface reorderPasswordSuccess {
+    type: typeof REORDER_PASSWORD_SUCCESS;
+}
+
+export interface reorderPasswordFailed {
+    type: typeof REORDER_PASSWORD_FAILED;
+}
+
+
+const reorderPasswordRequest = (email: string): reorderPasswordRequest => ({
+    type: REORDER_PASSWORD_REQUEST,
+    email
+})
+const reorderPasswordSuccess = (): reorderPasswordSuccess => ({
+    type: REORDER_PASSWORD_SUCCESS,
+
+})
+const reorderPasswordFailed = (): reorderPasswordFailed => ({
+    type: REORDER_PASSWORD_FAILED,
+})
+
+export const reorderPassword: AppThunk = (email:string) => (dispatch: AppDispatch) => {
+    dispatch(reorderPasswordRequest(email));
+    return getReorderPassword(email)
+        .then((res: TResponse) => {
+            if (res && res.success) {
+                dispatch(reorderPasswordSuccess());
+            } else {
+                dispatch(reorderPasswordFailed());
             }
             return res;
         })
