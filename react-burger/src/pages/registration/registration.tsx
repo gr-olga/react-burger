@@ -26,16 +26,6 @@ function Registration() {
     const history = useHistory();
 
     function signUp() {
-        // return getRegisterUserData({email, password, name})
-        //     .then((res: TRegistrationResponse) => {
-        //         dispatch(setUserData({
-        //             user: res.user,
-        //             refreshToken: res.refreshToken,
-        //             accessToken: res.accessToken
-        //         }))
-        //
-        //         return res;
-        //     })
         (dispatch(getRegisterProfile({email, password, name})) as any) //Promise
             .then((res: TRegistrationResponse) => {
                 sessionStorage.setItem('refreshToken', res.refreshToken);
