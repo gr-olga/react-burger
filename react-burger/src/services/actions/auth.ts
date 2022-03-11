@@ -1,6 +1,7 @@
 import {AppDispatch, AppThunk, TUserData, TUserLoginData, TUserWithPassword} from "../../utils/types";
 import {
     getLoginUserData,
+    getLogOut,
     getRegisterUserData,
     getReorderPassword,
     TRegistrationResponse,
@@ -37,6 +38,10 @@ export type TAuthAction =
     | reorderPasswordRequest
     | reorderPasswordSuccess
     | reorderPasswordFailed
+    | logOutRequest
+    | logOutSuccess
+    | logOutFailed
+
 
 export const GET_REGISTER_PROFILE_REQUEST: "GET_REGISTER_PROFILE_REQUEST" = 'GET_REGISTER_PROFILE_REQUEST';
 export const GET_REGISTER_PROFILE_SUCCESS: 'GET_REGISTER_PROFILE_SUCCESS' = 'GET_REGISTER_PROFILE_SUCCESS';
@@ -171,9 +176,55 @@ const reorderPasswordFailed = (): reorderPasswordFailed => ({
     type: REORDER_PASSWORD_FAILED,
 })
 
-export const reorderPassword: AppThunk = (email:string) => (dispatch: AppDispatch) => {
+export const reorderPassword: AppThunk = (email: string) => (dispatch: AppDispatch) => {
     dispatch(reorderPasswordRequest(email));
     return getReorderPassword(email)
+        .then((res: TResponse) => {
+            if (res && res.success) {
+                dispatch(reorderPasswordSuccess());
+            } else {
+                dispatch(reorderPasswordFailed());
+            }
+            return res;
+        })
+        .catch((err) => console.log("failed", err))
+}
+
+
+export const LOGOUT_REQUEST: "LOGOUT_REQUEST" = 'LOGOUT_REQUEST';
+export const LOGOUT_SUCCESS: 'LOGOUT_SUCCESS' = 'LOGOUT_SUCCESS';
+export const LOGOUT_FAILED: 'LOGOUT_FAILED' = 'LOGOUT_FAILED';
+
+
+export interface logOutRequest {
+    type: typeof LOGOUT_REQUEST;
+    token: string;
+}
+
+export interface logOutSuccess {
+    type: typeof LOGOUT_SUCCESS;
+}
+
+export interface logOutFailed {
+    type: typeof LOGOUT_FAILED;
+}
+
+
+const logOutRequest = (token: string): logOutRequest => ({
+    type: LOGOUT_REQUEST,
+    token
+})
+const logOutSuccess = (): logOutSuccess => ({
+    type: LOGOUT_SUCCESS,
+
+})
+const logOutFailed = (): logOutFailed => ({
+    type: LOGOUT_FAILED,
+})
+
+export const LogOut: AppThunk = (token: string) => (dispatch: AppDispatch) => {
+    dispatch(reorderPasswordRequest(token));
+    return getLogOut(token)
         .then((res: TResponse) => {
             if (res && res.success) {
                 dispatch(reorderPasswordSuccess());

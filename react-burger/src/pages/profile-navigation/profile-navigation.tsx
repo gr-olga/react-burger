@@ -1,19 +1,20 @@
 import styles from "./profile-navigation.module.css";
 import {getLogOut} from "../../api/api";
 import {useSelector} from "../../utils/types";
-import {REMOVE_USER} from "../../services/actions/auth";
+import {LogOut, REMOVE_USER} from "../../services/actions/auth";
 import {useDispatch} from 'react-redux';
 import {userData} from "../../services/reducers/auth";
 import {NavLink, useHistory} from "react-router-dom";
-import {eraseCookie} from "../../utils/cookies-helpers";
+import {eraseCookie, getCookie} from "../../utils/cookies-helpers";
 
 function ProfileNavigation(props: any) {
     const history = useHistory();
     const dispatch = useDispatch();
-    const {refreshToken} = useSelector(({userReducer}) => userReducer)
+    const token = getCookie('accessToken');
 
+ console.log(token)
     function logOut() {
-        getLogOut(refreshToken)
+        (dispatch(LogOut(token)) as any)
             .then(() => dispatch({type: REMOVE_USER, userData}))
             .finally(() => {
                 sessionStorage.removeItem('refreshToken')
