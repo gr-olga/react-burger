@@ -10,6 +10,7 @@ import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     CLOSE_MODAL,
     getIngredients,
+    INCREASE_BUN_COUNTER,
     INCREASE_COUNTER,
     SHOW_INGREDIENT
 } from "../../services/actions";
@@ -47,7 +48,7 @@ function App() {
 
 
     const handleDrop = (item: TIngredient) => {
-        dispatch({type: INCREASE_COUNTER, itemId: item._id})
+        dispatch({type: item.type !== 'bun' ? INCREASE_COUNTER : INCREASE_BUN_COUNTER, itemId: item._id})
         dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
     }
 

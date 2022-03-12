@@ -10,6 +10,7 @@ import {
     GET_ORDER_INGREDIENTS_FAILED,
     GET_ORDER_INGREDIENTS_REQUEST,
     GET_ORDER_INGREDIENTS_SUCCESS,
+    INCREASE_BUN_COUNTER,
     INCREASE_COUNTER,
     MOVE_INSIDE_CONSTRUCTOR,
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
@@ -75,7 +76,6 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
             const isBunAdded = Boolean(state.constructorIngredients.find((item) => item.type === 'bun'));
 
             if (isBun && isBunAdded) {
-                // const bunIndex = state.constructorIngredients.findIndex((item) => item.type === 'bun')
                 let ingredients = state.constructorIngredients.filter((item) => item.type !== 'bun')
                 ingredients = [...ingredients, action.ingredient]
                 return {
@@ -97,7 +97,7 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                dragContainer: state.nonBunIngredientsList.filter((item: TConstructorItem, index: number) => index!== action.value.index),
+                dragContainer: state.nonBunIngredientsList.filter((item: TConstructorItem, index: number) => index !== action.value.index),
             };
         }
         case SHOW_INGREDIENT: {
@@ -121,16 +121,16 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
                 dragContainer: changeOrder(state.nonBunIngredientsList, action.dragIndex, action.hoverIndex)
             };
         }
-
         case MOVE_INSIDE_CONSTRUCTOR: {
             return {...state, constructorIngredients: [state.constructorIngredients[0], ...state.dragContainer]};
         }
-
         case INCREASE_COUNTER: {
-                const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
-                return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
+            const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
+            return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
         }
-
+        // case INCREASE_BUN_COUNTER: {
+            // return {...state, bunCounter: action.itemId};
+        // }
         case DECREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 1;
             return {...state, counter: {...state.counter, [action.itemId]: prevValue - 1}};
