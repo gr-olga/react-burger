@@ -97,8 +97,7 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                dragContainer: state.nonBunIngredientsList.filter((item: TConstructorItem, index: number) => index !== action.index),
-                //TODO action.value.index need value or not
+                dragContainer: state.nonBunIngredientsList.filter((item: TConstructorItem, index: number) => index!== action.value.index),
             };
         }
         case SHOW_INGREDIENT: {

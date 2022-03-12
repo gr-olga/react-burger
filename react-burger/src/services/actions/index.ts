@@ -67,6 +67,7 @@ export interface addIngredientToNonBunItems {
 export interface removeIngredientFromConstructor {
     type: typeof REMOVE_INGREDIENT_FROM_CONSTRUCTOR;
     index: number
+    value: any
 }
 
 export interface showIngredient {
