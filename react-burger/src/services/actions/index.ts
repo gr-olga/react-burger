@@ -99,11 +99,6 @@ export interface reorderConstructor {
     hoverIndex: number
 }
 
-export interface increaseBunCounter {
-    type: typeof INCREASE_BUN_COUNTER;
-    itemId: number
-}
-
 export type TAction =
     | addIngredientToConstructor
     | addIngredientToNonBunItems
@@ -122,8 +117,6 @@ export type TAction =
     | showIngredient
     | TAuthAction
     | removeUser
-    | increaseBunCounter
-
 
 const getIngredientRequest = (): getIngredientRequest => ({
     type: GET_INGREDIENTS_REQUEST

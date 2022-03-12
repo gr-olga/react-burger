@@ -128,9 +128,6 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
             return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
         }
-        // case INCREASE_BUN_COUNTER: {
-            // return {...state, bunCounter: action.itemId};
-        // }
         case DECREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 1;
             return {...state, counter: {...state.counter, [action.itemId]: prevValue - 1}};

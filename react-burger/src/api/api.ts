@@ -11,8 +11,6 @@ const handleResponse = (res: Response) => {
 export function getIngredientsData() {
     return fetch(`${BASE_URL}ingredients`)
         .then(handleResponse)
-    // .then((res) => (res.json()))
-    // .catch((err) => console.log("failed", err))
 }
 
 export function getInitialOrder(ingredientIds: Array<number>) {
@@ -24,7 +22,6 @@ export function getInitialOrder(ingredientIds: Array<number>) {
         }
     })
         .then(handleResponse)
-    // .catch((err) => console.log("failed", err))
 }
 
 export function getReorderPassword(email: string): Promise<{ success: boolean, message: string }> {

@@ -48,7 +48,7 @@ function App() {
 
 
     const handleDrop = (item: TIngredient) => {
-        dispatch({type: item.type !== 'bun' ? INCREASE_COUNTER : INCREASE_BUN_COUNTER, itemId: item._id})
+        dispatch({type: INCREASE_COUNTER, itemId: item._id})
         dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
     }
 
