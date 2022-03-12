@@ -80,7 +80,7 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
                 ingredients = [...ingredients, action.ingredient]
                 return {
                     ...state,
-                    constructorIngredients: ingredients
+                    constructorIngredients: ingredients,
                 };
             } else {
                 return {

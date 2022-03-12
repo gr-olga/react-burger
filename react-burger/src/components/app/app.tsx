@@ -54,6 +54,7 @@ function App() {
 
     function closeModal() {
         dispatch({type: CLOSE_MODAL})
+        history.goBack();
     }
 
     const {
