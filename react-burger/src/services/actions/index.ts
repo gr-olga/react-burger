@@ -8,7 +8,7 @@ import {
     TIngredientForConstructor,
     TOrder
 } from "../../utils/types";
-import {getRegisterProfile, removeUser, TAuthAction} from "./auth";
+import {removeUser, TAuthAction} from "./auth";
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS: 'GET_INGREDIENTS_SUCCESS' = 'GET_INGREDIENTS_SUCCESS';

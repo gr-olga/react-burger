@@ -1,6 +1,5 @@
 import {Redirect, Route, useLocation} from 'react-router-dom';
 import {getCookie} from "../../utils/cookies-helpers";
-import {state} from "../../index";
 
 //todo any
 export function ProtectedRoute({children, ...rest}: Record<string, any>) {

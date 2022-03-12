@@ -9,7 +9,7 @@ import {useDispatch} from 'react-redux';
 import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     CLOSE_MODAL,
-    getIngredients, INCREASE_BUN_COUNTER,
+    getIngredients,
     INCREASE_COUNTER,
     SHOW_INGREDIENT
 } from "../../services/actions";
@@ -45,77 +45,75 @@ function App() {
         dispatch({type: SHOW_INGREDIENT, ingredient: item})
     }
 
-    const {nonBunIngredientsList, constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
     const handleDrop = (item: TIngredient) => {
-        console.log(constructorIngredients)
-            dispatch({type: INCREASE_COUNTER, itemId: item._id})
-            dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
+        dispatch({type: INCREASE_COUNTER, itemId: item._id})
+        dispatch({type: ADD_INGREDIENT_TO_CONSTRUCTOR, ingredient: {...item, key: uuidv4()}})
     }
 
 
-function closeModal() {
-    dispatch({type: CLOSE_MODAL})
-}
+    function closeModal() {
+        dispatch({type: CLOSE_MODAL})
+    }
 
-const {
-    isIngredientDetailsOpen,
-} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {
+        isIngredientDetailsOpen,
+    } = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
-return (
-    <div className={styles.app}>
-        <AppHeader/>
-        <Switch location={background || location}>
-            <Route path="/" exact={true}>
-                <DndProvider backend={HTML5Backend}>
-                    <div className={styles.bar}>
-                        <BurgerIngredients
-                            onIngredientClick={handleIngredientClick}
-                        />
-                        <BurgerConstructor
-                            onDropHandler={handleDrop}
-                        />
-                    </div>
-                </DndProvider>
-            </Route>
-            <NonLoginRoute path='/login'>
-                <Entrance/>
-            </NonLoginRoute>
-            <NonLoginRoute path='/register'>
-                <Registration/>
-            </NonLoginRoute>
-            <NonLoginRoute path='/forgot-password'>
-                <ForgotPassword/>
-            </NonLoginRoute>
-            <NonLoginRoute path='/password-recovery'>
-                <PasswordRecovery/>
-            </NonLoginRoute>
-            <ProtectedRoute path='/profile'>
-                <UserProfile/>
-            </ProtectedRoute>
-            <ProtectedRoute path='/order'>
-                <OrderFeed/>
-            </ProtectedRoute>
-            <Route path="/ingredient/:id">
-                <IngredientDetails/>
-            </Route>
-            <Route>
-                <NotFoundPage/>
-            </Route>
-        </Switch>
-        {background && <Route path="/ingredient/:id"
-                              children={<Modal closeModal={closeModal}
-                                               title={'Детали ингредиента'}
-                                               isOpen={isIngredientDetailsOpen}
-                              >
-                                  <IngredientDetails/>
-                              </Modal>}
-        />}
-        <OrderDetails
-            closeModal={closeModal}
-        />
-    </div>
-);
+    return (
+        <div className={styles.app}>
+            <AppHeader/>
+            <Switch location={background || location}>
+                <Route path="/" exact={true}>
+                    <DndProvider backend={HTML5Backend}>
+                        <div className={styles.bar}>
+                            <BurgerIngredients
+                                onIngredientClick={handleIngredientClick}
+                            />
+                            <BurgerConstructor
+                                onDropHandler={handleDrop}
+                            />
+                        </div>
+                    </DndProvider>
+                </Route>
+                <NonLoginRoute path='/login'>
+                    <Entrance/>
+                </NonLoginRoute>
+                <NonLoginRoute path='/register'>
+                    <Registration/>
+                </NonLoginRoute>
+                <NonLoginRoute path='/forgot-password'>
+                    <ForgotPassword/>
+                </NonLoginRoute>
+                <NonLoginRoute path='/password-recovery'>
+                    <PasswordRecovery/>
+                </NonLoginRoute>
+                <ProtectedRoute path='/profile'>
+                    <UserProfile/>
+                </ProtectedRoute>
+                <ProtectedRoute path='/order'>
+                    <OrderFeed/>
+                </ProtectedRoute>
+                <Route path="/ingredient/:id">
+                    <IngredientDetails/>
+                </Route>
+                <Route>
+                    <NotFoundPage/>
+                </Route>
+            </Switch>
+            {background && <Route path="/ingredient/:id"
+                                  children={<Modal closeModal={closeModal}
+                                                   title={'Детали ингредиента'}
+                                                   isOpen={isIngredientDetailsOpen}
+                                  >
+                                      <IngredientDetails/>
+                                  </Modal>}
+            />}
+            <OrderDetails
+                closeModal={closeModal}
+            />
+        </div>
+    );
 }
 
 export default App;

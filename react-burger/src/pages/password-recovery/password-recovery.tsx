@@ -2,7 +2,7 @@ import {AuthForm} from "../auth/auth-form";
 import styles from "../registration/registration.module.css";
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ChangeEvent, useState} from "react";
-import {useHistory, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {NotFoundPage} from "../not-found-page/not-found-page";
 
 function PasswordRecovery(props: any):any {

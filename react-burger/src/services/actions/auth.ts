@@ -4,8 +4,10 @@ import {
     getLogOut,
     getRegisterUserData,
     getReorderPassword,
+    getUserData,
     TRegistrationResponse,
-    TResponse
+    TResponse,
+    updateUserData
 } from "../../api/api";
 
 export const SET_USER_DATA: "SET_USER_DATA" = 'SET_USER_DATA';
@@ -41,6 +43,12 @@ export type TAuthAction =
     | logOutRequest
     | logOutSuccess
     | logOutFailed
+    | getUserDataRequest
+    | getUserDataSuccess
+    | getUserDataFailed
+    | getUpdateUserDataRequest
+    | getUpdateUserDataSuccess
+    | getUpdateUserDataFailed
 
 
 export const GET_REGISTER_PROFILE_REQUEST: "GET_REGISTER_PROFILE_REQUEST" = 'GET_REGISTER_PROFILE_REQUEST';
@@ -230,6 +238,113 @@ export const LogOut: AppThunk = (token: string) => (dispatch: AppDispatch) => {
                 dispatch(reorderPasswordSuccess());
             } else {
                 dispatch(reorderPasswordFailed());
+            }
+            return res;
+        })
+        .catch((err) => console.log("failed", err))
+}
+
+
+export const GET_USER_DATA_REQUEST: "GET_USER_DATA_REQUEST" = 'GET_USER_DATA_REQUEST';
+export const GET_USER_DATA_SUCCESS: 'GET_USER_DATA_SUCCESS' = 'GET_USER_DATA_SUCCESS';
+export const GET_USER_DATA_FAILED: 'GET_USER_DATA_FAILED' = 'GET_USER_DATA_FAILED';
+
+
+export interface getUserDataRequest {
+    type: typeof GET_USER_DATA_REQUEST;
+    accessToken: string
+}
+
+export interface getUserDataSuccess {
+    type: typeof GET_USER_DATA_SUCCESS;
+    user: TUserData
+}
+
+export interface getUserDataFailed {
+    type: typeof GET_USER_DATA_FAILED;
+}
+
+
+const getUserDataRequest = (accessToken: string): getUserDataRequest => ({
+    type: GET_USER_DATA_REQUEST,
+    accessToken
+})
+const getUserDataSuccess = (user: TUserData): getUserDataSuccess => ({
+    type: GET_USER_DATA_SUCCESS,
+    user
+
+})
+const getUserDataFailed = (): getUserDataFailed => ({
+    type: GET_USER_DATA_FAILED,
+})
+
+export const initialUserData: AppThunk = (accessToken: string) => (dispatch: AppDispatch) => {
+    dispatch(getUserDataRequest(accessToken));
+    return getUserData(accessToken)
+        .then((res: TRegistrationResponse) => {
+            if (res && res.success) {
+                dispatch(getUserDataSuccess({
+                    user: res.user,
+                    refreshToken: res.refreshToken,
+                    accessToken: res.accessToken
+                }))
+                ;
+            } else {
+                dispatch(getUserDataFailed());
+            }
+            return res;
+        })
+        .catch((err) => console.log("failed", err))
+}
+
+export const GET_UPDATE_USER_DATA_REQUEST: "GET_UPDATE_USER_DATA_REQUEST" = 'GET_UPDATE_USER_DATA_REQUEST';
+export const GET_UPDATE_USER_DATA_SUCCESS: 'GET_UPDATE_USER_DATA_SUCCESS' = 'GET_UPDATE_USER_DATA_SUCCESS';
+export const GET_UPDATE_USER_DATA_FAILED: 'GET_UPDATE_USER_DATA_FAILED' = 'GET_UPDATE_USER_DATA_FAILED';
+
+
+export interface getUpdateUserDataRequest {
+    type: typeof GET_UPDATE_USER_DATA_REQUEST;
+    accessToken: string,
+    user: TUserWithPassword
+}
+
+export interface getUpdateUserDataSuccess {
+    type: typeof GET_UPDATE_USER_DATA_SUCCESS;
+    user: TUserData
+}
+
+export interface getUpdateUserDataFailed {
+    type: typeof GET_UPDATE_USER_DATA_FAILED;
+}
+
+
+const getUpdateUserDataRequest = (accessToken: string, user: TUserWithPassword): getUpdateUserDataRequest => ({
+    type: GET_UPDATE_USER_DATA_REQUEST,
+    accessToken,
+    user
+})
+const getUpdateUserDataSuccess = (user: TUserData): getUpdateUserDataSuccess => ({
+    type: GET_UPDATE_USER_DATA_SUCCESS,
+    user
+
+})
+const getUpdateUserDataFailed = (): getUpdateUserDataFailed => ({
+    type: GET_UPDATE_USER_DATA_FAILED,
+})
+
+export const getUpdateUserData: AppThunk = (accessToken: string, user: TUserWithPassword) => (dispatch: AppDispatch) => {
+    dispatch(getUpdateUserDataRequest(accessToken, user));
+    return updateUserData(accessToken, user)
+        .then((res: TRegistrationResponse) => {
+            if (res && res.success) {
+                dispatch(getUpdateUserDataSuccess({
+                    user: res.user,
+                    refreshToken: res.refreshToken,
+                    accessToken: res.accessToken
+                }))
+                ;
+            } else {
+                dispatch(getUpdateUserDataFailed());
             }
             return res;
         })

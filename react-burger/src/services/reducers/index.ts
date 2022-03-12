@@ -15,7 +15,6 @@ import {
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
     REORDER_CONSTRUCTOR,
     SHOW_INGREDIENT,
-    INCREASE_BUN_COUNTER,
     TAction
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
@@ -103,7 +102,6 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
             };
         }
         case SHOW_INGREDIENT: {
-            console.log(212312);
             return {
                 ...state,
                 isIngredientDetailsOpen: true,
@@ -133,9 +131,6 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
                 const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
                 return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
         }
-        // case INCREASE_BUN_COUNTER:{
-        //     return {...state, counter: {...state.counter, [action.itemId]: 1}}
-        // }
 
         case DECREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 1;

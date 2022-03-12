@@ -6,7 +6,7 @@ import {AuthExtra} from "../auth/auth-extra";
 import {getLogin} from "../../services/actions/auth";
 import {useDispatch} from 'react-redux';
 import {useHistory, useLocation} from "react-router-dom";
-import {getCookie, setCookie} from "../../utils/cookies-helpers";
+import {setCookie} from "../../utils/cookies-helpers";
 import {TRegistrationResponse} from "../../api/api";
 
 
@@ -22,7 +22,6 @@ function Entrance() {
     }
     const history = useHistory();
     const location = useLocation();
-    const token = getCookie('accessToken');
 
     function logIn() {
         (dispatch(getLogin({email, password})) as any)

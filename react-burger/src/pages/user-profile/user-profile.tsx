@@ -1,11 +1,11 @@
 import styles from './user-profile.module.css'
 import {Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import ProfileNavigation from "../profile-navigation/profile-navigation";
-import {setUserData} from "../../services/actions/auth";
+import {getUpdateUserData, initialUserData} from "../../services/actions/auth";
 import {useDispatch} from "react-redux";
 import {ChangeEvent, useEffect, useState} from "react";
 import {getCookie} from "../../utils/cookies-helpers";
-import {getUserData, TRegistrationResponse, updateUserData} from "../../api/api";
+import {TRegistrationResponse} from "../../api/api";
 import {TUser, useSelector} from "../../utils/types";
 
 function UserProfile() {
@@ -29,15 +29,7 @@ function UserProfile() {
     useEffect(() => {
         const token = getCookie('accessToken');
         if (!token) return;
-        getUserData(token)
-            .then((res: TRegistrationResponse) => {
-                dispatch(setUserData({
-                    user: res.user,
-                    refreshToken: res.refreshToken,
-                    accessToken: res.accessToken
-                }))
-                return res;
-            })
+        (dispatch(initialUserData(token)) as any)
             .then((res: TRegistrationResponse) => {
                 setUserForm(res.user)
             })
@@ -46,19 +38,11 @@ function UserProfile() {
     function updateData() {
         const token = getCookie('accessToken');
         if (token) {
-            updateUserData(token, {
+            (dispatch(getUpdateUserData(token, {
                 name: targetName,
                 email: targetEmail,
                 password: targetPassword
-            })
-                .then((res: TRegistrationResponse) => {
-                    dispatch(setUserData({
-                        user: res.user,
-                        refreshToken: res.refreshToken,
-                        accessToken: res.accessToken
-                    }))
-                    return res;
-                })
+            })) as any)
                 .then((res: TRegistrationResponse) => {
                     setUserForm(res.user)
                 })

@@ -1,6 +1,4 @@
 import styles from "./profile-navigation.module.css";
-import {getLogOut} from "../../api/api";
-import {useSelector} from "../../utils/types";
 import {LogOut, REMOVE_USER} from "../../services/actions/auth";
 import {useDispatch} from 'react-redux';
 import {userData} from "../../services/reducers/auth";
@@ -12,7 +10,6 @@ function ProfileNavigation(props: any) {
     const dispatch = useDispatch();
     const token = getCookie('accessToken');
 
- console.log(token)
     function logOut() {
         (dispatch(LogOut(token)) as any)
             .then(() => dispatch({type: REMOVE_USER, userData}))
