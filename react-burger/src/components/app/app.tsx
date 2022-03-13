@@ -55,7 +55,9 @@ function App() {
 
     function closeModal() {
         dispatch({type: CLOSE_MODAL})
-        history.goBack();
+        if(isIngredientDetailsOpen){
+            history.goBack()
+        }
     }
 
     const {

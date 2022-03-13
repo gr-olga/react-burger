@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 
 
 function IngredientDetails() {
+
     const {ingredientDetail, ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer);
     let { id } = useParams() as any;
     const detail = Object.keys(ingredientDetail).length === 0 ? ingredients.find((ing) => ing._id === id) : ingredientDetail;
