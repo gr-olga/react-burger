@@ -20,7 +20,30 @@ export type TState = {
     itemsRequest: boolean
 }
 
+export type TUserData = {
+    user: TUser,
+    accessToken: string
+    refreshToken: string
+}
+
+export interface TUser {
+    email: string,
+    name: string
+    // password:string
+}
+
+export interface TUserWithPassword extends TUser {
+    password: string
+}
+
+export interface TUserLoginData {
+    email: string,
+    password: string
+}
+
 export type TIngredientDetail = {
+    _id?: number
+    id: number
     calories: number
     proteins: number
     fat: number
@@ -44,11 +67,13 @@ export type TModal = {
     isOpen?: boolean
 }
 
+
 export interface TIngredient extends TClearIngredient {
     onItemClick: (item: TIngredient) => void
 }
 
 export type TClearIngredient = {
+    id?: number
     _id: string,
     name: string,
     image: string,
@@ -95,6 +120,7 @@ export interface ConstructorItemProps {
 }
 
 export type RootState = ReturnType<typeof state.getState>
+
 
 export type AppThunk<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TAction>>;
 // export type AppDispatch = typeof initialState.dispatch

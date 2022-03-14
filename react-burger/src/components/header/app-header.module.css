@@ -1,28 +1,55 @@
-.header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding-top: 28px;
-    background: #1C1C21;
-    box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
-}
-
 .btn {
     text-align: center;
     display: flex;
     flex-direction: row;
-    margin-right: 28px;
 }
 
+.text {
+    cursor: pointer;
+    margin-right: 28px;
+    font-family: JetBrains Mono, sans-serif;
+    margin-left: 11px;
+    /*color: #F2F2F3;*/
+}
+
+.header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    background: #1C1C21;
+    box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+
 .navBox {
+    grid-area: 1 / 1 / 2 / 3;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0;
     align-items: flex-end;
 }
 
-.py {
-    margin-left: 8px;
+.logo {
+    grid-area: 1 / 3 / 2 / 6;
+    display: flex;
+    justify-content: center;
+}
+
+.navBox2 {
+    grid-area: 1 / 6 / 2 / 8;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    align-items: flex-end;
+    justify-content: center;
+    text-decoration: none;
+    color: #8585AD;
+}
+
+.activeLink {
+    color: #F2F2F3;
 }

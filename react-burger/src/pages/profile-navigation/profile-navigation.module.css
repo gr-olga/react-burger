@@ -1,0 +1,44 @@
+.navContainer {
+    grid-area: 1 / 1 / 2 / 3;
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 320px;
+    justify-self: center;
+}
+
+.link {
+    cursor: pointer;
+    background: none;
+    text-decoration: none;
+    border: none;
+    font-family: JetBrains Mono, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #8585AD;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.activeLink {
+    color: #F2F2F3;
+}
+
+.paragraph {
+    font-family: JetBrains Mono, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #8585AD;
+    opacity: 0.4;
+}
+
+.linksList {
+    margin-bottom: 80px;
+}

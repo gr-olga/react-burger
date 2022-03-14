@@ -1,6 +1,7 @@
 .box {
     max-width: 720px;
     max-height: 539px;
+    display: contents;
 }
 
 .title {

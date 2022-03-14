@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box {
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.box > div {
+    width: 100%;
+}
+
+.box > div > div {
+    width: 100%;
+}
+
+.button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+}

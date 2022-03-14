@@ -10,6 +10,7 @@ import {
     GET_ORDER_INGREDIENTS_FAILED,
     GET_ORDER_INGREDIENTS_REQUEST,
     GET_ORDER_INGREDIENTS_SUCCESS,
+    INCREASE_BUN_COUNTER,
     INCREASE_COUNTER,
     MOVE_INSIDE_CONSTRUCTOR,
     REMOVE_INGREDIENT_FROM_CONSTRUCTOR,
@@ -19,7 +20,7 @@ import {
 } from '../actions'
 import {changeOrder} from "../../utils/array-helper";
 import {TConstructorItem, TState} from "../../utils/types";
-
+import {userReducer} from "./auth";
 
 export const initialState: TState = {
     ingredientIds: [],
@@ -35,7 +36,6 @@ export const initialState: TState = {
     counter: {},
     itemsRequest: false
 };
-
 
 export const ingredientsReducer = (state: TState = initialState, action: TAction): TState => {
     switch (action.type) {
@@ -72,10 +72,24 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
             return {...state, loader: true};
         }
         case ADD_INGREDIENT_TO_CONSTRUCTOR: {
-            return {
-                ...state,
-                constructorIngredients: [...state.constructorIngredients, action.ingredient]
-            };
+            const isBun = action.ingredient.type === 'bun';
+            const isBunAdded = Boolean(state.constructorIngredients.find((item) => item.type === 'bun'));
+
+            if (isBun && isBunAdded) {
+                let ingredients = state.constructorIngredients.filter((item) => item.type !== 'bun')
+                ingredients = [...ingredients, action.ingredient]
+                return {
+                    ...state,
+                    constructorIngredients: ingredients,
+                };
+            } else {
+                return {
+                    ...state,
+                    constructorIngredients: [...state.constructorIngredients, action.ingredient]
+                };
+            }
+
+
         }
         case ADD_INGREDIENT_TO_NON_BUN_ITEMS: {
             return {...state, nonBunIngredientsList: action.items};
@@ -83,8 +97,7 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
         case REMOVE_INGREDIENT_FROM_CONSTRUCTOR: {
             return {
                 ...state,
-                dragContainer: state.nonBunIngredientsList.filter((item: TConstructorItem, index: number) => index !== action.index),
-                //TODO action.value.index need value or not
+                dragContainer: state.nonBunIngredientsList.filter((item: TConstructorItem, index: number) => index !== action.value.index),
             };
         }
         case SHOW_INGREDIENT: {
@@ -108,17 +121,13 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
                 dragContainer: changeOrder(state.nonBunIngredientsList, action.dragIndex, action.hoverIndex)
             };
         }
-
         case MOVE_INSIDE_CONSTRUCTOR: {
             return {...state, constructorIngredients: [state.constructorIngredients[0], ...state.dragContainer]};
         }
-
-
         case INCREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 0;
             return {...state, counter: {...state.counter, [action.itemId]: prevValue + 1}};
         }
-
         case DECREASE_COUNTER: {
             const prevValue = state.counter[action.itemId] ? state.counter[action.itemId] : 1;
             return {...state, counter: {...state.counter, [action.itemId]: prevValue - 1}};
@@ -126,5 +135,4 @@ export const ingredientsReducer = (state: TState = initialState, action: TAction
     }
 }
 
-
-export const rootReducer = combineReducers({ingredientsReducer})
+export const rootReducer = combineReducers({ingredientsReducer, userReducer})

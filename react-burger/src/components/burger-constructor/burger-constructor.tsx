@@ -7,8 +7,12 @@ import {useDrop} from "react-dnd";
 import bun from '../../images/bun01.png'
 import {ADD_INGREDIENT_TO_NON_BUN_ITEMS, getOrderIngredients} from "../../services/actions";
 import ConstructorItem from "../constructor-item/constructor-item";
+import {getCookie} from "../../utils/cookies-helpers";
+import {useHistory} from "react-router-dom";
+
 
 function BurgerConstructor(props: BurgerConstructorTypes) {
+  const history = useHistory()
     const {
         constructorIngredients,
         nonBunIngredientsList,
@@ -30,15 +34,19 @@ function BurgerConstructor(props: BurgerConstructorTypes) {
     const [, dropTarget] = useDrop({
         accept: "item",
         drop(dropTarget: TIngredient) {
-            props.onDropHandler(dropTarget);
+           props.onDropHandler(dropTarget)
             if (dropTarget.type === 'bun') {
                 setBunItem(dropTarget)
             }
-
-        },
+        }
     });
 
     function handleOrderDetailClick() {
+        const token = getCookie('accessToken');
+        if (!token) {
+           history.push( "/login")
+        }
+        else
         dispatch(getOrderIngredients(constructorIngredients.map((item) => item._id)))
     }
 

@@ -75,17 +75,17 @@
 
 .link {
     text-decoration: none;
-    font-family: 'Jet Brains Mono', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #F2F2F3;
-    max-width: 200px;
-    left: calc(50% - 200px / 2);
-    top: 0%;
-    bottom: 0%;
-    padding: 16px 40px;
-    background: #131316;
+    /*font-family: 'Jet Brains Mono', sans-serif;*/
+    /*font-size: 16px;*/
+    /*line-height: 24px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*text-align: center;*/
+    /*color: #F2F2F3;*/
+    /*max-width: 200px;*/
+    /*left: calc(50% - 200px / 2);*/
+    /*top: 0%;*/
+    /*bottom: 0%;*/
+    /*padding: 16px 40px;*/
+    /*background: #131316;*/
 }

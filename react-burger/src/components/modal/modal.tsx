@@ -5,6 +5,7 @@ import styles from "../modal-overlay/modal-overlay.module.css";
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {TModal} from "../../utils/types";
 
+
 function Modal(props: TModal) {
 
     const modalRoot = document.getElementById('modal-root') as HTMLElement
@@ -17,7 +18,7 @@ function Modal(props: TModal) {
         }
         document.addEventListener('keydown', closeByEscape)
         return () => document.removeEventListener('keydown', closeByEscape)
-    })
+    },[])
 
     return ReactDOM.createPortal(
         (

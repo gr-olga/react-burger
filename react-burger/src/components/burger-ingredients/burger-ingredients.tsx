@@ -1,12 +1,14 @@
-import React, {UIEventHandler, useEffect, useRef, WheelEventHandler} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from "./burger-ingredients.module.css";
 import Ingredient from "../ingedient/ingredient";
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import {BurgerIngredientsTypes, TClearIngredient, TIngredient} from "../../utils/types";
-import {useSelector} from "../../utils/types";
+import {BurgerIngredientsTypes, TClearIngredient, TIngredient, useSelector} from "../../utils/types";
+import {useLocation, Link} from "react-router-dom";
 
 
 function BurgerIngredients(props: BurgerIngredientsTypes) {
+    let location = useLocation();
+
     const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
     const bunSection = useRef<HTMLHeadingElement>(null)
     const sauceSection = useRef<HTMLHeadingElement>(null)
@@ -44,7 +46,6 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
     function onItemClick(item: TIngredient): void {
         props.onIngredientClick(item)
     }
-
 
     return (
         <div className={styles.body}>
@@ -85,13 +86,23 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
                     <h2 className={styles.tag}> Булки </h2>
                     <div className={styles.container}>
                         {bunList.map((item) => {
-                            return (<Ingredient {...item}
+                            return (
+                                <Link
+                                    className={styles.link}
+                                    key={item._id}
+                                    to={{
+                                        pathname: `/ingredient/${item._id}`,
+                                        state: { background: location }
+                                    }}
+                                >
+                                <Ingredient {...item}
                                                 key={item._id}
                                                 img={item.image}
                                                 price={item.price}
                                                 name={item.name}
                                                 onItemClick={onItemClick}
-                            />)
+                            />
+                                </Link>)
                         })}
                     </div>
                 </section>
@@ -101,13 +112,23 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
                     <h2 className={styles.tag}>Соусы</h2>
                     <div className={styles.container}>
                         {sauceList.map((item) => {
-                            return (<Ingredient {...item}
+                            return (
+                                <Link
+                                    className={styles.link}
+                                    key={item._id}
+                                    to={{
+                                        pathname: `/ingredient/$${item._id}`,
+                                        state: { background: location }
+                                    }}
+                                >
+                                <Ingredient {...item}
                                                 onItemClick={onItemClick}
                                                 key={item._id}
                                                 img={item.image}
                                                 price={item.price}
                                                 name={item.name}
-                            />)
+                            />
+                                </Link>)
                         })}
                     </div>
                 </section>
@@ -117,13 +138,23 @@ function BurgerIngredients(props: BurgerIngredientsTypes) {
                     <h2 className={styles.tag}>Начинка</h2>
                     <div className={styles.container}>
                         {mainList.map((item) => {
-                            return (<Ingredient {...item}
+                            return (
+                                <Link
+                                    className={styles.link}
+                                    key={item._id}
+                                    to={{
+                                        pathname: `/ingredient/${item._id}`,
+                                        state: { background: location }
+                                    }}
+                                >
+                                <Ingredient {...item}
                                                 key={item._id}
                                                 img={item.image}
                                                 price={item.price}
                                                 name={item.name}
                                                 onItemClick={onItemClick}
-                            />)
+                            />
+                                </Link>)
                         })}
                     </div>
                 </section>

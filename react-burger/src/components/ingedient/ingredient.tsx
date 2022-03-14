@@ -1,13 +1,12 @@
 import styles from "./ingredient.module.css";
-import React from "react";
+import React, {useEffect} from "react";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import {useDrag} from "react-dnd";
-import {useSelector} from "../../utils/types";
-import { TIngredient} from "../../utils/types";
+import {TConstructorItem, TIngredient, useSelector} from "../../utils/types";
 
 function Ingredient(props: TIngredient) {
 
-    const {counter} = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    const {counter, constructorIngredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
 
     const [{isDrag}, dragRef] = useDrag({
         type: "item",
@@ -21,6 +20,10 @@ function Ingredient(props: TIngredient) {
         props.onItemClick(props)
     }
 
+    function isBunAdded(constructorIngredients: ReadonlyArray<TConstructorItem>): boolean {
+        return constructorIngredients.findIndex((ing) => ing.type === 'bun' && ing._id === props._id) !== -1
+    }
+
     return (
         <section
             onClick={handleClick}
@@ -29,8 +32,11 @@ function Ingredient(props: TIngredient) {
             <div className={styles.box}>
                 <div className={styles.wrapper}>
                     <img className={styles.image} src={props.img} alt={props.name}/>
-                    {counter[props._id] > 0 &&
-                    <Counter count={counter[props._id]} size="default"/>
+                    {counter[props._id] > 0 && props.type !== 'bun' &&
+                      <Counter count={counter[props._id]} size="default"/>
+                    }
+                    {isBunAdded(constructorIngredients) &&
+                     <Counter count={1} size="default"/>
                     }
                 </div>
                 <h3 className={styles.price}>
