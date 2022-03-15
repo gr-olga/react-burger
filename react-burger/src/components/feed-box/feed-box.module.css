@@ -1,0 +1,107 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background: #1C1C21;
+    border: 2px dashed #4C4CFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+}
+
+.dataBox {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 24px auto;
+    justify-content: space-between;
+}
+
+.viewBox {
+    /*max-width: 436px;*/
+    /*max-height: 64px;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-right: 24px;
+    margin-left: 24px;
+    margin-bottom: 24px;
+}
+
+.number {
+    font-family: 'Iceland', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #F2F2F3;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.dataOf {
+    font-family: 'JetBrains Mono', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+    text-align: right;
+    color: #8585AD;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.nameBurger {
+    font-family: 'JetBrains Mono', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #F2F2F3;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    width: 90%;
+    margin: auto auto 24px;
+}
+
+.image {
+    width: 56px;
+    height: 56px;
+    margin: auto;
+    border-radius: 100%;
+    border: 2px solid #4C4CFF;
+    /*background: linear-gradient(63.18deg, #801AB3 0%, #4C4CFF 100%);*/
+    background-color: black;
+
+}
+
+.image:not(:first-child) {
+    margin-left: -16px;
+}
+
+.sum {
+    font-family: 'Iceland', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 24px;
+    align-items: center;
+    text-align: right;
+    color: #F2F2F3;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 8px;
+}
+.sumBox{
+    display: flex;
+    align-items: center;
+}

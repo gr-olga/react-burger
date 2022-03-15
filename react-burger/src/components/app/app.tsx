@@ -29,6 +29,7 @@ import OrderFeed from "../../pages/order-feed/order-feed";
 import {ProtectedRoute} from "../protected-route/protected-route";
 import {NonLoginRoute} from "../non-login-route/non-login-route";
 import Modal from "../modal/modal";
+import {Feed} from "../../pages/feed/feed";
 
 function App() {
     let history = useHistory();
@@ -67,7 +68,9 @@ function App() {
     return (
         <div className={styles.app}>
             <AppHeader/>
+            <Feed/>
             <Switch location={background || location}>
+
                 <Route path="/" exact={true}>
                     <DndProvider backend={HTML5Backend}>
                         <div className={styles.bar}>
@@ -105,19 +108,20 @@ function App() {
                     <NotFoundPage/>
                 </Route>
             </Switch>
-            {background && <Route path="/ingredient/:id"
-                                  children={<Modal closeModal={closeModal}
-                                                   title={'Детали ингредиента'}
-                                                   isOpen={isIngredientDetailsOpen}
-                                  >
-                                      <IngredientDetails/>
-                                  </Modal>}
-            />}
-            <OrderDetails
-                closeModal={closeModal}
-            />
+            {/*{background && <Route path="/ingredient/:id"*/}
+            {/*                      children={<Modal closeModal={closeModal}*/}
+            {/*                                       title={'Детали ингредиента'}*/}
+            {/*                                       isOpen={isIngredientDetailsOpen}*/}
+            {/*                      >*/}
+            {/*                          <IngredientDetails/>*/}
+            {/*                      </Modal>}*/}
+            {/*/>}*/}
+            {/*<OrderDetails*/}
+            {/*    closeModal={closeModal}*/}
+            {/*/>*/}
         </div>
     );
 }
 
 export default App;
+
