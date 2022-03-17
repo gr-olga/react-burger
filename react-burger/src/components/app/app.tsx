@@ -25,7 +25,7 @@ import PasswordRecovery from "../../pages/password-recovery/password-recovery";
 import UserProfile from "../../pages/user-profile/user-profile";
 import {Route, Switch, useHistory, useLocation} from "react-router-dom";
 import {NotFoundPage} from "../../pages/not-found-page/not-found-page";
-import OrderFeed from "../../pages/order-feed/order-feed";
+import OrderInfo from "../../pages/order-info/order-info";
 import {ProtectedRoute} from "../protected-route/protected-route";
 import {NonLoginRoute} from "../non-login-route/non-login-route";
 import Modal from "../modal/modal";
@@ -68,7 +68,7 @@ function App() {
     return (
         <div className={styles.app}>
             <AppHeader/>
-            <Feed/>
+<OrderInfo/>
             <Switch location={background || location}>
 
                 <Route path="/" exact={true}>
@@ -98,9 +98,12 @@ function App() {
                 <ProtectedRoute path='/profile'>
                     <UserProfile/>
                 </ProtectedRoute>
-                <ProtectedRoute path='/order'>
-                    <OrderFeed/>
+                <ProtectedRoute path='/feed'>
+                    <Feed/>
                 </ProtectedRoute>
+                {/*<ProtectedRoute path='/order'>*/}
+                {/*    <OrderInfo/>*/}
+                {/*</ProtectedRoute>*/}
                 <Route path="/ingredient/:id">
                     <IngredientDetails/>
                 </Route>
