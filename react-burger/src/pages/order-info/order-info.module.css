@@ -3,15 +3,44 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 640px;
+    align-self: center;
+    margin-top: 122px;
 }
 
-.text {
-    margin: 10% auto auto;
-    font-family: JetBrains Mono, sans-serif;
+.number {
+    font-family: 'Iceland', sans-serif;
     font-style: normal;
-    font-weight: bold;
-    font-size: 44px;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 24px;
+    color: #F2F2F3;
+}
+.name{
+    font-family: 'JetBrains Mono', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
     line-height: 30px;
-    display: flex;
-    align-items: center;
+    color: #F2F2F3;
+    align-self: start;
+
+}
+.status{
+    font-family: 'JetBrains Mono',sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #00CCCC;
+    align-self: start;
+}
+.composition{
+    font-family: 'JetBrains Mono', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: #F2F2F3;
+    align-self: start;
 }

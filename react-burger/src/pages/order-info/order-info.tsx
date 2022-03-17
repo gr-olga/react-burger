@@ -7,10 +7,10 @@ export default function OrderInfo() {
 
     return (
         <div className={styles.container}>
-            <h3 className={styles.text}>#034533</h3>
-            <h2> Name of burger </h2>
-            <p>Status</p>
-            <h3> Состав: </h3>
+            <h3 className={styles.number}>#034533</h3>
+            <h2 className={styles.name}> Name of burger </h2>
+            <p className={styles.status}>Status</p>
+            <h3 className={styles.composition}> Состав: </h3>
             <div>
                 {ingredients.map((item) => {
                     return(
