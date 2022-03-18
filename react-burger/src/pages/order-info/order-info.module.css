@@ -15,8 +15,10 @@
     font-size: 28px;
     line-height: 24px;
     color: #F2F2F3;
+    margin-right: 10px;
 }
-.name{
+
+.name {
     font-family: 'JetBrains Mono', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -26,8 +28,9 @@
     align-self: start;
 
 }
-.status{
-    font-family: 'JetBrains Mono',sans-serif;
+
+.status {
+    font-family: 'JetBrains Mono', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -35,7 +38,8 @@
     color: #00CCCC;
     align-self: start;
 }
-.composition{
+
+.composition {
     font-family: 'JetBrains Mono', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -43,4 +47,26 @@
     line-height: 30px;
     color: #F2F2F3;
     align-self: start;
+}
+
+.time {
+    display: flex;
+    flex-direction: row;
+    width: 640px;
+    justify-content: space-between;
+}
+
+.sum {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 50px;
+}
+.timeTitle{
+    font-family: 'JetBrains Mono', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #8585AD;
 }

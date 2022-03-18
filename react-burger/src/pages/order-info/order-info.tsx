@@ -1,6 +1,7 @@
 import styles from "./order-info.module.css";
 import {useSelector} from "../../utils/types";
 import {OrderComponent} from "../../components/order-component/order-component";
+import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 
 export default function OrderInfo() {
     const {ingredients} = useSelector(({ingredientsReducer}) => ingredientsReducer)
@@ -22,6 +23,13 @@ export default function OrderInfo() {
                         />
                     )
                 })}
+            </div>
+            <div className={styles.time}>
+                <h4 className={styles.timeTitle}>Вчера, 13:50 i-GMT+3</h4>
+                <div className={styles.sum}>
+                    <h4 className={styles.number}>540</h4>
+                    <CurrencyIcon type="primary" />
+                </div>
             </div>
         </div>
     )

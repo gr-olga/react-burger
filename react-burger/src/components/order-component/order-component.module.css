@@ -36,3 +36,8 @@
 .image{
     width: 112px;
 }
+.count{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
