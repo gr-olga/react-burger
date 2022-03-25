@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import styles from './app.module.css';
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import OrderDetails from "../order-details/order-details";
 import AppHeader from "../header/app-header";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import {useDispatch} from 'react-redux';
@@ -10,7 +9,6 @@ import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     CLOSE_MODAL,
     getIngredients,
-    INCREASE_BUN_COUNTER,
     INCREASE_COUNTER,
     SHOW_INGREDIENT
 } from "../../services/actions";
@@ -25,11 +23,13 @@ import PasswordRecovery from "../../pages/password-recovery/password-recovery";
 import UserProfile from "../../pages/user-profile/user-profile";
 import {Route, Switch, useHistory, useLocation} from "react-router-dom";
 import {NotFoundPage} from "../../pages/not-found-page/not-found-page";
-import OrderInfo from "../../pages/order-info/order-info";
 import {ProtectedRoute} from "../protected-route/protected-route";
 import {NonLoginRoute} from "../non-login-route/non-login-route";
-import Modal from "../modal/modal";
 import {Feed} from "../../pages/feed/feed";
+import {OrderHistory} from "../../pages/order-history/order-history";
+import OrderDetails from "../order-details/order-details";
+import Modal from "../modal/modal";
+import OrderInfo from "../../pages/order-info/order-info";
 
 function App() {
     let history = useHistory();
@@ -56,7 +56,7 @@ function App() {
 
     function closeModal() {
         dispatch({type: CLOSE_MODAL})
-        if(isIngredientDetailsOpen){
+        if (isIngredientDetailsOpen) {
             history.goBack()
         }
     }
@@ -68,9 +68,8 @@ function App() {
     return (
         <div className={styles.app}>
             <AppHeader/>
-<OrderInfo/>
+            {/*<OrderHistory/>*/}
             <Switch location={background || location}>
-
                 <Route path="/" exact={true}>
                     <DndProvider backend={HTML5Backend}>
                         <div className={styles.bar}>
@@ -98,12 +97,18 @@ function App() {
                 <ProtectedRoute path='/profile'>
                     <UserProfile/>
                 </ProtectedRoute>
-                <ProtectedRoute path='/feed'>
-                    <Feed/>
+                <ProtectedRoute path='/profile/orders'>
+                    <OrderHistory/>
                 </ProtectedRoute>
-                {/*<ProtectedRoute path='/order'>*/}
-                {/*    <OrderInfo/>*/}
-                {/*</ProtectedRoute>*/}
+                <ProtectedRoute path='/profile/orders/:id'>
+                    <OrderInfo/>
+                </ProtectedRoute>
+                <Route path='/feed'>
+                    <Feed/>
+                </Route>
+                <NonLoginRoute path='/feed/:id'>
+                    <OrderInfo/>
+                </NonLoginRoute>
                 <Route path="/ingredient/:id">
                     <IngredientDetails/>
                 </Route>
@@ -111,17 +116,17 @@ function App() {
                     <NotFoundPage/>
                 </Route>
             </Switch>
-            {/*{background && <Route path="/ingredient/:id"*/}
-            {/*                      children={<Modal closeModal={closeModal}*/}
-            {/*                                       title={'Детали ингредиента'}*/}
-            {/*                                       isOpen={isIngredientDetailsOpen}*/}
-            {/*                      >*/}
-            {/*                          <IngredientDetails/>*/}
-            {/*                      </Modal>}*/}
-            {/*/>}*/}
-            {/*<OrderDetails*/}
-            {/*    closeModal={closeModal}*/}
-            {/*/>*/}
+            {background && <Route path="/ingredient/:id"
+                                  children={<Modal closeModal={closeModal}
+                                                   title={'Детали ингредиента'}
+                                                   isOpen={isIngredientDetailsOpen}
+                                  >
+                                      <IngredientDetails/>
+                                  </Modal>}
+            />}
+            <OrderDetails
+                closeModal={closeModal}
+            />
         </div>
     );
 }

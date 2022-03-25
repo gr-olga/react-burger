@@ -1,14 +1,18 @@
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './feed-box.module.css'
-import {useSelector} from "../../utils/types";
+import {TIngredient, TIngredients, useSelector} from "../../utils/types";
+
 
 export function FeedBox() {
     const {
         constructorIngredients,
     } = useSelector(({ingredientsReducer}) => ingredientsReducer)
+    // function handleClick(item: TIngredients) {
+    //     ({pathname: 'feed/:id'})
+    // }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container}  >
             <div className={styles.dataBox}>
                 <div className={styles.number}>number</div>
                 <div className={styles.dataOf}> data</div>

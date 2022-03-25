@@ -67,6 +67,12 @@ export type TModal = {
     isOpen?: boolean
 }
 
+export interface TIngredients {
+    number: number,
+    data: string,
+    NameBurger: string,
+    img: string,
+}
 
 export interface TIngredient extends TClearIngredient {
     onItemClick: (item: TIngredient) => void
