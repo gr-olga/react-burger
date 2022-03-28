@@ -103,9 +103,9 @@ function App() {
                 <ProtectedRoute path='/profile/orders/:id'>
                     <OrderInfo/>
                 </ProtectedRoute>
-                <Route path='/feed'>
+                <NonLoginRoute path='/feed'>
                     <Feed/>
-                </Route>
+                </NonLoginRoute>
                 <NonLoginRoute path='/feed/:id'>
                     <OrderInfo/>
                 </NonLoginRoute>

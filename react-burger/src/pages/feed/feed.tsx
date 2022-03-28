@@ -1,7 +1,23 @@
 import styles from './feed.module.css'
 import {FeedBox} from "../../components/feed-box/feed-box";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {WS_FEED_CONNECTION_CLOSE, WS_FEED_CONNECTION_START} from "../../services/web-socket/wsActionTypes";
 
 export function Feed() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({
+                type: WS_FEED_CONNECTION_START,
+                payload: 'wss://norma.nomoreparties.space/api/orders/all'
+            }
+        )
+        return () => {
+            dispatch({type: WS_FEED_CONNECTION_CLOSE})
+        }
+    }, [dispatch])
+
     return (
         <div className={styles.container}>
             <h3 className={styles.title}>Лента заказов</h3>
