@@ -10,7 +10,6 @@ import {
     ADD_INGREDIENT_TO_CONSTRUCTOR,
     CLOSE_MODAL,
     getIngredients,
-    INCREASE_BUN_COUNTER,
     INCREASE_COUNTER,
     SHOW_INGREDIENT
 } from "../../services/actions";
@@ -55,7 +54,7 @@ function App() {
 
     function closeModal() {
         dispatch({type: CLOSE_MODAL})
-        if(isIngredientDetailsOpen){
+        if (isIngredientDetailsOpen) {
             history.goBack()
         }
     }
@@ -68,7 +67,7 @@ function App() {
         <div className={styles.app}>
             <AppHeader/>
             <Switch location={background || location}>
-                <Route path="/" exact={true}>
+                <Route path={['/', '/react-burger']} exact={true}>
                     <DndProvider backend={HTML5Backend}>
                         <div className={styles.bar}>
                             <BurgerIngredients
